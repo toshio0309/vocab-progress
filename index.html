@@ -35,6 +35,26 @@ header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end
 h1{margin:0;font-size:22px;font-weight:700;text-wrap:balance}
 .stamp{color:var(--muted);font-size:13px}
 h2{margin:0 0 12px;font-size:20px;font-weight:700}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.section-head h2{margin:0}
+.section-actions{display:flex;align-items:center;gap:12px}
+.result-count{color:var(--muted);font-size:13px;white-space:nowrap}
+.filter-menu{position:relative;z-index:2}
+.filter-menu[open]{z-index:5}
+.filter-menu summary{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:7px 12px;border:1px solid var(--line);border-radius:9px;background:var(--surface);font-size:13px;font-weight:500;cursor:pointer;list-style:none;white-space:nowrap}
+.filter-menu summary::-webkit-details-marker{display:none}
+.filter-menu summary:hover,.filter-menu[open] summary{border-color:var(--accent);color:var(--accent)}
+.filter-menu summary:focus-visible,.filter-options input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.filter-menu svg{width:17px;height:17px;flex:none}
+.filter-badge{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 4px;border-radius:99px;background:var(--accent);color:var(--surface);font-size:11px;line-height:1}
+.filter-badge[hidden]{display:none}
+.filter-popover{position:absolute;right:0;top:calc(100% + 6px);width:min(280px,calc(100vw - 32px));padding:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.16)}
+.filter-options{display:grid;gap:2px;margin:0;padding:0;border:0}
+.filter-options+.filter-options{margin-top:13px;padding-top:13px;border-top:1px solid var(--line)}
+.filter-options legend{margin-bottom:6px;color:var(--muted);font-size:12px;font-weight:700}
+.filter-options label{display:flex;align-items:center;gap:9px;min-height:36px;padding:5px 7px;border-radius:7px;font-size:14px;cursor:pointer}
+.filter-options label:hover{background:var(--info-bg)}
+.filter-options input{accent-color:var(--accent);width:16px;height:16px;margin:0}
 .section-description{margin:-4px 0 12px;color:var(--muted);font-size:13px}
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;gap:6px}
@@ -50,6 +70,7 @@ table{width:100%;border-collapse:collapse;min-width:720px}
 .request-table table{min-width:1080px}
 th,td{text-align:left;padding:13px 20px;border-bottom:1px solid var(--line);vertical-align:top}
 tr:last-child td{border-bottom:0}
+tr[hidden]{display:none}
 th{color:var(--muted);font-weight:500;font-size:14px}
 td.id{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;white-space:nowrap}
 td.note{color:var(--muted);font-size:13px}
@@ -67,7 +88,7 @@ td.note{color:var(--muted);font-size:13px}
 .low{color:var(--muted);border-color:var(--line)}
 footer{color:var(--muted);font-size:12px}
 @media (max-width:900px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:420px){.stats{grid-template-columns:1fr}}
+@media (max-width:420px){.stats{grid-template-columns:1fr}.result-count{display:none}}
 </style>
 
 <div class="wrap">
@@ -116,60 +137,121 @@ footer{color:var(--muted);font-size:12px}
     </div>
   </section>
 
-  <section>
-    <h2>タスク</h2>
+  <section data-filter-section>
+    <div class="section-head">
+      <h2>タスク</h2>
+      <div class="section-actions">
+      <span class="result-count" data-filter-count aria-live="polite">9件を表示</span>
+      <details class="filter-menu">
+        <summary aria-label="タスクを絞り込み"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16l-6.5 7.3V19l-3 1v-6.7L4 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>絞り込み<span class="filter-badge" data-filter-badge hidden></span></summary>
+        <div class="filter-popover">
+          <fieldset class="filter-options" data-filter-key="status">
+            <legend>状態</legend>
+            <label><input type="radio" name="tasks-status" value="all" checked>すべて</label>
+            <label><input type="radio" name="tasks-status" value="doing">doing</label>
+            <label><input type="radio" name="tasks-status" value="review">確認待ち</label>
+            <label><input type="radio" name="tasks-status" value="todo">todo</label>
+            <label><input type="radio" name="tasks-status" value="done">done</label>
+          </fieldset>
+        </div>
+      </details>
+    </div>
+    </div>
     <div class="table-box">
       <table>
         <thead><tr><th>ID</th><th>状態</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
-          <tr><td class="id">T4</td><td><span class="pill doing">doing</span></td><td>中1 Motion をレッスンに移す</td><td class="note">66 / 74 ページを本番公開済み。cloud-v2 に統合済み。新レイアウトのアプリ側も本番デプロイ済み。複合語を含む 8 ページは保留</td></tr>
-          <tr><td class="id">UX2</td><td><span class="pill done">done</span></td><td>学習ページを画像案 1 に更新</td><td class="note">画像＋音声を主役にし、Smart Review・Speed Learn の順に整理。cloud-v2 に統合し、9/26 に本番デプロイ済み。型チェック・38 テスト・ビルド・dry-run 合格。公開ページと画像素材は HTTP 200。ログイン後の実データ操作は未確認</td></tr>
-          <tr><td class="id">UX</td><td><span class="pill done">done</span></td><td>レッスンの再生と画面遷移の改善</td><td class="note">cloud-v2 に統合し、9/26 に最新版と合わせて本番デプロイ済み。型チェック・38 テスト・ビルド合格。ログイン後の本番目視は認証 HTTP 504 のため未確認</td></tr>
-          <tr><td class="id">T5</td><td><span class="pill done">done</span></td><td>旧サイトのユーザー・学習データ移行（C4）</td><td class="note">旧サイトはトライアルのみで、ユーザー判断により引き継ぎ不要として終了。システム側はクラウド版へ移行済み</td></tr>
-          <tr><td class="id">T1</td><td><span class="pill done">done</span></td><td>残りの学習モードの移植（チャンク②）</td><td class="note">旧 Motion は除外して本番反映</td></tr>
-          <tr><td class="id">T2</td><td><span class="pill done">done</span></td><td>学習者向けの短い意味（migration 0015）</td><td class="note">本番DBで 2,307 / 4,320 語に登録済み。未登録は 2,013 語</td></tr>
-          <tr><td class="id">T3</td><td><span class="pill done">done</span></td><td>視聴の記録と、見たあとの仕分け</td><td class="note">レッスン API のテスト 21 件合格</td></tr>
-          <tr><td class="id">T6</td><td><span class="pill done">done</span></td><td>オフライン同期と PWA（migration 0016）</td><td class="note">スマホでオフライン 22 問 → 再接続で 1 回ずつ保存を確認</td></tr>
-          <tr><td class="id">C7-7</td><td><span class="pill done">done</span></td><td>動画レッスンの「じっくり」と Recall（migration 0017）</td><td class="note">9/25 のフィードバック反映済み</td></tr>
+          <tr data-filter-row data-status="doing"><td class="id">T4</td><td><span class="pill doing">doing</span></td><td>中1 Motion をレッスンに移す</td><td class="note">66 / 74 ページを本番公開済み。cloud-v2 に統合済み。新レイアウトのアプリ側も本番デプロイ済み。複合語を含む 8 ページは保留</td></tr>
+          <tr data-filter-row data-status="done"><td class="id">UX2</td><td><span class="pill done">done</span></td><td>学習ページを画像案 1 に更新</td><td class="note">画像＋音声を主役にし、Smart Review・Speed Learn の順に整理。cloud-v2 に統合し、9/26 に本番デプロイ済み。型チェック・38 テスト・ビルド・dry-run 合格。公開ページと画像素材は HTTP 200。ログイン後の実データ操作は未確認</td></tr>
+          <tr data-filter-row data-status="done"><td class="id">UX</td><td><span class="pill done">done</span></td><td>レッスンの再生と画面遷移の改善</td><td class="note">cloud-v2 に統合し、9/26 に最新版と合わせて本番デプロイ済み。型チェック・38 テスト・ビルド合格。ログイン後の本番目視は認証 HTTP 504 のため未確認</td></tr>
+          <tr data-filter-row data-status="done"><td class="id">T5</td><td><span class="pill done">done</span></td><td>旧サイトのユーザー・学習データ移行（C4）</td><td class="note">旧サイトはトライアルのみで、ユーザー判断により引き継ぎ不要として終了。システム側はクラウド版へ移行済み</td></tr>
+          <tr data-filter-row data-status="done"><td class="id">T1</td><td><span class="pill done">done</span></td><td>残りの学習モードの移植（チャンク②）</td><td class="note">旧 Motion は除外して本番反映</td></tr>
+          <tr data-filter-row data-status="done"><td class="id">T2</td><td><span class="pill done">done</span></td><td>学習者向けの短い意味（migration 0015）</td><td class="note">本番DBで 2,307 / 4,320 語に登録済み。未登録は 2,013 語</td></tr>
+          <tr data-filter-row data-status="done"><td class="id">T3</td><td><span class="pill done">done</span></td><td>視聴の記録と、見たあとの仕分け</td><td class="note">レッスン API のテスト 21 件合格</td></tr>
+          <tr data-filter-row data-status="done"><td class="id">T6</td><td><span class="pill done">done</span></td><td>オフライン同期と PWA（migration 0016）</td><td class="note">スマホでオフライン 22 問 → 再接続で 1 回ずつ保存を確認</td></tr>
+          <tr data-filter-row data-status="done"><td class="id">C7-7</td><td><span class="pill done">done</span></td><td>動画レッスンの「じっくり」と Recall（migration 0017）</td><td class="note">9/25 のフィードバック反映済み</td></tr>
+          <tr data-filter-empty hidden><td colspan="4" class="note">条件に一致するタスクはありません。</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <section>
-    <h2>要望・検討事項</h2>
+  <section data-filter-section>
+    <div class="section-head">
+      <h2>要望・検討事項</h2>
+      <div class="section-actions">
+      <span class="result-count" data-filter-count aria-live="polite">10件を表示</span>
+      <details class="filter-menu">
+        <summary aria-label="要望・検討事項を絞り込み"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16l-6.5 7.3V19l-3 1v-6.7L4 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>絞り込み<span class="filter-badge" data-filter-badge hidden></span></summary>
+        <div class="filter-popover">
+          <fieldset class="filter-options" data-filter-key="kind">
+            <legend>種別</legend>
+            <label><input type="radio" name="requests-kind" value="all" checked>すべて</label>
+            <label><input type="radio" name="requests-kind" value="feature">機能</label>
+            <label><input type="radio" name="requests-kind" value="nonfunctional">非機能</label>
+          </fieldset>
+          <fieldset class="filter-options" data-filter-key="state">
+            <legend>状態</legend>
+            <label><input type="radio" name="requests-state" value="all" checked>すべて</label>
+            <label><input type="radio" name="requests-state" value="candidate">次候補</label>
+            <label><input type="radio" name="requests-state" value="considering">検討中</label>
+            <label><input type="radio" name="requests-state" value="deferred">保留</label>
+          </fieldset>
+        </div>
+      </details>
+    </div>
+    </div>
     <p class="section-description">実装タスクにしていない要望と、今回見送った判断を記録しています。「次候補」は着手確定ではありません。</p>
     <div class="table-box request-table">
       <table>
         <thead><tr><th>ID</th><th>種別</th><th>状態</th><th>要望・検討</th><th>今の判断</th><th>再検討の条件</th></tr></thead>
         <tbody>
-          <tr><td class="id">F01</td><td>機能</td><td><span class="pill candidate">次候補</span></td><td>苦手に誤答した単語の一覧を追加<small class="source">出典: UI/UX 改善計画 §3–4</small></td><td class="note">現画面はミスの型と3分練習が中心。誤答語・意味・直近の間違いを直接見られる台帳を追加する案。</td><td class="note">誤答語と「怪しい」だけの語の表示区分を決めたら着手を判断</td></tr>
-          <tr><td class="id">F02</td><td>機能</td><td><span class="pill candidate">次候補</span></td><td>単語を学習済み語の台帳として使いやすくする<small class="source">出典: UI/UX 改善計画 §3–4</small></td><td class="note">現画面の単語マスター検索を維持し、接触済み・復習中・定着などの状態フィルターを追加する案。</td><td class="note">表示する学習状態と定着の定義を FSRS とそろえたら着手を判断</td></tr>
-          <tr><td class="id">N01</td><td>非機能</td><td><span class="pill candidate">次候補</span></td><td>実データで学習導線を通し確認<small class="source">出典: 画像案1 design QA</small></td><td class="note">画像案1の画面はモックで視覚確認済み。ログイン後のレッスン再生・復習・セット開始は未確認。</td><td class="note">検証用アカウントで本番の3導線と空・エラー状態を確認できるとき</td></tr>
-          <tr><td class="id">N02</td><td>非機能</td><td><span class="pill candidate">次候補</span></td><td>実機とアクセシビリティを確認<small class="source">出典: 画像案1 design QA・UI/UX 改善計画 §6</small></td><td class="note">ダークテーマ、実機での音声、キーボード操作、読み上げは今回の画面確認に含まれていない。</td><td class="note">次の画面改善時にスマホ実機と支援技術で確認する</td></tr>
-          <tr><td class="id">F03</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>Deep Learn で苦手語の使い方と自作文を深める<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">既存モードの拡張案。苦手語から起動し、意味だけでなく用法と自分の文まで扱う。</td><td class="note">AI に依存しない最小体験と、AI 利用方針を別々に決める</td></tr>
-          <tr><td class="id">F04</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>Context に動画の例文音声を活用<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">既存の Context と動画教材をつなぐ案。例文を聞いて意味を判断できるか検証する。</td><td class="note">例文音声と問題単位の時刻情報が既存素材にあるか確認する</td></tr>
-          <tr><td class="id">N03</td><td>非機能</td><td><span class="pill considering">検討中</span></td><td>動画から復習までの利用状況を測る<small class="source">出典: UI/UX 改善計画 §6</small></td><td class="note">視聴・仕分け・未仕分け回収・復習への移行を、個人情報を出さない集計で確認する案。</td><td class="note">現状値と取得方法を決めてから改善目標を設定する</td></tr>
-          <tr><td class="id">F05</td><td>機能</td><td><span class="pill deferred">保留</span></td><td>追加した教材の範囲からレッスンと復習を組む<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">現状の教材追加は二次導線。追加後の学習まで一続きにできる仕様が決まるまで主導線にしない。</td><td class="note">教材の取り込みから動画・仕分け・復習までの生成方法を設計する</td></tr>
-          <tr><td class="id">F06</td><td>機能</td><td><span class="pill deferred">保留</span></td><td>Listening を独立した主導線に戻す<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">画像＋音声の動画と役割が重なるため学習ページの主導線から外した。既存のモードと履歴は残す。</td><td class="note">画面を見ず耳だけで学ぶ需要が確認できたら音声中心の体験を検討</td></tr>
-          <tr><td class="id">F07</td><td>機能</td><td><span class="pill deferred">保留</span></td><td>Test を独立した主導線に戻す<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">Smart Review との違いが伝わりにくいため学習ページの主導線から外した。実力測定としての既存機能は残す。</td><td class="note">試験前の実力測定需要と、復習とは違う目的の説明を確認する</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="candidate"><td class="id">F01</td><td>機能</td><td><span class="pill candidate">次候補</span></td><td>苦手に誤答した単語の一覧を追加<small class="source">出典: UI/UX 改善計画 §3–4</small></td><td class="note">現画面はミスの型と3分練習が中心。誤答語・意味・直近の間違いを直接見られる台帳を追加する案。</td><td class="note">誤答語と「怪しい」だけの語の表示区分を決めたら着手を判断</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="candidate"><td class="id">F02</td><td>機能</td><td><span class="pill candidate">次候補</span></td><td>単語を学習済み語の台帳として使いやすくする<small class="source">出典: UI/UX 改善計画 §3–4</small></td><td class="note">現画面の単語マスター検索を維持し、接触済み・復習中・定着などの状態フィルターを追加する案。</td><td class="note">表示する学習状態と定着の定義を FSRS とそろえたら着手を判断</td></tr>
+          <tr data-filter-row data-kind="nonfunctional" data-state="candidate"><td class="id">N01</td><td>非機能</td><td><span class="pill candidate">次候補</span></td><td>実データで学習導線を通し確認<small class="source">出典: 画像案1 design QA</small></td><td class="note">画像案1の画面はモックで視覚確認済み。ログイン後のレッスン再生・復習・セット開始は未確認。</td><td class="note">検証用アカウントで本番の3導線と空・エラー状態を確認できるとき</td></tr>
+          <tr data-filter-row data-kind="nonfunctional" data-state="candidate"><td class="id">N02</td><td>非機能</td><td><span class="pill candidate">次候補</span></td><td>実機とアクセシビリティを確認<small class="source">出典: 画像案1 design QA・UI/UX 改善計画 §6</small></td><td class="note">ダークテーマ、実機での音声、キーボード操作、読み上げは今回の画面確認に含まれていない。</td><td class="note">次の画面改善時にスマホ実機と支援技術で確認する</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F03</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>Deep Learn で苦手語の使い方と自作文を深める<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">既存モードの拡張案。苦手語から起動し、意味だけでなく用法と自分の文まで扱う。</td><td class="note">AI に依存しない最小体験と、AI 利用方針を別々に決める</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F04</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>Context に動画の例文音声を活用<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">既存の Context と動画教材をつなぐ案。例文を聞いて意味を判断できるか検証する。</td><td class="note">例文音声と問題単位の時刻情報が既存素材にあるか確認する</td></tr>
+          <tr data-filter-row data-kind="nonfunctional" data-state="considering"><td class="id">N03</td><td>非機能</td><td><span class="pill considering">検討中</span></td><td>動画から復習までの利用状況を測る<small class="source">出典: UI/UX 改善計画 §6</small></td><td class="note">視聴・仕分け・未仕分け回収・復習への移行を、個人情報を出さない集計で確認する案。</td><td class="note">現状値と取得方法を決めてから改善目標を設定する</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="deferred"><td class="id">F05</td><td>機能</td><td><span class="pill deferred">保留</span></td><td>追加した教材の範囲からレッスンと復習を組む<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">現状の教材追加は二次導線。追加後の学習まで一続きにできる仕様が決まるまで主導線にしない。</td><td class="note">教材の取り込みから動画・仕分け・復習までの生成方法を設計する</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="deferred"><td class="id">F06</td><td>機能</td><td><span class="pill deferred">保留</span></td><td>Listening を独立した主導線に戻す<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">画像＋音声の動画と役割が重なるため学習ページの主導線から外した。既存のモードと履歴は残す。</td><td class="note">画面を見ず耳だけで学ぶ需要が確認できたら音声中心の体験を検討</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="deferred"><td class="id">F07</td><td>機能</td><td><span class="pill deferred">保留</span></td><td>Test を独立した主導線に戻す<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">Smart Review との違いが伝わりにくいため学習ページの主導線から外した。実力測定としての既存機能は残す。</td><td class="note">試験前の実力測定需要と、復習とは違う目的の説明を確認する</td></tr>
+          <tr data-filter-empty hidden><td colspan="6" class="note">条件に一致する要望・検討事項はありません。</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <section>
-    <h2>未決事項</h2>
+  <section data-filter-section>
+    <div class="section-head">
+      <h2>未決事項</h2>
+      <div class="section-actions">
+      <span class="result-count" data-filter-count aria-live="polite">6件を表示</span>
+      <details class="filter-menu">
+        <summary aria-label="未決事項を絞り込み"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16l-6.5 7.3V19l-3 1v-6.7L4 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>絞り込み<span class="filter-badge" data-filter-badge hidden></span></summary>
+        <div class="filter-popover">
+          <fieldset class="filter-options" data-filter-key="urgency">
+            <legend>緊急度</legend>
+            <label><input type="radio" name="questions-urgency" value="all" checked>すべて</label>
+            <label><input type="radio" name="questions-urgency" value="high">高</label>
+            <label><input type="radio" name="questions-urgency" value="mid">中</label>
+            <label><input type="radio" name="questions-urgency" value="low">低</label>
+          </fieldset>
+        </div>
+      </details>
+    </div>
+    </div>
     <div class="table-box">
       <table>
         <thead><tr><th>ID</th><th>緊急度</th><th>問い</th><th>既定の行動</th></tr></thead>
         <tbody>
-          <tr><td class="id">Q1</td><td><span class="pill high">高</span></td><td>中2 教材の 346 カードに、短い意味がない</td><td class="note">絵と例文に合う訳を人が確認して登録する。辞書の先頭を機械的に切らない</td></tr>
-          <tr><td class="id">Q2</td><td><span class="pill mid">中</span></td><td>中1 の 8 ページ（13, 33, 40, 46, 55–57, 59）に複合語がある</td><td class="note">複合語を単語マスターに入れない限り保留</td></tr>
-          <tr><td class="id">Q4</td><td><span class="pill mid">中</span></td><td>メール未確認のユーザーが Data API に直接書き込める</td><td class="note">画面と Worker では止めている。RLS で止めるかは未決</td></tr>
-          <tr><td class="id">Q7</td><td><span class="pill mid">中</span></td><td>中1 Motion の例文音声がない</td><td class="note">例文の読み上げ仕様を決め、公開済み66ページの音声と区間を作り直して再公開する</td></tr>
-          <tr><td class="id">Q5</td><td><span class="pill low">低</span></td><td>T3 の確認で一度だけ 401 が返った</td><td class="note">再ログインで解消。原因は未確認</td></tr>
-          <tr><td class="id">Q6</td><td><span class="pill low">低</span></td><td>片付け: 使っていないシークレット、古いテストユーザー</td><td class="note">承認を得てから削除する</td></tr>
+          <tr data-filter-row data-urgency="high"><td class="id">Q1</td><td><span class="pill high">高</span></td><td>中2 教材の 346 カードに、短い意味がない</td><td class="note">絵と例文に合う訳を人が確認して登録する。辞書の先頭を機械的に切らない</td></tr>
+          <tr data-filter-row data-urgency="mid"><td class="id">Q2</td><td><span class="pill mid">中</span></td><td>中1 の 8 ページ（13, 33, 40, 46, 55–57, 59）に複合語がある</td><td class="note">複合語を単語マスターに入れない限り保留</td></tr>
+          <tr data-filter-row data-urgency="mid"><td class="id">Q4</td><td><span class="pill mid">中</span></td><td>メール未確認のユーザーが Data API に直接書き込める</td><td class="note">画面と Worker では止めている。RLS で止めるかは未決</td></tr>
+          <tr data-filter-row data-urgency="mid"><td class="id">Q7</td><td><span class="pill mid">中</span></td><td>中1 Motion の例文音声がない</td><td class="note">例文の読み上げ仕様を決め、公開済み66ページの音声と区間を作り直して再公開する</td></tr>
+          <tr data-filter-row data-urgency="low"><td class="id">Q5</td><td><span class="pill low">低</span></td><td>T3 の確認で一度だけ 401 が返った</td><td class="note">再ログインで解消。原因は未確認</td></tr>
+          <tr data-filter-row data-urgency="low"><td class="id">Q6</td><td><span class="pill low">低</span></td><td>片付け: 使っていないシークレット、古いテストユーザー</td><td class="note">承認を得てから削除する</td></tr>
+          <tr data-filter-empty hidden><td colspan="4" class="note">条件に一致する未決事項はありません。</td></tr>
         </tbody>
       </table>
     </div>
@@ -177,3 +259,39 @@ footer{color:var(--muted);font-size:12px}
 
   <footer>docs/progress/status.json から生成。更新ルールはリポジトリ直下の AGENTS.md「進捗ダッシュボード」。</footer>
 </div>
+<script>
+for (const section of document.querySelectorAll('[data-filter-section]')) {
+  const rows = Array.from(section.querySelectorAll('[data-filter-row]'));
+  const groups = Array.from(section.querySelectorAll('[data-filter-key]'));
+  const countLabel = section.querySelector('[data-filter-count]');
+  const badge = section.querySelector('[data-filter-badge]');
+  const empty = section.querySelector('[data-filter-empty]');
+  const apply = () => {
+    const selected = groups.map((group) => [group.dataset.filterKey, group.querySelector('input:checked').value]);
+    let visible = 0;
+    for (const row of rows) {
+      row.hidden = selected.some(([key, value]) => value !== 'all' && row.dataset[key] !== value);
+      if (!row.hidden) visible += 1;
+    }
+    countLabel.textContent = rows.length + '件中' + visible + '件を表示';
+    const active = selected.filter(([, value]) => value !== 'all').length;
+    badge.hidden = active === 0;
+    badge.textContent = String(active);
+    if (empty) empty.hidden = rows.length === 0 || visible > 0;
+  };
+  section.addEventListener('change', apply);
+  apply();
+}
+document.addEventListener('click', (event) => {
+  for (const menu of document.querySelectorAll('.filter-menu[open]')) {
+    if (!menu.contains(event.target)) menu.open = false;
+  }
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape') return;
+  for (const menu of document.querySelectorAll('.filter-menu[open]')) {
+    menu.open = false;
+    menu.querySelector('summary').focus();
+  }
+});
+</script>
