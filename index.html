@@ -94,26 +94,26 @@ footer{color:var(--muted);font-size:12px}
 <div class="wrap">
   <header>
     <h1>My Vocabulary Coach クラウド版 進捗</h1>
-    <span class="stamp">2026-09-26 更新 · Codex</span>
+    <span class="stamp">2026-09-27 更新 · Codex</span>
   </header>
 
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
-      <span class="value">8 <small>/ 9</small></span>
-      <span class="sub">done 8 · doing 1 · 確認待ち 0 · todo 0</span>
-      <div class="bar"><i style="width:88.9%"></i></div>
+      <span class="value">9 <small>/ 9</small></span>
+      <span class="sub">done 9 · doing 0 · 確認待ち 0 · todo 0</span>
+      <div class="bar"><i style="width:100%"></i></div>
     </div>
     <div class="stat">
       <span class="label">公開済みレッスン</span>
-      <span class="value">126</span>
-      <span class="sub">中2 60 · 中1 66（保留 8 ページ）</span>
+      <span class="value">120</span>
+      <span class="sub">中2 60 · 正しい中1 60（旧中1 66本は非公開）</span>
     </div>
     <div class="stat">
       <span class="label">短い意味の登録率</span>
-      <span class="value">53%</span>
-      <span class="sub">2,307 / 4,320 語（本番DBで確認）</span>
-      <div class="bar"><i style="width:53%"></i></div>
+      <span class="value">54%</span>
+      <span class="sub">2,346 / 4,359 語（本番DBで確認）</span>
+      <div class="bar"><i style="width:54%"></i></div>
     </div>
     <div class="stat">
       <span class="label">DB migration</span>
@@ -132,8 +132,8 @@ footer{color:var(--muted);font-size:12px}
     </div>
     <div class="stat">
       <span class="label">未決事項</span>
-      <span class="value">6</span>
-      <span class="sub">高 1 · 中 3 · 低 2</span>
+      <span class="value">5</span>
+      <span class="sub">高 1 · 中 2 · 低 2</span>
     </div>
   </section>
 
@@ -161,12 +161,12 @@ footer{color:var(--muted);font-size:12px}
       <table>
         <thead><tr><th>ID</th><th>状態</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
-          <tr data-filter-row data-status="doing"><td class="id">T4</td><td><span class="pill doing">doing</span></td><td>中1 Motion をレッスンに移す</td><td class="note">66 / 74 ページを本番公開済み。cloud-v2 に統合済み。新レイアウトのアプリ側も本番デプロイ済み。複合語を含む 8 ページは保留</td></tr>
           <tr data-filter-row data-status="done"><td class="id">UX2</td><td><span class="pill done">done</span></td><td>学習ページを画像案 1 に更新</td><td class="note">画像＋音声を主役にし、Smart Review・Speed Learn の順に整理。cloud-v2 に統合し、9/26 に本番デプロイ済み。型チェック・38 テスト・ビルド・dry-run 合格。公開ページと画像素材は HTTP 200。ログイン後の実データ操作は未確認</td></tr>
+          <tr data-filter-row data-status="done"><td class="id">T4</td><td><span class="pill done">done</span></td><td>正しい中1 Motion 教材に差し替える</td><td class="note">正規パッケージ jh1 60 / 60 本・600カードを本番公開。例文音声を含む。旧 junior1 66本は非公開にし、視聴履歴 6 件は保持。短い意味の不足は未決事項に記録</td></tr>
           <tr data-filter-row data-status="done"><td class="id">UX</td><td><span class="pill done">done</span></td><td>レッスンの再生と画面遷移の改善</td><td class="note">cloud-v2 に統合し、9/26 に最新版と合わせて本番デプロイ済み。型チェック・38 テスト・ビルド合格。ログイン後の本番目視は認証 HTTP 504 のため未確認</td></tr>
           <tr data-filter-row data-status="done"><td class="id">T5</td><td><span class="pill done">done</span></td><td>旧サイトのユーザー・学習データ移行（C4）</td><td class="note">旧サイトはトライアルのみで、ユーザー判断により引き継ぎ不要として終了。システム側はクラウド版へ移行済み</td></tr>
           <tr data-filter-row data-status="done"><td class="id">T1</td><td><span class="pill done">done</span></td><td>残りの学習モードの移植（チャンク②）</td><td class="note">旧 Motion は除外して本番反映</td></tr>
-          <tr data-filter-row data-status="done"><td class="id">T2</td><td><span class="pill done">done</span></td><td>学習者向けの短い意味（migration 0015）</td><td class="note">本番DBで 2,307 / 4,320 語に登録済み。未登録は 2,013 語</td></tr>
+          <tr data-filter-row data-status="done"><td class="id">T2</td><td><span class="pill done">done</span></td><td>学習者向けの短い意味（migration 0015）</td><td class="note">本番DBで 2,346 / 4,359 語に登録済み。未登録は 2,013 語</td></tr>
           <tr data-filter-row data-status="done"><td class="id">T3</td><td><span class="pill done">done</span></td><td>視聴の記録と、見たあとの仕分け</td><td class="note">レッスン API のテスト 21 件合格</td></tr>
           <tr data-filter-row data-status="done"><td class="id">T6</td><td><span class="pill done">done</span></td><td>オフライン同期と PWA（migration 0016）</td><td class="note">スマホでオフライン 22 問 → 再接続で 1 回ずつ保存を確認</td></tr>
           <tr data-filter-row data-status="done"><td class="id">C7-7</td><td><span class="pill done">done</span></td><td>動画レッスンの「じっくり」と Recall（migration 0017）</td><td class="note">9/25 のフィードバック反映済み</td></tr>
@@ -211,7 +211,7 @@ footer{color:var(--muted);font-size:12px}
           <tr data-filter-row data-kind="nonfunctional" data-state="candidate"><td class="id">N01</td><td>非機能</td><td><span class="pill candidate">次候補</span></td><td>実データで学習導線を通し確認<small class="source">出典: 画像案1 design QA</small></td><td class="note">画像案1の画面はモックで視覚確認済み。ログイン後のレッスン再生・復習・セット開始は未確認。</td><td class="note">検証用アカウントで本番の3導線と空・エラー状態を確認できるとき</td></tr>
           <tr data-filter-row data-kind="nonfunctional" data-state="candidate"><td class="id">N02</td><td>非機能</td><td><span class="pill candidate">次候補</span></td><td>実機とアクセシビリティを確認<small class="source">出典: 画像案1 design QA・UI/UX 改善計画 §6</small></td><td class="note">ダークテーマ、実機での音声、キーボード操作、読み上げは今回の画面確認に含まれていない。</td><td class="note">次の画面改善時にスマホ実機と支援技術で確認する</td></tr>
           <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F03</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>Deep Learn で苦手語の使い方と自作文を深める<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">既存モードの拡張案。苦手語から起動し、意味だけでなく用法と自分の文まで扱う。</td><td class="note">AI に依存しない最小体験と、AI 利用方針を別々に決める</td></tr>
-          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F04</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>Context に動画の例文音声を活用<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">既存の Context と動画教材をつなぐ案。例文を聞いて意味を判断できるか検証する。</td><td class="note">例文音声と問題単位の時刻情報が既存素材にあるか確認する</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F04</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>Context に動画の例文音声を活用<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">正規の中1教材には各カードの例文音声と単語の終了時刻がある。現行の取り込みでは単語の終了時刻をDBへ保存していない。Contextへの接続は未着手。</td><td class="note">例文区間の保存方法と、Contextで使う設問・再生UIを決めたら着手を判断</td></tr>
           <tr data-filter-row data-kind="nonfunctional" data-state="considering"><td class="id">N03</td><td>非機能</td><td><span class="pill considering">検討中</span></td><td>動画から復習までの利用状況を測る<small class="source">出典: UI/UX 改善計画 §6</small></td><td class="note">視聴・仕分け・未仕分け回収・復習への移行を、個人情報を出さない集計で確認する案。</td><td class="note">現状値と取得方法を決めてから改善目標を設定する</td></tr>
           <tr data-filter-row data-kind="feature" data-state="deferred"><td class="id">F05</td><td>機能</td><td><span class="pill deferred">保留</span></td><td>追加した教材の範囲からレッスンと復習を組む<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">現状の教材追加は二次導線。追加後の学習まで一続きにできる仕様が決まるまで主導線にしない。</td><td class="note">教材の取り込みから動画・仕分け・復習までの生成方法を設計する</td></tr>
           <tr data-filter-row data-kind="feature" data-state="deferred"><td class="id">F06</td><td>機能</td><td><span class="pill deferred">保留</span></td><td>Listening を独立した主導線に戻す<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">画像＋音声の動画と役割が重なるため学習ページの主導線から外した。既存のモードと履歴は残す。</td><td class="note">画面を見ず耳だけで学ぶ需要が確認できたら音声中心の体験を検討</td></tr>
@@ -226,7 +226,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>未決事項</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">6件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">5件を表示</span>
       <details class="filter-menu">
         <summary aria-label="未決事項を絞り込み"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16l-6.5 7.3V19l-3 1v-6.7L4 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>絞り込み<span class="filter-badge" data-filter-badge hidden></span></summary>
         <div class="filter-popover">
@@ -246,9 +246,8 @@ footer{color:var(--muted);font-size:12px}
         <thead><tr><th>ID</th><th>緊急度</th><th>問い</th><th>既定の行動</th></tr></thead>
         <tbody>
           <tr data-filter-row data-urgency="high"><td class="id">Q1</td><td><span class="pill high">高</span></td><td>中2 教材の 346 カードに、短い意味がない</td><td class="note">絵と例文に合う訳を人が確認して登録する。辞書の先頭を機械的に切らない</td></tr>
-          <tr data-filter-row data-urgency="mid"><td class="id">Q2</td><td><span class="pill mid">中</span></td><td>中1 の 8 ページ（13, 33, 40, 46, 55–57, 59）に複合語がある</td><td class="note">複合語を単語マスターに入れない限り保留</td></tr>
           <tr data-filter-row data-urgency="mid"><td class="id">Q4</td><td><span class="pill mid">中</span></td><td>メール未確認のユーザーが Data API に直接書き込める</td><td class="note">画面と Worker では止めている。RLS で止めるかは未決</td></tr>
-          <tr data-filter-row data-urgency="mid"><td class="id">Q7</td><td><span class="pill mid">中</span></td><td>中1 Motion の例文音声がない</td><td class="note">例文の読み上げ仕様を決め、公開済み66ページの音声と区間を作り直して再公開する</td></tr>
+          <tr data-filter-row data-urgency="mid"><td class="id">Q8</td><td><span class="pill mid">中</span></td><td>正しい中1教材の 429 カード（364 語）に、画面用の短い意味がない</td><td class="note">元画像の語義を照合して共有単語マスターへ登録する。長い辞書訳を機械的に短縮しない</td></tr>
           <tr data-filter-row data-urgency="low"><td class="id">Q5</td><td><span class="pill low">低</span></td><td>T3 の確認で一度だけ 401 が返った</td><td class="note">再ログインで解消。原因は未確認</td></tr>
           <tr data-filter-row data-urgency="low"><td class="id">Q6</td><td><span class="pill low">低</span></td><td>片付け: 使っていないシークレット、古いテストユーザー</td><td class="note">承認を得てから削除する</td></tr>
           <tr data-filter-empty hidden><td colspan="4" class="note">条件に一致する未決事項はありません。</td></tr>
