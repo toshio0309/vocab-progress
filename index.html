@@ -137,8 +137,8 @@ footer{color:var(--muted);font-size:12px}
     </div>
     <div class="stat">
       <span class="label">未決事項</span>
-      <span class="value">3</span>
-      <span class="sub">高 1 · 中 0 · 低 2</span>
+      <span class="value">2</span>
+      <span class="sub">高 0 · 中 0 · 低 2</span>
     </div>
   </section>
 
@@ -160,8 +160,8 @@ footer{color:var(--muted);font-size:12px}
       </div>
       <div class="chip-group" role="group" aria-label="タスクの担当" data-filter-key="owner">
         <span class="chip-label">担当</span>
-        <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">4</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">6</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">3</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">7</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">2</span></button>
       </div>
     </div>
@@ -174,8 +174,8 @@ footer{color:var(--muted);font-size:12px}
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P4</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>範囲と語カードの切り出し（v2.2）</td><td class="note">範囲＝語義の集合（学年・英検のタグ）。Motion のカードを rect と音声区間で1語単位に切り出し、範囲レッスンと出題に使う。動画がない語は文字カード＋制作待ち一覧。設計: docs/design-v2-range-progress.md §3–4</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P5</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>範囲テストと定着判定（v2.3）</td><td class="note">定着＝範囲テストで正解。間違えたら復習中に戻す。範囲まとめ・実力推定・抜き打ち再確認。Test の役割を範囲の測定に決め、旧 F07・F12 を統合。設計: docs/design-v2-range-progress.md §1, §5。出題は英→日と日→英の両方（Q7、9/27 ユーザー回答）</td></tr>
           <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">P8</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>進捗ブロックに実データを接続し、画面に置く（v2.3）</td><td class="note">P3（語義）・P4（範囲）・P5（定着）の集計を P6 の表示部品に渡す。置く画面（ホームなど）と、範囲の既定を設定から読む方法を決める。色の保存を端末ごとから設定（DB）に移すかも検討</td></tr>
-          <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">L1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>復習の数が減らない問題を直す<small class="blocked">未決事項: Q12</small></td><td class="note">9/28 調査。原因は3つ: ①レッスンを見ただけの語が、その場で「復習」に数えられる（見た語は復習日が今になる。本番で「見た」語 96 語が全部復習待ち）②1回目に正解しても 10 分後、間違えると 1 分後にまた復習待ちに戻る（FSRS の短い学習ステップ）③1回の復習で出すのは時間で決まる数だけ（3分なら約22語）。直し方の案は Q12。数字が減ることを画面で見せる（「今日の復習 22/118」など）ことも含める</td></tr>
-          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">L2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>仕分けを「意味を隠して思い出す」形式にする<small class="blocked">未決事項: Q12</small></td><td class="note">9/28 決定（Q11）: 日本語を隠して思い出し、めくって「知ってる・あやふや・はじめて」を自己判定する形式にする。答えが見えない想起になるので、仕分けを復習の1回目として扱えるようになる（どう扱うかは Q12 の記憶ルートで決める）。テスト形式（正解で定着）は範囲テスト P5 が担う</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">L1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>記憶のルートを整理し、復習の数が減るようにする</td><td class="note">9/28 設計済み（Q12 → パターン A、docs/design-v2-range-progress.md §10）。見ただけの語は復習に数えない。FSRS の短い学習ステップをやめる（正解は3日後から、間違いは翌日）。間違えた語はその回の最後にもう一度出す。「今日の復習 22/118」を表示。原因調査: 見た語が即復習待ち（本番で見た語 96 語すべて）、正解10分後・間違い1分後に戻る、1回に出す数は時間で決まる</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">L2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>仕分けと動画の Recall を復習の入口にする</td><td class="note">9/28 決定（Q11・Q12）。仕分けは日本語を隠して思い出し、めくって自己判定。結果を復習の1回目として FSRS に入れる（知ってる3日後・あやふや翌日・はじめて今日）。動画の Recall も同じ3段階に読み替え（1回目で思い出せた/2回目で/思い出せない）、Recall 済みの語は仕分けに出さない。翌日まで未仕分けの語は「あやふや」扱い。設計: docs/design-v2-range-progress.md §10</td></tr>
           <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">L3</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>中1 の範囲を約600に絞る</td><td class="note">9/28 決定（Q10）: 中1 の範囲＝中1 Motion の 600 カード。分類タグの 1,010 語は参考として残し、範囲には使わない。本番で確認した数: Motion 600 カード・523 語（77 カードは同じ語の2回目以降）。進捗ブロックの 1 マス＝6 語義。同じ語の2回目が別の意味かどうかは P3 で確認する</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P7</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>台帳の状態フィルターと誤答一覧（v2.3）</td><td class="note">P6 と同じ学習状態で絞り込む。「見た」と「復習中」も選べる。旧 F02・F01</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">M1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>教材の自動検査: 画像ずれと意味の不一致</td><td class="note">全カードを目視せず、怪しいカードだけ一覧にして人が確認。まず公開済みの中1・中2（1,200カード）で精度を確認。語カードの切り出しと中3の前提。旧 N04・Q1</td></tr>
@@ -250,14 +250,14 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>未決事項</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">3件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">2件を表示</span>
       <button type="button" class="filter-reset" data-filter-reset hidden>解除</button>
     </div>
     </div>
     <div class="chips">
       <div class="chip-group" role="group" aria-label="未決事項の緊急度" data-filter-key="urgency">
         <span class="chip-label">緊急度</span>
-        <button type="button" class="chip" aria-pressed="false" data-value="high">高<span class="chip-count">1</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="high">高<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="mid">中<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="low">低<span class="chip-count">2</span></button>
       </div>
@@ -265,14 +265,13 @@ footer{color:var(--muted);font-size:12px}
         <span class="chip-label">決める人</span>
         <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">1</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">0</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">2</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">1</span></button>
       </div>
     </div>
     <div class="table-box">
       <table>
         <thead><tr><th>ID</th><th>緊急度</th><th>決める人</th><th>問い</th><th>影響するタスク</th><th>既定の行動</th></tr></thead>
         <tbody>
-          <tr data-filter-row data-urgency="high" data-owner="user"><td class="id">Q12</td><td><span class="pill high">高</span></td><td><span class="owner owner-user">ユーザー</span></td><td>記憶させるルートの整理: 見る → 仕分け → 復習 → 範囲テストのどこから復習（FSRS）に入れるか</td><td class="id">L1, L2</td><td class="note">9/28 パターン A〜D を提示し選択待ち。推奨は A（隠して仕分けた結果を復習の1回目にする。見ただけの語は復習に数えない）＋共通の直し（正解は翌日以降・間違いはその回の最後・今日できた数の表示）</td></tr>
           <tr data-filter-row data-urgency="low" data-owner="claude"><td class="id">Q5</td><td><span class="pill low">低</span></td><td><span class="owner owner-claude">Claude</span></td><td>T3 の確認で一度だけ 401 が返った</td><td class="id">P1</td><td class="note">再ログインで解消。原因は未確認</td></tr>
           <tr data-filter-row data-urgency="low" data-owner="user"><td class="id">Q6</td><td><span class="pill low">低</span></td><td><span class="owner owner-user">ユーザー</span></td><td>片付け: 使っていないシークレット、古いテストユーザー</td><td class="id"><span class="muted">—</span></td><td class="note">承認を得てから削除する</td></tr>
           <tr data-filter-empty hidden><td colspan="6" class="note">条件に一致する未決事項はありません。</td></tr>
