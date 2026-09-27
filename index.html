@@ -39,22 +39,16 @@ h2{margin:0 0 12px;font-size:20px;font-weight:700}
 .section-head h2{margin:0}
 .section-actions{display:flex;align-items:center;gap:12px}
 .result-count{color:var(--muted);font-size:13px;white-space:nowrap}
-.filter-menu{position:relative;z-index:2}
-.filter-menu[open]{z-index:5}
-.filter-menu summary{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:7px 12px;border:1px solid var(--line);border-radius:9px;background:var(--surface);font-size:13px;font-weight:500;cursor:pointer;list-style:none;white-space:nowrap}
-.filter-menu summary::-webkit-details-marker{display:none}
-.filter-menu summary:hover,.filter-menu[open] summary{border-color:var(--accent);color:var(--accent)}
-.filter-menu summary:focus-visible,.filter-options input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.filter-menu svg{width:17px;height:17px;flex:none}
-.filter-badge{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 4px;border-radius:99px;background:var(--accent);color:var(--surface);font-size:11px;line-height:1}
-.filter-badge[hidden]{display:none}
-.filter-popover{position:absolute;right:0;top:calc(100% + 6px);width:min(280px,calc(100vw - 32px));padding:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.16)}
-.filter-options{display:grid;gap:2px;margin:0;padding:0;border:0}
-.filter-options+.filter-options{margin-top:13px;padding-top:13px;border-top:1px solid var(--line)}
-.filter-options legend{margin-bottom:6px;color:var(--muted);font-size:12px;font-weight:700}
-.filter-options label{display:flex;align-items:center;gap:9px;min-height:36px;padding:5px 7px;border-radius:7px;font-size:14px;cursor:pointer}
-.filter-options label:hover{background:var(--info-bg)}
-.filter-options input{accent-color:var(--accent);width:16px;height:16px;margin:0}
+.chips{display:grid;gap:8px;margin:0 0 12px}
+.chip-group{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
+.chip-label{min-width:3.5em;color:var(--muted);font-size:12px;font-weight:700}
+.chip{display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:5px 12px;border:1px solid var(--line);border-radius:9px;background:var(--track);color:var(--muted);font:inherit;font-size:13px;font-weight:500;cursor:pointer}
+.chip:hover{border-color:var(--accent);color:var(--text)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.chip-count{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;opacity:.8}
+.chip:focus-visible,.filter-reset:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.filter-reset{min-height:32px;padding:4px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--accent);font:inherit;font-size:13px;cursor:pointer}
+.filter-reset[hidden]{display:none}
 .section-description{margin:-4px 0 12px;color:var(--muted);font-size:13px}
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;flex-direction:column;gap:6px}
@@ -147,20 +141,17 @@ footer{color:var(--muted);font-size:12px}
       <h2>タスク</h2>
       <div class="section-actions">
       <span class="result-count" data-filter-count aria-live="polite">22件を表示</span>
-      <details class="filter-menu">
-        <summary aria-label="タスクを絞り込み"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16l-6.5 7.3V19l-3 1v-6.7L4 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>絞り込み<span class="filter-badge" data-filter-badge hidden></span></summary>
-        <div class="filter-popover">
-          <fieldset class="filter-options" data-filter-key="status">
-            <legend>状態</legend>
-            <label><input type="radio" name="tasks-status" value="all" checked>すべて</label>
-            <label><input type="radio" name="tasks-status" value="doing">doing</label>
-            <label><input type="radio" name="tasks-status" value="review">確認待ち</label>
-            <label><input type="radio" name="tasks-status" value="todo">todo</label>
-            <label><input type="radio" name="tasks-status" value="done">done</label>
-          </fieldset>
-        </div>
-      </details>
+      <button type="button" class="filter-reset" data-filter-reset hidden>解除</button>
     </div>
+    </div>
+    <div class="chips">
+      <div class="chip-group" role="group" aria-label="タスクの状態" data-filter-key="status">
+        <span class="chip-label">状態</span>
+        <button type="button" class="chip" aria-pressed="false" data-value="doing">doing<span class="chip-count">0</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="review">確認待ち<span class="chip-count">0</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="todo">todo<span class="chip-count">9</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">13</span></button>
+      </div>
     </div>
     <div class="table-box">
       <table>
@@ -199,25 +190,21 @@ footer{color:var(--muted);font-size:12px}
       <h2>要望・検討事項</h2>
       <div class="section-actions">
       <span class="result-count" data-filter-count aria-live="polite">11件を表示</span>
-      <details class="filter-menu">
-        <summary aria-label="要望・検討事項を絞り込み"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16l-6.5 7.3V19l-3 1v-6.7L4 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>絞り込み<span class="filter-badge" data-filter-badge hidden></span></summary>
-        <div class="filter-popover">
-          <fieldset class="filter-options" data-filter-key="kind">
-            <legend>種別</legend>
-            <label><input type="radio" name="requests-kind" value="all" checked>すべて</label>
-            <label><input type="radio" name="requests-kind" value="feature">機能</label>
-            <label><input type="radio" name="requests-kind" value="nonfunctional">非機能</label>
-          </fieldset>
-          <fieldset class="filter-options" data-filter-key="state">
-            <legend>状態</legend>
-            <label><input type="radio" name="requests-state" value="all" checked>すべて</label>
-            <label><input type="radio" name="requests-state" value="candidate">次候補</label>
-            <label><input type="radio" name="requests-state" value="considering">検討中</label>
-            <label><input type="radio" name="requests-state" value="deferred">保留</label>
-          </fieldset>
-        </div>
-      </details>
+      <button type="button" class="filter-reset" data-filter-reset hidden>解除</button>
     </div>
+    </div>
+    <div class="chips">
+      <div class="chip-group" role="group" aria-label="要望・検討事項の種別" data-filter-key="kind">
+        <span class="chip-label">種別</span>
+        <button type="button" class="chip" aria-pressed="false" data-value="feature">機能<span class="chip-count">9</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="nonfunctional">非機能<span class="chip-count">2</span></button>
+      </div>
+      <div class="chip-group" role="group" aria-label="要望・検討事項の状態" data-filter-key="state">
+        <span class="chip-label">状態</span>
+        <button type="button" class="chip" aria-pressed="false" data-value="candidate">次候補<span class="chip-count">1</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="considering">検討中<span class="chip-count">7</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="deferred">保留<span class="chip-count">3</span></button>
+      </div>
     </div>
     <p class="section-description">実装タスクにしていない要望と、今回見送った判断を記録しています。「次候補」は着手確定ではありません。</p>
     <div class="table-box request-table">
@@ -246,19 +233,16 @@ footer{color:var(--muted);font-size:12px}
       <h2>未決事項</h2>
       <div class="section-actions">
       <span class="result-count" data-filter-count aria-live="polite">5件を表示</span>
-      <details class="filter-menu">
-        <summary aria-label="未決事項を絞り込み"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16l-6.5 7.3V19l-3 1v-6.7L4 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>絞り込み<span class="filter-badge" data-filter-badge hidden></span></summary>
-        <div class="filter-popover">
-          <fieldset class="filter-options" data-filter-key="urgency">
-            <legend>緊急度</legend>
-            <label><input type="radio" name="questions-urgency" value="all" checked>すべて</label>
-            <label><input type="radio" name="questions-urgency" value="high">高</label>
-            <label><input type="radio" name="questions-urgency" value="mid">中</label>
-            <label><input type="radio" name="questions-urgency" value="low">低</label>
-          </fieldset>
-        </div>
-      </details>
+      <button type="button" class="filter-reset" data-filter-reset hidden>解除</button>
     </div>
+    </div>
+    <div class="chips">
+      <div class="chip-group" role="group" aria-label="未決事項の緊急度" data-filter-key="urgency">
+        <span class="chip-label">緊急度</span>
+        <button type="button" class="chip" aria-pressed="false" data-value="high">高<span class="chip-count">0</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="mid">中<span class="chip-count">1</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="low">低<span class="chip-count">4</span></button>
+      </div>
     </div>
     <div class="table-box">
       <table>
@@ -282,34 +266,32 @@ for (const section of document.querySelectorAll('[data-filter-section]')) {
   const rows = Array.from(section.querySelectorAll('[data-filter-row]'));
   const groups = Array.from(section.querySelectorAll('[data-filter-key]'));
   const countLabel = section.querySelector('[data-filter-count]');
-  const badge = section.querySelector('[data-filter-badge]');
+  const reset = section.querySelector('[data-filter-reset]');
   const empty = section.querySelector('[data-filter-empty]');
   const apply = () => {
-    const selected = groups.map((group) => [group.dataset.filterKey, group.querySelector('input:checked').value]);
+    const selected = groups
+      .map((group) => [group.dataset.filterKey, Array.from(group.querySelectorAll('[aria-pressed="true"]'), (chip) => chip.dataset.value)])
+      .filter(([, values]) => values.length > 0);
     let visible = 0;
     for (const row of rows) {
-      row.hidden = selected.some(([key, value]) => value !== 'all' && row.dataset[key] !== value);
+      row.hidden = selected.some(([key, values]) => !values.includes(row.dataset[key]));
       if (!row.hidden) visible += 1;
     }
-    countLabel.textContent = rows.length + '件中' + visible + '件を表示';
-    const active = selected.filter(([, value]) => value !== 'all').length;
-    badge.hidden = active === 0;
-    badge.textContent = String(active);
+    countLabel.textContent = selected.length ? rows.length + '件中' + visible + '件を表示' : rows.length + '件を表示';
+    reset.hidden = selected.length === 0;
     if (empty) empty.hidden = rows.length === 0 || visible > 0;
   };
-  section.addEventListener('change', apply);
+  section.addEventListener('click', (event) => {
+    const chip = event.target.closest('.chip');
+    if (chip) {
+      chip.setAttribute('aria-pressed', String(chip.getAttribute('aria-pressed') !== 'true'));
+    } else if (event.target.closest('[data-filter-reset]')) {
+      for (const on of section.querySelectorAll('.chip[aria-pressed="true"]')) on.setAttribute('aria-pressed', 'false');
+    } else {
+      return;
+    }
+    apply();
+  });
   apply();
 }
-document.addEventListener('click', (event) => {
-  for (const menu of document.querySelectorAll('.filter-menu[open]')) {
-    if (!menu.contains(event.target)) menu.open = false;
-  }
-});
-document.addEventListener('keydown', (event) => {
-  if (event.key !== 'Escape') return;
-  for (const menu of document.querySelectorAll('.filter-menu[open]')) {
-    menu.open = false;
-    menu.querySelector('summary').focus();
-  }
-});
 </script>
