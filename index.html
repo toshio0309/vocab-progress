@@ -117,7 +117,7 @@ footer{color:var(--muted);font-size:12px}
     </div>
     <div class="stat">
       <span class="label">DB migration</span>
-      <span class="value">0019</span>
+      <span class="value">0020</span>
       <span class="sub">まで本番適用済み · 監査違反 0</span>
     </div>
     <div class="stat">
@@ -169,7 +169,7 @@ footer{color:var(--muted);font-size:12px}
       <table>
         <thead><tr><th>ID</th><th>状態</th><th>担当</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
-          <tr data-filter-row data-status="doing" data-owner="claude"><td class="id">P3</td><td><span class="pill doing">doing</span></td><td><span class="owner owner-claude">Claude</span></td><td>語義モデル: 語と意味を分ける（v2.2）</td><td class="note">9/27 P3-1: migration 0020（word_senses・sense_classifications・lesson_words.sense_id）。語義1 は単語の意味をトリガーで写し、分類も単語から受け継ぐので既存の画面・スクリプトは変更不要。熟語も見出しにできる。PGlite 130件合格（既存データへの適用も確認）。本番適用はユーザー承認待ち。次: P3-2 高校3ファイルの取り込み（範囲はファイルどおり、不足の約450語と熟語約300件を追加、意味は自動判定して怪しいものだけユーザー確認）。設計: docs/design-v2-range-progress.md §2</td></tr>
+          <tr data-filter-row data-status="doing" data-owner="claude"><td class="id">P3</td><td><span class="pill doing">doing</span></td><td><span class="owner owner-claude">Claude</span></td><td>語義モデル: 語と意味を分ける（v2.2）</td><td class="note">P3-1 完了: 9/28 migration 0020 を本番適用、監査 0 件。共有単語 4,469 語すべてに語義1（単語の意味と不一致 0）、レッスンのカード 2,460 枚すべてが語義1 に結びついた。単語一覧の表示も確認。語義1 は単語の意味をトリガーで写し、分類も単語から受け継ぐので既存の画面・スクリプトは変更不要。熟語も見出しにできる。次: P3-2 高校3ファイルの取り込み（範囲はファイルどおり、不足の約450語と熟語約300件を追加、意味は自動判定して怪しいものだけユーザー確認）。設計: docs/design-v2-range-progress.md §2</td></tr>
           <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>旧サイトのホスティングを停止</td><td class="note">T8 で旧アプリのコードは撤去済み。Supabase は無料プランの自動一時停止のまま残し、削除しない（9/27 ユーザー判断）</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P4</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>範囲と語カードの切り出し（v2.2）</td><td class="note">範囲＝語義の集合（学年・英検のタグ）。Motion のカードを rect と音声区間で1語単位に切り出し、範囲レッスンと出題に使う。動画がない語は文字カード＋制作待ち一覧。設計: docs/design-v2-range-progress.md §3–4</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P5</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>範囲テストと定着判定（v2.3）</td><td class="note">定着＝範囲テストで正解。間違えたら復習中に戻す。範囲まとめ・実力推定・抜き打ち再確認。Test の役割を範囲の測定に決め、旧 F07・F12 を統合。設計: docs/design-v2-range-progress.md §1, §5。出題は英→日と日→英の両方（Q7、9/27 ユーザー回答）</td></tr>
