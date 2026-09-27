@@ -100,8 +100,8 @@ footer{color:var(--muted);font-size:12px}
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
-      <span class="value">10 <small>/ 10</small></span>
-      <span class="sub">done 10 · doing 0 · 確認待ち 0 · todo 0</span>
+      <span class="value">11 <small>/ 11</small></span>
+      <span class="sub">done 11 · doing 0 · 確認待ち 0 · todo 0</span>
       <div class="bar"><i style="width:100%"></i></div>
     </div>
     <div class="stat">
@@ -146,7 +146,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>タスク</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">10件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">11件を表示</span>
       <details class="filter-menu">
         <summary aria-label="タスクを絞り込み"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16l-6.5 7.3V19l-3 1v-6.7L4 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>絞り込み<span class="filter-badge" data-filter-badge hidden></span></summary>
         <div class="filter-popover">
@@ -166,6 +166,7 @@ footer{color:var(--muted);font-size:12px}
       <table>
         <thead><tr><th>ID</th><th>状態</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
+          <tr data-filter-row data-status="done"><td class="id">UX3</td><td><span class="pill done">done</span></td><td>中1 Motion の最下段カード枠を修正</td><td class="note">中1 60ページの最下段で字幕まで表示できるよう、画像内のカード領域を調整。9/27 に本番デプロイ済み。型チェック・38テスト・ビルド・dry-run 合格、公開ページ HTTP 200。ログイン後の実表示は未確認</td></tr>
           <tr data-filter-row data-status="done"><td class="id">UX2</td><td><span class="pill done">done</span></td><td>学習ページを画像案 1 に更新</td><td class="note">画像＋音声を主役にし、Smart Review・Speed Learn の順に整理。cloud-v2 に統合し、9/26 に本番デプロイ済み。型チェック・38 テスト・ビルド・dry-run 合格。公開ページと画像素材は HTTP 200。ログイン後の実データ操作は未確認</td></tr>
           <tr data-filter-row data-status="done"><td class="id">T4</td><td><span class="pill done">done</span></td><td>正しい中1 Motion 教材に差し替える</td><td class="note">正規パッケージ jh1 60 / 60 本・600カードを本番公開。例文音声を含む。旧 junior1 66本は非公開にし、視聴履歴 6 件は保持。600カードすべて短い意味を登録済み</td></tr>
           <tr data-filter-row data-status="done"><td class="id">UX</td><td><span class="pill done">done</span></td><td>レッスンの再生と画面遷移の改善</td><td class="note">cloud-v2 に統合し、9/26 に最新版と合わせて本番デプロイ済み。型チェック・38 テスト・ビルド合格。ログイン後の本番目視は認証 HTTP 504 のため未確認</td></tr>
