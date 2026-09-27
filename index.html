@@ -94,14 +94,14 @@ footer{color:var(--muted);font-size:12px}
 <div class="wrap">
   <header>
     <h1>My Vocabulary Coach クラウド版 進捗</h1>
-    <span class="stamp">2026-09-27 更新 · Claude</span>
+    <span class="stamp">2026-09-27 更新 · Codex</span>
   </header>
 
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
-      <span class="value">9 <small>/ 9</small></span>
-      <span class="sub">done 9 · doing 0 · 確認待ち 0 · todo 0</span>
+      <span class="value">10 <small>/ 10</small></span>
+      <span class="sub">done 10 · doing 0 · 確認待ち 0 · todo 0</span>
       <div class="bar"><i style="width:100%"></i></div>
     </div>
     <div class="stat">
@@ -111,19 +111,24 @@ footer{color:var(--muted);font-size:12px}
     </div>
     <div class="stat">
       <span class="label">短い意味の登録率</span>
-      <span class="value">54%</span>
-      <span class="sub">2,346 / 4,359 語（本番DBで確認）</span>
-      <div class="bar"><i style="width:54%"></i></div>
+      <span class="value">100%</span>
+      <span class="sub">4,359 / 4,359 語（本番DBで確認）</span>
+      <div class="bar"><i style="width:100%"></i></div>
     </div>
     <div class="stat">
       <span class="label">DB migration</span>
       <span class="value">0018</span>
       <span class="sub">まで本番適用済み · 監査違反 0</span>
     </div>
-    <div class="stat alert">
-      <span class="label">中2 カードの意味が長いまま</span>
-      <span class="value">346</span>
-      <span class="sub">600 カード中、短い意味が未登録</span>
+    <div class="stat">
+      <span class="label">中1・中2 カードの短い意味未登録</span>
+      <span class="value">0</span>
+      <span class="sub">各600カード。短い意味の25字超も0件（本番DBで確認）</span>
+    </div>
+    <div class="stat">
+      <span class="label">高校学年コース</span>
+      <span class="value">876</span>
+      <span class="sub">高1 252 · 高2 291 · 高3 333 語（本番DBで確認）</span>
     </div>
     <div class="stat">
       <span class="label">要望・検討</span>
@@ -132,8 +137,8 @@ footer{color:var(--muted);font-size:12px}
     </div>
     <div class="stat">
       <span class="label">未決事項</span>
-      <span class="value">5</span>
-      <span class="sub">高 1 · 中 2 · 低 2</span>
+      <span class="value">4</span>
+      <span class="sub">高 0 · 中 2 · 低 2</span>
     </div>
   </section>
 
@@ -141,7 +146,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>タスク</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">9件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">10件を表示</span>
       <details class="filter-menu">
         <summary aria-label="タスクを絞り込み"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16l-6.5 7.3V19l-3 1v-6.7L4 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>絞り込み<span class="filter-badge" data-filter-badge hidden></span></summary>
         <div class="filter-popover">
@@ -162,14 +167,15 @@ footer{color:var(--muted);font-size:12px}
         <thead><tr><th>ID</th><th>状態</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
           <tr data-filter-row data-status="done"><td class="id">UX2</td><td><span class="pill done">done</span></td><td>学習ページを画像案 1 に更新</td><td class="note">画像＋音声を主役にし、Smart Review・Speed Learn の順に整理。cloud-v2 に統合し、9/26 に本番デプロイ済み。型チェック・38 テスト・ビルド・dry-run 合格。公開ページと画像素材は HTTP 200。ログイン後の実データ操作は未確認</td></tr>
-          <tr data-filter-row data-status="done"><td class="id">T4</td><td><span class="pill done">done</span></td><td>正しい中1 Motion 教材に差し替える</td><td class="note">正規パッケージ jh1 60 / 60 本・600カードを本番公開。例文音声を含む。旧 junior1 66本は非公開にし、視聴履歴 6 件は保持。短い意味の不足は未決事項に記録</td></tr>
+          <tr data-filter-row data-status="done"><td class="id">T4</td><td><span class="pill done">done</span></td><td>正しい中1 Motion 教材に差し替える</td><td class="note">正規パッケージ jh1 60 / 60 本・600カードを本番公開。例文音声を含む。旧 junior1 66本は非公開にし、視聴履歴 6 件は保持。600カードすべて短い意味を登録済み</td></tr>
           <tr data-filter-row data-status="done"><td class="id">UX</td><td><span class="pill done">done</span></td><td>レッスンの再生と画面遷移の改善</td><td class="note">cloud-v2 に統合し、9/26 に最新版と合わせて本番デプロイ済み。型チェック・38 テスト・ビルド合格。ログイン後の本番目視は認証 HTTP 504 のため未確認</td></tr>
           <tr data-filter-row data-status="done"><td class="id">T5</td><td><span class="pill done">done</span></td><td>旧サイトのユーザー・学習データ移行（C4）</td><td class="note">旧サイトはトライアルのみで、ユーザー判断により引き継ぎ不要として終了。システム側はクラウド版へ移行済み</td></tr>
           <tr data-filter-row data-status="done"><td class="id">T1</td><td><span class="pill done">done</span></td><td>残りの学習モードの移植（チャンク②）</td><td class="note">旧 Motion は除外して本番反映</td></tr>
-          <tr data-filter-row data-status="done"><td class="id">T2</td><td><span class="pill done">done</span></td><td>学習者向けの短い意味（migration 0015）</td><td class="note">本番DBで 2,346 / 4,359 語に登録済み。未登録は 2,013 語</td></tr>
+          <tr data-filter-row data-status="done"><td class="id">T2</td><td><span class="pill done">done</span></td><td>学習者向けの短い意味（migration 0015）</td><td class="note">本番DBの共有単語 4,359 / 4,359 語に短い意味を登録済み。未登録 0 語。訳と教材画像・例文の整合は別途確認が必要</td></tr>
           <tr data-filter-row data-status="done"><td class="id">T3</td><td><span class="pill done">done</span></td><td>視聴の記録と、見たあとの仕分け</td><td class="note">レッスン API のテスト 21 件合格</td></tr>
           <tr data-filter-row data-status="done"><td class="id">T6</td><td><span class="pill done">done</span></td><td>オフライン同期と PWA（migration 0016）</td><td class="note">スマホでオフライン 22 問 → 再接続で 1 回ずつ保存を確認</td></tr>
           <tr data-filter-row data-status="done"><td class="id">C7-7</td><td><span class="pill done">done</span></td><td>動画レッスンの「じっくり」と Recall（migration 0017）</td><td class="note">9/25 のフィードバック反映済み</td></tr>
+          <tr data-filter-row data-status="done"><td class="id">T7</td><td><span class="pill done">done</span></td><td>高校学年コース分類を本番DBに反映</td><td class="note">高1 252 · 高2 291 · 高3 333 語。HEVのみの候補は別の暫定分類として324件。追加シートの品詞表記と異なる77語は主表のword_idで反映し、低信頼の根拠を保持</td></tr>
           <tr data-filter-empty hidden><td colspan="4" class="note">条件に一致するタスクはありません。</td></tr>
         </tbody>
       </table>
@@ -234,7 +240,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>未決事項</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">5件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">4件を表示</span>
       <details class="filter-menu">
         <summary aria-label="未決事項を絞り込み"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16l-6.5 7.3V19l-3 1v-6.7L4 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>絞り込み<span class="filter-badge" data-filter-badge hidden></span></summary>
         <div class="filter-popover">
@@ -253,9 +259,8 @@ footer{color:var(--muted);font-size:12px}
       <table>
         <thead><tr><th>ID</th><th>緊急度</th><th>問い</th><th>既定の行動</th></tr></thead>
         <tbody>
-          <tr data-filter-row data-urgency="high"><td class="id">Q1</td><td><span class="pill high">高</span></td><td>中2 教材の 346 カードに、短い意味がない</td><td class="note">絵と例文に合う訳を人が確認して登録する。辞書の先頭を機械的に切らない</td></tr>
+          <tr data-filter-row data-urgency="mid"><td class="id">Q1</td><td><span class="pill mid">中</span></td><td>中1・中2 の短い意味が教材の画像・例文に合うか未確認</td><td class="note">各600カードの表示と元画像・例文を照合し、不一致がある語だけ修正する。短い意味の未登録は0件</td></tr>
           <tr data-filter-row data-urgency="mid"><td class="id">Q4</td><td><span class="pill mid">中</span></td><td>メール未確認のユーザーが Data API に直接書き込める</td><td class="note">画面と Worker では止めている。RLS で止めるかは未決</td></tr>
-          <tr data-filter-row data-urgency="mid"><td class="id">Q8</td><td><span class="pill mid">中</span></td><td>正しい中1教材の 429 カード（364 語）に、画面用の短い意味がない</td><td class="note">元画像の語義を照合して共有単語マスターへ登録する。長い辞書訳を機械的に短縮しない</td></tr>
           <tr data-filter-row data-urgency="low"><td class="id">Q5</td><td><span class="pill low">低</span></td><td>T3 の確認で一度だけ 401 が返った</td><td class="note">再ログインで解消。原因は未確認</td></tr>
           <tr data-filter-row data-urgency="low"><td class="id">Q6</td><td><span class="pill low">低</span></td><td>片付け: 使っていないシークレット、古いテストユーザー</td><td class="note">承認を得てから削除する</td></tr>
           <tr data-filter-empty hidden><td colspan="4" class="note">条件に一致する未決事項はありません。</td></tr>
