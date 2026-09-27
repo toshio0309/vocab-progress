@@ -94,15 +94,15 @@ footer{color:var(--muted);font-size:12px}
 <div class="wrap">
   <header>
     <h1>My Vocabulary Coach クラウド版 進捗</h1>
-    <span class="stamp">2026-09-27 更新 · Claude</span>
+    <span class="stamp">2026-09-27 更新 · Codex</span>
   </header>
 
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
-      <span class="value">15 <small>/ 24</small></span>
-      <span class="sub">done 15 · doing 0 · 確認待ち 1 · todo 8</span>
-      <div class="bar"><i style="width:62.5%"></i></div>
+      <span class="value">16 <small>/ 24</small></span>
+      <span class="sub">done 16 · doing 0 · 確認待ち 0 · todo 8</span>
+      <div class="bar"><i style="width:66.7%"></i></div>
     </div>
     <div class="stat">
       <span class="label">公開済みレッスン</span>
@@ -154,14 +154,14 @@ footer{color:var(--muted);font-size:12px}
       <div class="chip-group" role="group" aria-label="タスクの状態" data-filter-key="status">
         <span class="chip-label">状態</span>
         <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">0</span></button>
-        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">1</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">8</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">15</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">16</span></button>
       </div>
       <div class="chip-group" role="group" aria-label="タスクの担当" data-filter-key="owner">
         <span class="chip-label">担当</span>
         <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">1</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">7</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">6</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">2</span></button>
       </div>
     </div>
@@ -169,7 +169,6 @@ footer{color:var(--muted);font-size:12px}
       <table>
         <thead><tr><th>ID</th><th>状態</th><th>担当</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
-          <tr data-filter-row data-status="review" data-owner="codex"><td class="id">P2</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-codex">Codex</span></td><td>メール未確認ユーザーの書き込みを RLS で止める（v2.1）</td><td class="note">9/27 migration 0019 を本番適用、監査 0 件。適用後に確認済みユーザー B の書き込み（レッスン視聴・仕分け・復習開始・回答同期）が全部成功し、DB に保存されたことを確認。残り: 未確認 A が書けないことを本番で確かめる npm run verify:neon-rls（パスワードでサインインするため Codex かユーザーが実行）</td></tr>
           <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>旧サイトのホスティングを停止</td><td class="note">T8 で旧アプリのコードは撤去済み。Supabase は無料プランの自動一時停止のまま残し、削除しない（9/27 ユーザー判断）</td></tr>
           <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">P3</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>語義モデル: 語と意味を分ける（v2.2）<small class="blocked">未決事項: Q9</small></td><td class="note">中学と高校で意味が増えるため、語義ごとに短い意味・分類・学習状態を持つ。既存の意味は語義1にし、既存カードも語義1に結ぶ。熟語の見出しも同時に決める。設計: docs/design-v2-range-progress.md §2</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P4</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>範囲と語カードの切り出し（v2.2）</td><td class="note">範囲＝語義の集合（学年・英検のタグ）。Motion のカードを rect と音声区間で1語単位に切り出し、範囲レッスンと出題に使う。動画がない語は文字カード＋制作待ち一覧。設計: docs/design-v2-range-progress.md §3–4</td></tr>
@@ -180,6 +179,7 @@ footer{color:var(--muted);font-size:12px}
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">M2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>中3 Motion の制作・公開</td><td class="note">M1 の検査を通した制作ラインで作る。制作元のレシピは T9 で整理済み</td></tr>
           <tr data-filter-row data-status="done" data-owner="user"><td class="id">U1</td><td><span class="pill done">done</span></td><td><span class="owner owner-user">ユーザー</span></td><td>アプリ内ブラウザで検証用アカウント（B）に一度ログイン</td><td class="note">9/27 アプリ内ブラウザで検証用アカウント B にログイン済み</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">P1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>検証用アカウントでログイン後の確認を統一（v2.1）<small class="blocked">未決事項: Q5</small></td><td class="note">手順書 docs/verification-checklist.md（アカウント B に統一、A は拒否の確認専用）。9/27 本番で B により #1〜5 を確認: ホーム、学習ページ、レッスン再生（中1-1）、仕分け 10 語（再読み込み後も学習中 10 語）、Smart Review 10 問（sync/push 200）</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">P2</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>メール未確認ユーザーの書き込みを RLS で止める（v2.1）</td><td class="note">9/27 verify:neon-rls 全件 PASS（34/34）。未確認 A の4書き込みと自分の profile 更新を拒否し、B の書き込みは成功。テスト生成行は削除済み</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">T9</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>現行フォルダと教材制作元を整理</td><td class="note">正規の中1・中2・中3レシピ180件を照合し、ローカル制作元を複製。制作CLIと手順を現行コードへ移し、資料索引とデプロイ手順を整理。Neon seed を集約し、PGliteで冪等投入・監査を確認。旧 checkout の原本は保持</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">T8</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>旧 Next.js アプリを撤去</td><td class="note">旧画面・中1 Motion 生成物・旧テスト・Next.js 依存を撤去。Neon seed と V2 の検証・運用スクリプトは保持。PGlite 102件、V2 単体38件、型チェック・ビルド合格。cloud-v2 に統合済み。旧サイト停止と Supabase 削除は別作業</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">UX3</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>中1 Motion の最下段カード枠を修正</td><td class="note">中1 60ページの最下段で字幕まで表示できるよう、画像内のカード領域を調整。9/27 に本番デプロイ済み。型チェック・38テスト・ビルド・dry-run 合格、公開ページ HTTP 200。ログイン後の実表示は未確認</td></tr>
