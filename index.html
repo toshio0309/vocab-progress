@@ -94,7 +94,7 @@ footer{color:var(--muted);font-size:12px}
 <div class="wrap">
   <header>
     <h1>My Vocabulary Coach クラウド版 進捗</h1>
-    <span class="stamp">2026-09-27 更新 · Codex</span>
+    <span class="stamp">2026-09-27 更新 · Claude</span>
   </header>
 
   <section class="stats" aria-label="概要">
@@ -127,8 +127,8 @@ footer{color:var(--muted);font-size:12px}
     </div>
     <div class="stat">
       <span class="label">要望・検討</span>
-      <span class="value">10</span>
-      <span class="sub">次候補 4 · 検討中 3 · 保留 3</span>
+      <span class="value">18</span>
+      <span class="sub">次候補 4 · 検討中 10 · 保留 4</span>
     </div>
     <div class="stat">
       <span class="label">未決事項</span>
@@ -180,7 +180,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>要望・検討事項</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">10件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">18件を表示</span>
       <details class="filter-menu">
         <summary aria-label="要望・検討事項を絞り込み"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16l-6.5 7.3V19l-3 1v-6.7L4 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>絞り込み<span class="filter-badge" data-filter-badge hidden></span></summary>
         <div class="filter-popover">
@@ -213,9 +213,17 @@ footer{color:var(--muted);font-size:12px}
           <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F03</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>Deep Learn で苦手語の使い方と自作文を深める<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">既存モードの拡張案。苦手語から起動し、意味だけでなく用法と自分の文まで扱う。</td><td class="note">AI に依存しない最小体験と、AI 利用方針を別々に決める</td></tr>
           <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F04</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>Context に動画の例文音声を活用<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">正規の中1教材には各カードの例文音声と単語の終了時刻がある。現行の取り込みでは単語の終了時刻をDBへ保存していない。Contextへの接続は未着手。</td><td class="note">例文区間の保存方法と、Contextで使う設問・再生UIを決めたら着手を判断</td></tr>
           <tr data-filter-row data-kind="nonfunctional" data-state="considering"><td class="id">N03</td><td>非機能</td><td><span class="pill considering">検討中</span></td><td>動画から復習までの利用状況を測る<small class="source">出典: UI/UX 改善計画 §6</small></td><td class="note">視聴・仕分け・未仕分け回収・復習への移行を、個人情報を出さない集計で確認する案。</td><td class="note">現状値と取得方法を決めてから改善目標を設定する</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F08</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>覚えた単語の進捗をブロックの色分けで表示<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">母数は自分で選んだ学習範囲（例: 中1 の何割を覚えたか）。Claude Code のトップ画面のようなブロック表示。F02 の学習状態と関係する。</td><td class="note">「覚えた」の定義（FSRS の状態）と、母数にする範囲の選び方を決める</td></tr>
+          <tr data-filter-row data-kind="nonfunctional" data-state="considering"><td class="id">N04</td><td>非機能</td><td><span class="pill considering">検討中</span></td><td>Motion の画像ずれを、全件を目で見ずに直す<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">画像ずれがある。全カードの目視は負担が大きいので、ずれの自動検出や怪しいものだけ確認する方法が必要。</td><td class="note">中3 Motion の制作前後に、ずれの検出方法を決める</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F09</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>教材を 中3 → 高1〜高3 → 英検4級〜準2級 → 大学入試 へ広げる<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">中3 Motion の完成後に高校、その後に英検、近い将来に大学入試まで。</td><td class="note">中3 Motion を完成させる</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F10</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>熟語シリーズを追加<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">単語に加えて熟語の教材を追加する構想。</td><td class="note">教材の作り方（Motion と同じ形式か）を決める</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F11</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>文章シリーズ（少なくとも長文の聞き取り）<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">作り方は未定。最低限、長い文章の聞き取りは入れたい。</td><td class="note">教材の素材と、聞き取りの画面を決める</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F12</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>苦手出題とは別パターンのテストシリーズ<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">今のテストは苦手を出す。範囲の総まとめなど、別の出題パターンもほしい。F07（Test の主導線）と関係する。</td><td class="note">ほしい出題パターンを具体化する</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F14</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>学習意欲を上げる仕掛けと、おすすめ YouTube などの情報ページ<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">「なぜ英語を学ぶのか」を外部の人に語ってもらうと意欲が上がるのではないか。ほかの仕掛けも考えたい。</td><td class="note">載せる情報の集め方と、ページの置き場所を決める</td></tr>
           <tr data-filter-row data-kind="feature" data-state="deferred"><td class="id">F05</td><td>機能</td><td><span class="pill deferred">保留</span></td><td>追加した教材の範囲からレッスンと復習を組む<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">現状の教材追加は二次導線。追加後の学習まで一続きにできる仕様が決まるまで主導線にしない。</td><td class="note">教材の取り込みから動画・仕分け・復習までの生成方法を設計する</td></tr>
           <tr data-filter-row data-kind="feature" data-state="deferred"><td class="id">F06</td><td>機能</td><td><span class="pill deferred">保留</span></td><td>Listening を独立した主導線に戻す<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">画像＋音声の動画と役割が重なるため学習ページの主導線から外した。既存のモードと履歴は残す。</td><td class="note">画面を見ず耳だけで学ぶ需要が確認できたら音声中心の体験を検討</td></tr>
           <tr data-filter-row data-kind="feature" data-state="deferred"><td class="id">F07</td><td>機能</td><td><span class="pill deferred">保留</span></td><td>Test を独立した主導線に戻す<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">Smart Review との違いが伝わりにくいため学習ページの主導線から外した。実力測定としての既存機能は残す。</td><td class="note">試験前の実力測定需要と、復習とは違う目的の説明を確認する</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="deferred"><td class="id">F13</td><td>機能</td><td><span class="pill deferred">保留</span></td><td>会話シリーズ<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">ChatGPT との会話のほうが優秀なので、アプリにはしない方針。</td><td class="note">方針が変わったら再検討</td></tr>
           <tr data-filter-empty hidden><td colspan="6" class="note">条件に一致する要望・検討事項はありません。</td></tr>
         </tbody>
       </table>
