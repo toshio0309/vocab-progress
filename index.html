@@ -69,6 +69,12 @@ th{color:var(--muted);font-weight:500;font-size:14px}
 td.id{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;white-space:nowrap}
 td.note{color:var(--muted);font-size:13px}
 .source{display:block;margin-top:4px;color:var(--muted);font-size:12px}
+.blocked{display:block;margin-top:4px;color:var(--warn);font-size:12px}
+.muted{color:var(--muted)}
+.owner{display:inline-block;padding:1px 9px;border-radius:99px;border:1px solid var(--line);font-size:13px;white-space:nowrap}
+.owner-claude{color:var(--accent)}
+.owner-codex{color:var(--good)}
+.owner-user{color:var(--warn);background:var(--warn-bg)}
 .pill{display:inline-block;padding:1px 10px;border-radius:7px;border:1px solid;font-size:13px;white-space:nowrap}
 .done{color:var(--good);background:var(--good-bg);border-color:color-mix(in srgb,var(--good) 35%,transparent)}
 .doing{color:var(--accent);background:var(--info-bg);border-color:color-mix(in srgb,var(--accent) 35%,transparent)}
@@ -94,9 +100,9 @@ footer{color:var(--muted);font-size:12px}
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
-      <span class="value">13 <small>/ 22</small></span>
-      <span class="sub">done 13 · doing 0 · 確認待ち 0 · todo 9</span>
-      <div class="bar"><i style="width:59.1%"></i></div>
+      <span class="value">13 <small>/ 24</small></span>
+      <span class="sub">done 13 · doing 0 · 確認待ち 0 · todo 11</span>
+      <div class="bar"><i style="width:54.2%"></i></div>
     </div>
     <div class="stat">
       <span class="label">公開済みレッスン</span>
@@ -140,7 +146,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>タスク</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">22件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">24件を表示</span>
       <button type="button" class="filter-reset" data-filter-reset hidden>解除</button>
     </div>
     </div>
@@ -149,37 +155,45 @@ footer{color:var(--muted);font-size:12px}
         <span class="chip-label">状態</span>
         <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">0</span></button>
-        <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">9</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">11</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">13</span></button>
+      </div>
+      <div class="chip-group" role="group" aria-label="タスクの担当" data-filter-key="owner">
+        <span class="chip-label">担当</span>
+        <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">3</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">6</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">2</span></button>
       </div>
     </div>
     <div class="table-box">
       <table>
-        <thead><tr><th>ID</th><th>状態</th><th>題</th><th>残り・blocker</th></tr></thead>
+        <thead><tr><th>ID</th><th>状態</th><th>担当</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
-          <tr data-filter-row data-status="todo"><td class="id">P1</td><td><span class="pill todo">todo</span></td><td>検証用アカウントでログイン後の確認を統一（v2.1）</td><td class="note">検証用アカウントは1つ（ユーザーが作成）。Claude・Codex とも、デプロイのたびにレッスン再生→仕分け→復習→範囲テスト→ブロックを同じ手順で確認。ログイン情報は各自の .env.local のみ。旧 N01。設計: docs/design-v2-range-progress.md §7</td></tr>
-          <tr data-filter-row data-status="todo"><td class="id">P2</td><td><span class="pill todo">todo</span></td><td>メール未確認ユーザーの書き込みを RLS で止める（v2.1）</td><td class="note">画面と Worker では止めているが Data API に直接書ける（旧 Q4）。ユーザー間データ分離は最重要要件</td></tr>
-          <tr data-filter-row data-status="todo"><td class="id">P3</td><td><span class="pill todo">todo</span></td><td>語義モデル: 語と意味を分ける（v2.2）</td><td class="note">中学と高校で意味が増えるため、語義ごとに短い意味・分類・学習状態を持つ。既存の意味は語義1にし、既存カードも語義1に結ぶ。熟語の見出しも同時に決める。設計: docs/design-v2-range-progress.md §2</td></tr>
-          <tr data-filter-row data-status="todo"><td class="id">P4</td><td><span class="pill todo">todo</span></td><td>範囲と語カードの切り出し（v2.2）</td><td class="note">範囲＝語義の集合（学年・英検のタグ）。Motion のカードを rect と音声区間で1語単位に切り出し、範囲レッスンと出題に使う。動画がない語は文字カード＋制作待ち一覧。設計: docs/design-v2-range-progress.md §3–4</td></tr>
-          <tr data-filter-row data-status="todo"><td class="id">P5</td><td><span class="pill todo">todo</span></td><td>範囲テストと定着判定（v2.3）</td><td class="note">定着＝範囲テストで正解。間違えたら復習中に戻す。範囲まとめ・実力推定・抜き打ち再確認。Test の役割を範囲の測定に決め、旧 F07・F12 を統合。設計: docs/design-v2-range-progress.md §1, §5</td></tr>
-          <tr data-filter-row data-status="todo"><td class="id">P6</td><td><span class="pill todo">todo</span></td><td>100マスの進捗ブロックと範囲切り替え（v2.3）</td><td class="note">マス数は固定で色の割合だけ変わる。未着手・学習済・定着の3段階。範囲を渡すと母数と各状態の数を返す集計を1本にし、中1〜英検まで同じ仕組みで表示。旧 F08。設計: docs/design-v2-range-progress.md §6</td></tr>
-          <tr data-filter-row data-status="todo"><td class="id">P7</td><td><span class="pill todo">todo</span></td><td>台帳の状態フィルターと誤答一覧（v2.3）</td><td class="note">P6 と同じ学習状態で絞り込む。「見た」と「復習中」も選べる。旧 F02・F01</td></tr>
-          <tr data-filter-row data-status="todo"><td class="id">M1</td><td><span class="pill todo">todo</span></td><td>教材の自動検査: 画像ずれと意味の不一致</td><td class="note">全カードを目視せず、怪しいカードだけ一覧にして人が確認。まず公開済みの中1・中2（1,200カード）で精度を確認。語カードの切り出しと中3の前提。旧 N04・Q1</td></tr>
-          <tr data-filter-row data-status="todo"><td class="id">M2</td><td><span class="pill todo">todo</span></td><td>中3 Motion の制作・公開</td><td class="note">M1 の検査を通した制作ラインで作る。制作元のレシピは T9 で整理済み</td></tr>
-          <tr data-filter-row data-status="done"><td class="id">T9</td><td><span class="pill done">done</span></td><td>現行フォルダと教材制作元を整理</td><td class="note">正規の中1・中2・中3レシピ180件を照合し、ローカル制作元を複製。制作CLIと手順を現行コードへ移し、資料索引とデプロイ手順を整理。Neon seed を集約し、PGliteで冪等投入・監査を確認。旧 checkout の原本は保持</td></tr>
-          <tr data-filter-row data-status="done"><td class="id">T8</td><td><span class="pill done">done</span></td><td>旧 Next.js アプリを撤去</td><td class="note">旧画面・中1 Motion 生成物・旧テスト・Next.js 依存を撤去。Neon seed と V2 の検証・運用スクリプトは保持。PGlite 102件、V2 単体38件、型チェック・ビルド合格。cloud-v2 に統合済み。旧サイト停止と Supabase 削除は別作業</td></tr>
-          <tr data-filter-row data-status="done"><td class="id">UX3</td><td><span class="pill done">done</span></td><td>中1 Motion の最下段カード枠を修正</td><td class="note">中1 60ページの最下段で字幕まで表示できるよう、画像内のカード領域を調整。9/27 に本番デプロイ済み。型チェック・38テスト・ビルド・dry-run 合格、公開ページ HTTP 200。ログイン後の実表示は未確認</td></tr>
-          <tr data-filter-row data-status="done"><td class="id">UX2</td><td><span class="pill done">done</span></td><td>学習ページを画像案 1 に更新</td><td class="note">画像＋音声を主役にし、Smart Review・Speed Learn の順に整理。cloud-v2 に統合し、9/26 に本番デプロイ済み。型チェック・38 テスト・ビルド・dry-run 合格。公開ページと画像素材は HTTP 200。ログイン後の実データ操作は未確認</td></tr>
-          <tr data-filter-row data-status="done"><td class="id">T4</td><td><span class="pill done">done</span></td><td>正しい中1 Motion 教材に差し替える</td><td class="note">正規パッケージ jh1 60 / 60 本・600カードを本番公開。例文音声を含む。旧 junior1 66本は非公開にし、視聴履歴 6 件は保持。600カードすべて短い意味を登録済み</td></tr>
-          <tr data-filter-row data-status="done"><td class="id">UX</td><td><span class="pill done">done</span></td><td>レッスンの再生と画面遷移の改善</td><td class="note">cloud-v2 に統合し、9/26 に最新版と合わせて本番デプロイ済み。型チェック・38 テスト・ビルド合格。ログイン後の本番目視は認証 HTTP 504 のため未確認</td></tr>
-          <tr data-filter-row data-status="done"><td class="id">T5</td><td><span class="pill done">done</span></td><td>旧サイトのユーザー・学習データ移行（C4）</td><td class="note">旧サイトはトライアルのみで、ユーザー判断により引き継ぎ不要として終了。システム側はクラウド版へ移行済み</td></tr>
-          <tr data-filter-row data-status="done"><td class="id">T1</td><td><span class="pill done">done</span></td><td>残りの学習モードの移植（チャンク②）</td><td class="note">旧 Motion は除外して本番反映</td></tr>
-          <tr data-filter-row data-status="done"><td class="id">T2</td><td><span class="pill done">done</span></td><td>学習者向けの短い意味（migration 0015）</td><td class="note">本番DBの共有単語 4,359 / 4,359 語に短い意味を登録済み。未登録 0 語。訳と教材画像・例文の整合は別途確認が必要</td></tr>
-          <tr data-filter-row data-status="done"><td class="id">T3</td><td><span class="pill done">done</span></td><td>視聴の記録と、見たあとの仕分け</td><td class="note">レッスン API のテスト 21 件合格</td></tr>
-          <tr data-filter-row data-status="done"><td class="id">T6</td><td><span class="pill done">done</span></td><td>オフライン同期と PWA（migration 0016）</td><td class="note">スマホでオフライン 22 問 → 再接続で 1 回ずつ保存を確認</td></tr>
-          <tr data-filter-row data-status="done"><td class="id">C7-7</td><td><span class="pill done">done</span></td><td>動画レッスンの「じっくり」と Recall（migration 0017）</td><td class="note">9/25 のフィードバック反映済み</td></tr>
-          <tr data-filter-row data-status="done"><td class="id">T7</td><td><span class="pill done">done</span></td><td>高校学年コース分類を本番DBに反映</td><td class="note">高1 252 · 高2 291 · 高3 333 語。HEVのみの候補は別の暫定分類として324件。追加シートの品詞表記と異なる77語は主表のword_idで反映し、低信頼の根拠を保持</td></tr>
-          <tr data-filter-empty hidden><td colspan="4" class="note">条件に一致するタスクはありません。</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>検証用アカウントを作成し、アプリ内ブラウザで一度ログイン</td><td class="note">P1 の前提。本番サイトでは Claude・Codex がアカウント作成やパスワード入力をできないため。ログイン情報はチャットやリポジトリに書かない</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>旧サイトの停止と Supabase プロジェクトの削除</td><td class="note">T8 で旧アプリのコードは撤去済み。Supabase の削除は取り消せないため、ユーザーが判断して実行する</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">P1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>検証用アカウントでログイン後の確認を統一（v2.1）<small class="blocked">未決事項: Q5</small></td><td class="note">検証用アカウントは1つ（ユーザーが作成）。Claude・Codex とも、デプロイのたびにレッスン再生→仕分け→復習→範囲テスト→ブロックを同じ手順で確認。ログイン情報は各自の .env.local のみ。旧 N01。設計: docs/design-v2-range-progress.md §7</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">P2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>メール未確認ユーザーの書き込みを RLS で止める（v2.1）</td><td class="note">画面と Worker では止めているが Data API に直接書ける（旧 Q4）。ユーザー間データ分離は最重要要件</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">P3</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>語義モデル: 語と意味を分ける（v2.2）<small class="blocked">未決事項: Q9</small></td><td class="note">中学と高校で意味が増えるため、語義ごとに短い意味・分類・学習状態を持つ。既存の意味は語義1にし、既存カードも語義1に結ぶ。熟語の見出しも同時に決める。設計: docs/design-v2-range-progress.md §2</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P4</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>範囲と語カードの切り出し（v2.2）</td><td class="note">範囲＝語義の集合（学年・英検のタグ）。Motion のカードを rect と音声区間で1語単位に切り出し、範囲レッスンと出題に使う。動画がない語は文字カード＋制作待ち一覧。設計: docs/design-v2-range-progress.md §3–4</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P5</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>範囲テストと定着判定（v2.3）<small class="blocked">未決事項: Q7</small></td><td class="note">定着＝範囲テストで正解。間違えたら復習中に戻す。範囲まとめ・実力推定・抜き打ち再確認。Test の役割を範囲の測定に決め、旧 F07・F12 を統合。設計: docs/design-v2-range-progress.md §1, §5</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P6</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>100マスの進捗ブロックと範囲切り替え（v2.3）<small class="blocked">未決事項: Q8</small></td><td class="note">マス数は固定で色の割合だけ変わる。未着手・学習済・定着の3段階。範囲を渡すと母数と各状態の数を返す集計を1本にし、中1〜英検まで同じ仕組みで表示。旧 F08。設計: docs/design-v2-range-progress.md §6</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P7</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>台帳の状態フィルターと誤答一覧（v2.3）</td><td class="note">P6 と同じ学習状態で絞り込む。「見た」と「復習中」も選べる。旧 F02・F01</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">M1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>教材の自動検査: 画像ずれと意味の不一致</td><td class="note">全カードを目視せず、怪しいカードだけ一覧にして人が確認。まず公開済みの中1・中2（1,200カード）で精度を確認。語カードの切り出しと中3の前提。旧 N04・Q1</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">M2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>中3 Motion の制作・公開</td><td class="note">M1 の検査を通した制作ラインで作る。制作元のレシピは T9 で整理済み</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">T9</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>現行フォルダと教材制作元を整理</td><td class="note">正規の中1・中2・中3レシピ180件を照合し、ローカル制作元を複製。制作CLIと手順を現行コードへ移し、資料索引とデプロイ手順を整理。Neon seed を集約し、PGliteで冪等投入・監査を確認。旧 checkout の原本は保持</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">T8</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>旧 Next.js アプリを撤去</td><td class="note">旧画面・中1 Motion 生成物・旧テスト・Next.js 依存を撤去。Neon seed と V2 の検証・運用スクリプトは保持。PGlite 102件、V2 単体38件、型チェック・ビルド合格。cloud-v2 に統合済み。旧サイト停止と Supabase 削除は別作業</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">UX3</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>中1 Motion の最下段カード枠を修正</td><td class="note">中1 60ページの最下段で字幕まで表示できるよう、画像内のカード領域を調整。9/27 に本番デプロイ済み。型チェック・38テスト・ビルド・dry-run 合格、公開ページ HTTP 200。ログイン後の実表示は未確認</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">UX2</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>学習ページを画像案 1 に更新</td><td class="note">画像＋音声を主役にし、Smart Review・Speed Learn の順に整理。cloud-v2 に統合し、9/26 に本番デプロイ済み。型チェック・38 テスト・ビルド・dry-run 合格。公開ページと画像素材は HTTP 200。ログイン後の実データ操作は未確認</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">T4</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>正しい中1 Motion 教材に差し替える</td><td class="note">正規パッケージ jh1 60 / 60 本・600カードを本番公開。例文音声を含む。旧 junior1 66本は非公開にし、視聴履歴 6 件は保持。600カードすべて短い意味を登録済み</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">UX</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>レッスンの再生と画面遷移の改善</td><td class="note">cloud-v2 に統合し、9/26 に最新版と合わせて本番デプロイ済み。型チェック・38 テスト・ビルド合格。ログイン後の本番目視は認証 HTTP 504 のため未確認</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">T5</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>旧サイトのユーザー・学習データ移行（C4）</td><td class="note">旧サイトはトライアルのみで、ユーザー判断により引き継ぎ不要として終了。システム側はクラウド版へ移行済み</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">T1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>残りの学習モードの移植（チャンク②）</td><td class="note">旧 Motion は除外して本番反映</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">T2</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>学習者向けの短い意味（migration 0015）</td><td class="note">本番DBの共有単語 4,359 / 4,359 語に短い意味を登録済み。未登録 0 語。訳と教材画像・例文の整合は別途確認が必要</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">T3</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>視聴の記録と、見たあとの仕分け</td><td class="note">レッスン API のテスト 21 件合格</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">T6</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>オフライン同期と PWA（migration 0016）</td><td class="note">スマホでオフライン 22 問 → 再接続で 1 回ずつ保存を確認</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">C7-7</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>動画レッスンの「じっくり」と Recall（migration 0017）</td><td class="note">9/25 のフィードバック反映済み</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">T7</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>高校学年コース分類を本番DBに反映</td><td class="note">高1 252 · 高2 291 · 高3 333 語。HEVのみの候補は別の暫定分類として324件。追加シートの品詞表記と異なる77語は主表のword_idで反映し、低信頼の根拠を保持</td></tr>
+          <tr data-filter-empty hidden><td colspan="5" class="note">条件に一致するタスクはありません。</td></tr>
         </tbody>
       </table>
     </div>
@@ -243,17 +257,23 @@ footer{color:var(--muted);font-size:12px}
         <button type="button" class="chip" aria-pressed="false" data-value="mid">中<span class="chip-count">1</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="low">低<span class="chip-count">4</span></button>
       </div>
+      <div class="chip-group" role="group" aria-label="未決事項の決める人" data-filter-key="owner">
+        <span class="chip-label">決める人</span>
+        <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">1</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">0</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">4</span></button>
+      </div>
     </div>
     <div class="table-box">
       <table>
-        <thead><tr><th>ID</th><th>緊急度</th><th>問い</th><th>既定の行動</th></tr></thead>
+        <thead><tr><th>ID</th><th>緊急度</th><th>決める人</th><th>問い</th><th>影響するタスク</th><th>既定の行動</th></tr></thead>
         <tbody>
-          <tr data-filter-row data-urgency="mid"><td class="id">Q7</td><td><span class="pill mid">中</span></td><td>定着にする範囲テストの出題の向き（英→日だけか、日→英も要るか）</td><td class="note">P5 の設計前にユーザーが決める。決まるまでは英→日を前提にする</td></tr>
-          <tr data-filter-row data-urgency="low"><td class="id">Q8</td><td><span class="pill low">低</span></td><td>進捗ブロックのマス数</td><td class="note">100マス（1マス1%）を前提に設計する</td></tr>
-          <tr data-filter-row data-urgency="low"><td class="id">Q9</td><td><span class="pill low">低</span></td><td>高校で増える語義の出典</td><td class="note">高校の制作前に、高校分類の元データ・辞書・Codex の候補を人が確認する方法のどれにするか決める</td></tr>
-          <tr data-filter-row data-urgency="low"><td class="id">Q5</td><td><span class="pill low">低</span></td><td>T3 の確認で一度だけ 401 が返った</td><td class="note">再ログインで解消。原因は未確認</td></tr>
-          <tr data-filter-row data-urgency="low"><td class="id">Q6</td><td><span class="pill low">低</span></td><td>片付け: 使っていないシークレット、古いテストユーザー</td><td class="note">承認を得てから削除する</td></tr>
-          <tr data-filter-empty hidden><td colspan="4" class="note">条件に一致する未決事項はありません。</td></tr>
+          <tr data-filter-row data-urgency="mid" data-owner="user"><td class="id">Q7</td><td><span class="pill mid">中</span></td><td><span class="owner owner-user">ユーザー</span></td><td>定着にする範囲テストの出題の向き（英→日だけか、日→英も要るか）</td><td class="id">P5</td><td class="note">P5 の設計前にユーザーが決める。決まるまでは英→日を前提にする</td></tr>
+          <tr data-filter-row data-urgency="low" data-owner="user"><td class="id">Q8</td><td><span class="pill low">低</span></td><td><span class="owner owner-user">ユーザー</span></td><td>進捗ブロックのマス数</td><td class="id">P6</td><td class="note">100マス（1マス1%）を前提に設計する</td></tr>
+          <tr data-filter-row data-urgency="low" data-owner="user"><td class="id">Q9</td><td><span class="pill low">低</span></td><td><span class="owner owner-user">ユーザー</span></td><td>高校で増える語義の出典</td><td class="id">P3, F09</td><td class="note">高校の制作前に、高校分類の元データ・辞書・Codex の候補を人が確認する方法のどれにするか決める</td></tr>
+          <tr data-filter-row data-urgency="low" data-owner="claude"><td class="id">Q5</td><td><span class="pill low">低</span></td><td><span class="owner owner-claude">Claude</span></td><td>T3 の確認で一度だけ 401 が返った</td><td class="id">P1</td><td class="note">再ログインで解消。原因は未確認</td></tr>
+          <tr data-filter-row data-urgency="low" data-owner="user"><td class="id">Q6</td><td><span class="pill low">低</span></td><td><span class="owner owner-user">ユーザー</span></td><td>片付け: 使っていないシークレット、古いテストユーザー</td><td class="id"><span class="muted">—</span></td><td class="note">承認を得てから削除する</td></tr>
+          <tr data-filter-empty hidden><td colspan="6" class="note">条件に一致する未決事項はありません。</td></tr>
         </tbody>
       </table>
     </div>
