@@ -101,7 +101,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="stat">
       <span class="label">タスク</span>
       <span class="value">13 <small>/ 24</small></span>
-      <span class="sub">done 13 · doing 0 · 確認待ち 0 · todo 11</span>
+      <span class="sub">done 13 · doing 0 · 確認待ち 2 · todo 9</span>
       <div class="bar"><i style="width:54.2%"></i></div>
     </div>
     <div class="stat">
@@ -154,25 +154,25 @@ footer{color:var(--muted);font-size:12px}
       <div class="chip-group" role="group" aria-label="タスクの状態" data-filter-key="status">
         <span class="chip-label">状態</span>
         <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">0</span></button>
-        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">0</span></button>
-        <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">11</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">2</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">9</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">13</span></button>
       </div>
       <div class="chip-group" role="group" aria-label="タスクの担当" data-filter-key="owner">
         <span class="chip-label">担当</span>
-        <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">3</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">1</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">6</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">2</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">4</span></button>
       </div>
     </div>
     <div class="table-box">
       <table>
         <thead><tr><th>ID</th><th>状態</th><th>担当</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
-          <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>検証用アカウントを作成し、アプリ内ブラウザで一度ログイン</td><td class="note">P1 の前提。本番サイトでは Claude・Codex がアカウント作成やパスワード入力をできないため。ログイン情報はチャットやリポジトリに書かない</td></tr>
+          <tr data-filter-row data-status="review" data-owner="user"><td class="id">P1</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>検証用アカウントでログイン後の確認を統一（v2.1）<small class="blocked">未決事項: Q5</small></td><td class="note">手順書 docs/verification-checklist.md を作成（アカウント B に統一、A は拒否の確認専用）。deploy-v2.md から参照。U1 のログイン後、最初の確認を Claude が行って完了にする</td></tr>
+          <tr data-filter-row data-status="review" data-owner="user"><td class="id">P2</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>メール未確認ユーザーの書き込みを RLS で止める（v2.1）</td><td class="note">migration 0019（書き込み権限ごとに emailVerified を求める RESTRICTIVE ポリシー。読み取りは制限しない）と監査項目 9 を追加。PGlite 113件合格。本番の auth.jwt() に authenticated の実行権限があることを確認済み。本番適用はユーザー承認待ち。適用後に verify:neon-rls（B が持ち主、A で拒否を確認するよう改修済み）を Codex かユーザーが実行</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>アプリ内ブラウザで検証用アカウント（B）に一度ログイン</td><td class="note">新しいアカウントは作らず、既存のメール確認済みテスト用アカウント B に統一（ログイン情報は .env.local）。本番で Claude はパスワードを入力できないため、最初のログインはユーザー。手順: docs/verification-checklist.md</td></tr>
           <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>旧サイトのホスティングを停止</td><td class="note">T8 で旧アプリのコードは撤去済み。Supabase は無料プランの自動一時停止のまま残し、削除しない（9/27 ユーザー判断）</td></tr>
-          <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">P1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>検証用アカウントでログイン後の確認を統一（v2.1）<small class="blocked">未決事項: Q5</small></td><td class="note">検証用アカウントは1つ（ユーザーが作成）。Claude・Codex とも、デプロイのたびにレッスン再生→仕分け→復習→範囲テスト→ブロックを同じ手順で確認。ログイン情報は各自の .env.local のみ。旧 N01。設計: docs/design-v2-range-progress.md §7</td></tr>
-          <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">P2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>メール未確認ユーザーの書き込みを RLS で止める（v2.1）</td><td class="note">画面と Worker では止めているが Data API に直接書ける（旧 Q4）。ユーザー間データ分離は最重要要件</td></tr>
           <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">P3</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>語義モデル: 語と意味を分ける（v2.2）<small class="blocked">未決事項: Q9</small></td><td class="note">中学と高校で意味が増えるため、語義ごとに短い意味・分類・学習状態を持つ。既存の意味は語義1にし、既存カードも語義1に結ぶ。熟語の見出しも同時に決める。設計: docs/design-v2-range-progress.md §2</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P4</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>範囲と語カードの切り出し（v2.2）</td><td class="note">範囲＝語義の集合（学年・英検のタグ）。Motion のカードを rect と音声区間で1語単位に切り出し、範囲レッスンと出題に使う。動画がない語は文字カード＋制作待ち一覧。設計: docs/design-v2-range-progress.md §3–4</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P5</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>範囲テストと定着判定（v2.3）<small class="blocked">未決事項: Q7</small></td><td class="note">定着＝範囲テストで正解。間違えたら復習中に戻す。範囲まとめ・実力推定・抜き打ち再確認。Test の役割を範囲の測定に決め、旧 F07・F12 を統合。設計: docs/design-v2-range-progress.md §1, §5</td></tr>
