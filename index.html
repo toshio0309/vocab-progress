@@ -100,9 +100,9 @@ footer{color:var(--muted);font-size:12px}
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
-      <span class="value">18 <small>/ 29</small></span>
-      <span class="sub">done 18 · doing 1 · 確認待ち 0 · todo 10</span>
-      <div class="bar"><i style="width:62.1%"></i></div>
+      <span class="value">17 <small>/ 29</small></span>
+      <span class="sub">done 17 · doing 1 · 確認待ち 1 · todo 10</span>
+      <div class="bar"><i style="width:58.6%"></i></div>
     </div>
     <div class="stat">
       <span class="label">公開済みレッスン</span>
@@ -154,15 +154,15 @@ footer{color:var(--muted);font-size:12px}
       <div class="chip-group" role="group" aria-label="タスクの状態" data-filter-key="status">
         <span class="chip-label">状態</span>
         <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">1</span></button>
-        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">0</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">1</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">10</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">18</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">17</span></button>
       </div>
       <div class="chip-group" role="group" aria-label="タスクの担当" data-filter-key="owner">
         <span class="chip-label">担当</span>
-        <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">4</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">3</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">7</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">2</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">3</span></button>
       </div>
     </div>
     <div class="table-box">
@@ -170,6 +170,7 @@ footer{color:var(--muted);font-size:12px}
         <thead><tr><th>ID</th><th>状態</th><th>担当</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
           <tr data-filter-row data-status="doing" data-owner="claude"><td class="id">P3</td><td><span class="pill doing">doing</span></td><td><span class="owner owner-claude">Claude</span></td><td>語義モデル: 語と意味を分ける（v2.2）</td><td class="note">P3-1 完了: 9/28 migration 0020 を本番適用、監査 0 件。共有単語 4,469 語すべてに語義1（単語の意味と不一致 0）、レッスンのカード 2,460 枚すべてが語義1 に結びついた。単語一覧の表示も確認。語義1 は単語の意味をトリガーで写し、分類も単語から受け継ぐので既存の画面・スクリプトは変更不要。熟語も見出しにできる。次: P3-2 高校3ファイルの取り込み（範囲はファイルどおり、不足の約450語と熟語約300件を追加、意味は自動判定して怪しいものだけユーザー確認）。設計: docs/design-v2-range-progress.md §2</td></tr>
+          <tr data-filter-row data-status="review" data-owner="user"><td class="id">L4</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>何回目の復習かを表示し、3回で定着にする</td><td class="note">9/28 migration 0021 を作成（本番未適用・承認待ち）。ルール: 日をあけて3回思い出せたら定着。1日に数えるのはその日の最初の答えだけ、正解で+1・間違いで-1（0〜3、定着後の間違いは2に戻る）。仕分け・Recall の「知ってる」は1回目に数える。範囲テストの正解は飛び級（P5）。回数は review_logs に記録したときに DB のトリガーで数えるので、復習・Speed Learn・ドリル・オフライン同期のどれでも同じ。PGlite テスト 146 件合格、本番 dry run は 0021 のみ。適用後、回数の表示（復習 2回目 ●●○・あと1回で定着）は Codex が L1・L2 と一緒に実装。設計: docs/design-v2-range-progress.md §10</td></tr>
           <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>旧サイトのホスティングを停止</td><td class="note">T8 で旧アプリのコードは撤去済み。Supabase は無料プランの自動一時停止のまま残し、削除しない（9/27 ユーザー判断）</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P4</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>範囲と語カードの切り出し（v2.2）</td><td class="note">範囲＝語義の集合（学年・英検のタグ）。Motion のカードを rect と音声区間で1語単位に切り出し、範囲レッスンと出題に使う。動画がない語は文字カード＋制作待ち一覧。設計: docs/design-v2-range-progress.md §3–4</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P5</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>範囲テストと定着判定（v2.3）</td><td class="note">範囲テストで正解した語はその場で定着（飛び級）。間違えたら復習中（2回）に戻す。定着の基本ルールは L4（日をあけて3回思い出せたら定着）。範囲まとめ・実力推定・抜き打ち再確認。Test の役割を範囲の測定に決め、旧 F07・F12 を統合。設計: docs/design-v2-range-progress.md §1, §5。出題は英→日と日→英の両方（Q7、9/27 ユーザー回答）</td></tr>
@@ -177,10 +178,9 @@ footer{color:var(--muted);font-size:12px}
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">L1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>記憶のルートを整理し、復習の数が減るようにする</td><td class="note">9/28 設計済み（Q12 → パターン A、docs/design-v2-range-progress.md §10）。見ただけの語は復習に数えない。FSRS の短い学習ステップをやめる（正解は3日後から、間違いは翌日）。間違えた語はその回の最後にもう一度出す。「今日の復習 22/118」を表示。原因調査: 見た語が即復習待ち（本番で見た語 96 語すべて）、正解10分後・間違い1分後に戻る、1回に出す数は時間で決まる</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">L2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>仕分けと動画の Recall を復習の入口にする</td><td class="note">9/28 決定（Q11・Q12）。仕分けは日本語を隠して思い出し、めくって自己判定。結果を復習の1回目として FSRS に入れる（知ってる3日後・あやふや翌日・はじめて今日）。動画の Recall も同じ3段階に読み替え（1回目で思い出せた/2回目で/思い出せない）、Recall 済みの語は仕分けに出さない。翌日まで未仕分けの語は「あやふや」扱い。設計: docs/design-v2-range-progress.md §10</td></tr>
           <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">L3</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>中1 の範囲を約600に絞る</td><td class="note">9/28 決定（Q10）: 中1 の範囲＝中1 Motion の 600 カード。分類タグの 1,010 語は参考として残し、範囲には使わない。本番で確認した数: Motion 600 カード・523 語（77 カードは同じ語の2回目以降）。進捗ブロックの 1 マス＝6 語義。同じ語の2回目が別の意味かどうかは P3 で確認する</td></tr>
-          <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">L4</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>何回目の復習かを表示し、3回で定着にする</td><td class="note">9/28 決定。ルールは「日をあけて3回思い出せたら定着」。1日に数えるのは1回まで。仕分け・Recall の「知ってる」は1回目に数える。正解で1回進み、間違いで1回戻る。範囲テストの正解はその場で定着（飛び級）。定着後に間違えたら2回に戻る。FSRS の間隔では、どの入口からでも定着まで12〜17日。復習カードに「復習 2回目 ●●○」「あと1回で定着」を表示。保存は user_words に回数・最後に数えた日・定着日時（migration 0021、Claude）。今の mastered（安定度21日）を置き換える。設計: docs/design-v2-range-progress.md §10</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P7</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>台帳の状態フィルターと誤答一覧（v2.3）</td><td class="note">P6 と同じ学習状態で絞り込む。「見た」と「復習中」も選べる。旧 F02・F01</td></tr>
-          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">M1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>教材制作時のDB語彙照合</td><td class="note">画像ずれは解消済み。新規レシピ作成時に共有DBと単語・品詞・日本語訳を照合し、不一致・未登録をパッケージ生成前に検出して停止する。既存教材で回帰確認する</td></tr>
-          <tr data-filter-row data-status="done" data-owner="codex"><td class="id">M2</td><td><span class="pill done">done</span></td><td><span class="owner owner-codex">Codex</span></td><td>中3 Motion の制作・公開</td><td class="note">正規レシピ60件・600カードを本番公開。版・各10語・30秒を確認し、画像・音声360件のWorker HEADは全件200</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">M1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>教材の自動検査: 画像ずれと意味の不一致</td><td class="note">全カードを目視せず、怪しいカードだけ一覧にして人が確認。まず公開済みの中1・中2（1,200カード）で精度を確認。語カードの切り出しと中3の前提。旧 N04・Q1</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">M2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>中3 Motion の制作・公開</td><td class="note">M1 の検査を通した制作ラインで作る。制作元のレシピは T9 で整理済み</td></tr>
           <tr data-filter-row data-status="done" data-owner="user"><td class="id">U1</td><td><span class="pill done">done</span></td><td><span class="owner owner-user">ユーザー</span></td><td>アプリ内ブラウザで検証用アカウント（B）に一度ログイン</td><td class="note">9/27 アプリ内ブラウザで検証用アカウント B にログイン済み</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">P1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>検証用アカウントでログイン後の確認を統一（v2.1）<small class="blocked">未決事項: Q5</small></td><td class="note">手順書 docs/verification-checklist.md（アカウント B に統一、A は拒否の確認専用）。9/27 本番で B により #1〜5 を確認: ホーム、学習ページ、レッスン再生（中1-1）、仕分け 10 語（再読み込み後も学習中 10 語）、Smart Review 10 問（sync/push 200）</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">P2</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>メール未確認ユーザーの書き込みを RLS で止める（v2.1）</td><td class="note">9/27 verify:neon-rls 全件 PASS（34/34）。未確認 A の自分の単語・import_job・study_session 書き込みと、自分の profile 更新を拒否。共有単語は読み取り可能、B の書き込みは成功。テスト生成行は削除済み</td></tr>
