@@ -94,15 +94,15 @@ footer{color:var(--muted);font-size:12px}
 <div class="wrap">
   <header>
     <h1>My Vocabulary Coach クラウド版 進捗</h1>
-    <span class="stamp">2026-09-27 更新 · Codex</span>
+    <span class="stamp">2026-09-27 更新 · Claude</span>
   </header>
 
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
-      <span class="value">13 <small>/ 13</small></span>
-      <span class="sub">done 13 · doing 0 · 確認待ち 0 · todo 0</span>
-      <div class="bar"><i style="width:100%"></i></div>
+      <span class="value">13 <small>/ 22</small></span>
+      <span class="sub">done 13 · doing 0 · 確認待ち 0 · todo 9</span>
+      <div class="bar"><i style="width:59.1%"></i></div>
     </div>
     <div class="stat">
       <span class="label">公開済みレッスン</span>
@@ -132,13 +132,13 @@ footer{color:var(--muted);font-size:12px}
     </div>
     <div class="stat">
       <span class="label">要望・検討</span>
-      <span class="value">18</span>
-      <span class="sub">次候補 4 · 検討中 10 · 保留 4</span>
+      <span class="value">11</span>
+      <span class="sub">次候補 1 · 検討中 7 · 保留 3</span>
     </div>
     <div class="stat">
       <span class="label">未決事項</span>
-      <span class="value">4</span>
-      <span class="sub">高 0 · 中 2 · 低 2</span>
+      <span class="value">5</span>
+      <span class="sub">高 0 · 中 1 · 低 4</span>
     </div>
   </section>
 
@@ -146,7 +146,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>タスク</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">13件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">22件を表示</span>
       <details class="filter-menu">
         <summary aria-label="タスクを絞り込み"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16l-6.5 7.3V19l-3 1v-6.7L4 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>絞り込み<span class="filter-badge" data-filter-badge hidden></span></summary>
         <div class="filter-popover">
@@ -166,6 +166,15 @@ footer{color:var(--muted);font-size:12px}
       <table>
         <thead><tr><th>ID</th><th>状態</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
+          <tr data-filter-row data-status="todo"><td class="id">P1</td><td><span class="pill todo">todo</span></td><td>検証用アカウントでログイン後の確認を統一（v2.1）</td><td class="note">検証用アカウントは1つ（ユーザーが作成）。Claude・Codex とも、デプロイのたびにレッスン再生→仕分け→復習→範囲テスト→ブロックを同じ手順で確認。ログイン情報は各自の .env.local のみ。旧 N01。設計: docs/design-v2-range-progress.md §7</td></tr>
+          <tr data-filter-row data-status="todo"><td class="id">P2</td><td><span class="pill todo">todo</span></td><td>メール未確認ユーザーの書き込みを RLS で止める（v2.1）</td><td class="note">画面と Worker では止めているが Data API に直接書ける（旧 Q4）。ユーザー間データ分離は最重要要件</td></tr>
+          <tr data-filter-row data-status="todo"><td class="id">P3</td><td><span class="pill todo">todo</span></td><td>語義モデル: 語と意味を分ける（v2.2）</td><td class="note">中学と高校で意味が増えるため、語義ごとに短い意味・分類・学習状態を持つ。既存の意味は語義1にし、既存カードも語義1に結ぶ。熟語の見出しも同時に決める。設計: docs/design-v2-range-progress.md §2</td></tr>
+          <tr data-filter-row data-status="todo"><td class="id">P4</td><td><span class="pill todo">todo</span></td><td>範囲と語カードの切り出し（v2.2）</td><td class="note">範囲＝語義の集合（学年・英検のタグ）。Motion のカードを rect と音声区間で1語単位に切り出し、範囲レッスンと出題に使う。動画がない語は文字カード＋制作待ち一覧。設計: docs/design-v2-range-progress.md §3–4</td></tr>
+          <tr data-filter-row data-status="todo"><td class="id">P5</td><td><span class="pill todo">todo</span></td><td>範囲テストと定着判定（v2.3）</td><td class="note">定着＝範囲テストで正解。間違えたら復習中に戻す。範囲まとめ・実力推定・抜き打ち再確認。Test の役割を範囲の測定に決め、旧 F07・F12 を統合。設計: docs/design-v2-range-progress.md §1, §5</td></tr>
+          <tr data-filter-row data-status="todo"><td class="id">P6</td><td><span class="pill todo">todo</span></td><td>100マスの進捗ブロックと範囲切り替え（v2.3）</td><td class="note">マス数は固定で色の割合だけ変わる。未着手・学習済・定着の3段階。範囲を渡すと母数と各状態の数を返す集計を1本にし、中1〜英検まで同じ仕組みで表示。旧 F08。設計: docs/design-v2-range-progress.md §6</td></tr>
+          <tr data-filter-row data-status="todo"><td class="id">P7</td><td><span class="pill todo">todo</span></td><td>台帳の状態フィルターと誤答一覧（v2.3）</td><td class="note">P6 と同じ学習状態で絞り込む。「見た」と「復習中」も選べる。旧 F02・F01</td></tr>
+          <tr data-filter-row data-status="todo"><td class="id">M1</td><td><span class="pill todo">todo</span></td><td>教材の自動検査: 画像ずれと意味の不一致</td><td class="note">全カードを目視せず、怪しいカードだけ一覧にして人が確認。まず公開済みの中1・中2（1,200カード）で精度を確認。語カードの切り出しと中3の前提。旧 N04・Q1</td></tr>
+          <tr data-filter-row data-status="todo"><td class="id">M2</td><td><span class="pill todo">todo</span></td><td>中3 Motion の制作・公開</td><td class="note">M1 の検査を通した制作ラインで作る。制作元のレシピは T9 で整理済み</td></tr>
           <tr data-filter-row data-status="done"><td class="id">T9</td><td><span class="pill done">done</span></td><td>現行フォルダと教材制作元を整理</td><td class="note">正規の中1・中2・中3レシピ180件を照合し、ローカル制作元を複製。制作CLIと手順を現行コードへ移し、資料索引とデプロイ手順を整理。Neon seed を集約し、PGliteで冪等投入・監査を確認。旧 checkout の原本は保持</td></tr>
           <tr data-filter-row data-status="done"><td class="id">T8</td><td><span class="pill done">done</span></td><td>旧 Next.js アプリを撤去</td><td class="note">旧画面・中1 Motion 生成物・旧テスト・Next.js 依存を撤去。Neon seed と V2 の検証・運用スクリプトは保持。PGlite 102件、V2 単体38件、型チェック・ビルド合格。cloud-v2 に統合済み。旧サイト停止と Supabase 削除は別作業</td></tr>
           <tr data-filter-row data-status="done"><td class="id">UX3</td><td><span class="pill done">done</span></td><td>中1 Motion の最下段カード枠を修正</td><td class="note">中1 60ページの最下段で字幕まで表示できるよう、画像内のカード領域を調整。9/27 に本番デプロイ済み。型チェック・38テスト・ビルド・dry-run 合格、公開ページ HTTP 200。ログイン後の実表示は未確認</td></tr>
@@ -189,7 +198,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>要望・検討事項</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">18件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">11件を表示</span>
       <details class="filter-menu">
         <summary aria-label="要望・検討事項を絞り込み"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16l-6.5 7.3V19l-3 1v-6.7L4 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>絞り込み<span class="filter-badge" data-filter-badge hidden></span></summary>
         <div class="filter-popover">
@@ -215,23 +224,16 @@ footer{color:var(--muted);font-size:12px}
       <table>
         <thead><tr><th>ID</th><th>種別</th><th>状態</th><th>要望・検討</th><th>今の判断</th><th>再検討の条件</th></tr></thead>
         <tbody>
-          <tr data-filter-row data-kind="feature" data-state="candidate"><td class="id">F01</td><td>機能</td><td><span class="pill candidate">次候補</span></td><td>苦手に誤答した単語の一覧を追加<small class="source">出典: UI/UX 改善計画 §3–4</small></td><td class="note">現画面はミスの型と3分練習が中心。誤答語・意味・直近の間違いを直接見られる台帳を追加する案。</td><td class="note">誤答語と「怪しい」だけの語の表示区分を決めたら着手を判断</td></tr>
-          <tr data-filter-row data-kind="feature" data-state="candidate"><td class="id">F02</td><td>機能</td><td><span class="pill candidate">次候補</span></td><td>単語を学習済み語の台帳として使いやすくする<small class="source">出典: UI/UX 改善計画 §3–4</small></td><td class="note">現画面の単語マスター検索を維持し、接触済み・復習中・定着などの状態フィルターを追加する案。</td><td class="note">表示する学習状態と定着の定義を FSRS とそろえたら着手を判断</td></tr>
-          <tr data-filter-row data-kind="nonfunctional" data-state="candidate"><td class="id">N01</td><td>非機能</td><td><span class="pill candidate">次候補</span></td><td>実データで学習導線を通し確認<small class="source">出典: 画像案1 design QA</small></td><td class="note">画像案1の画面はモックで視覚確認済み。ログイン後のレッスン再生・復習・セット開始は未確認。</td><td class="note">検証用アカウントで本番の3導線と空・エラー状態を確認できるとき</td></tr>
           <tr data-filter-row data-kind="nonfunctional" data-state="candidate"><td class="id">N02</td><td>非機能</td><td><span class="pill candidate">次候補</span></td><td>実機とアクセシビリティを確認<small class="source">出典: 画像案1 design QA・UI/UX 改善計画 §6</small></td><td class="note">ダークテーマ、実機での音声、キーボード操作、読み上げは今回の画面確認に含まれていない。</td><td class="note">次の画面改善時にスマホ実機と支援技術で確認する</td></tr>
           <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F03</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>Deep Learn で苦手語の使い方と自作文を深める<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">既存モードの拡張案。苦手語から起動し、意味だけでなく用法と自分の文まで扱う。</td><td class="note">AI に依存しない最小体験と、AI 利用方針を別々に決める</td></tr>
-          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F04</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>Context に動画の例文音声を活用<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">正規の中1教材には各カードの例文音声と単語の終了時刻がある。現行の取り込みでは単語の終了時刻をDBへ保存していない。Contextへの接続は未着手。</td><td class="note">例文区間の保存方法と、Contextで使う設問・再生UIを決めたら着手を判断</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F04</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>Context に動画の例文音声を活用<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">正規の中1教材には各カードの例文音声と単語の終了時刻がある。現行の取り込みでは単語の終了時刻をDBへ保存していない。Contextへの接続は未着手。</td><td class="note">P4 の語カードで、語だけの区間と例文区間を分けて保存するか決めるとき</td></tr>
           <tr data-filter-row data-kind="nonfunctional" data-state="considering"><td class="id">N03</td><td>非機能</td><td><span class="pill considering">検討中</span></td><td>動画から復習までの利用状況を測る<small class="source">出典: UI/UX 改善計画 §6</small></td><td class="note">視聴・仕分け・未仕分け回収・復習への移行を、個人情報を出さない集計で確認する案。</td><td class="note">現状値と取得方法を決めてから改善目標を設定する</td></tr>
-          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F08</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>覚えた単語の進捗をブロックの色分けで表示<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">母数は自分で選んだ学習範囲（例: 中1 の何割を覚えたか）。Claude Code のトップ画面のようなブロック表示。F02 の学習状態と関係する。</td><td class="note">「覚えた」の定義（FSRS の状態）と、母数にする範囲の選び方を決める</td></tr>
-          <tr data-filter-row data-kind="nonfunctional" data-state="considering"><td class="id">N04</td><td>非機能</td><td><span class="pill considering">検討中</span></td><td>Motion の画像ずれを、全件を目で見ずに直す<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">画像ずれがある。全カードの目視は負担が大きいので、ずれの自動検出や怪しいものだけ確認する方法が必要。</td><td class="note">中3 Motion の制作前後に、ずれの検出方法を決める</td></tr>
-          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F09</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>教材を 中3 → 高1〜高3 → 英検4級〜準2級 → 大学入試 へ広げる<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">中3 Motion の完成後に高校、その後に英検、近い将来に大学入試まで。</td><td class="note">中3 Motion を完成させる</td></tr>
-          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F10</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>熟語シリーズを追加<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">単語に加えて熟語の教材を追加する構想。</td><td class="note">教材の作り方（Motion と同じ形式か）を決める</td></tr>
-          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F11</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>文章シリーズ（少なくとも長文の聞き取り）<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">作り方は未定。最低限、長い文章の聞き取りは入れたい。</td><td class="note">教材の素材と、聞き取りの画面を決める</td></tr>
-          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F12</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>苦手出題とは別パターンのテストシリーズ<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">今のテストは苦手を出す。範囲の総まとめなど、別の出題パターンもほしい。F07（Test の主導線）と関係する。</td><td class="note">ほしい出題パターンを具体化する</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F09</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>教材を 中3 → 高1〜高3 → 英検4級〜準2級 → 大学入試 へ広げる<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">学年ごとに Motion を作り、英検・大学入試は語義に掛ける範囲として扱う。範囲のうち動画がない語だけを制作する。</td><td class="note">M2（中3）と P3・P4（語義・範囲）の完了後、高1 から着手を判断</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F10</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>熟語シリーズを追加<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">単語マスターが複数語の見出しを持てることが前提。英検で比重が大きいため英検の範囲より先に進める。</td><td class="note">P3 で熟語の見出しの扱いを決めたら着手を判断</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F11</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>文章シリーズ（少なくとも長文の聞き取り）<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">範囲の中で覚えた語を使った文章を作って音声化し、聞き取りを文脈の中での復習にもする案。</td><td class="note">P4（範囲）の完了後に教材の作り方と画面を決める</td></tr>
           <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F14</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>学習意欲を上げる仕掛けと、おすすめ YouTube などの情報ページ<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">「なぜ英語を学ぶのか」を外部の人に語ってもらうと意欲が上がるのではないか。ほかの仕掛けも考えたい。</td><td class="note">載せる情報の集め方と、ページの置き場所を決める</td></tr>
           <tr data-filter-row data-kind="feature" data-state="deferred"><td class="id">F05</td><td>機能</td><td><span class="pill deferred">保留</span></td><td>追加した教材の範囲からレッスンと復習を組む<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">現状の教材追加は二次導線。追加後の学習まで一続きにできる仕様が決まるまで主導線にしない。</td><td class="note">教材の取り込みから動画・仕分け・復習までの生成方法を設計する</td></tr>
           <tr data-filter-row data-kind="feature" data-state="deferred"><td class="id">F06</td><td>機能</td><td><span class="pill deferred">保留</span></td><td>Listening を独立した主導線に戻す<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">画像＋音声の動画と役割が重なるため学習ページの主導線から外した。既存のモードと履歴は残す。</td><td class="note">画面を見ず耳だけで学ぶ需要が確認できたら音声中心の体験を検討</td></tr>
-          <tr data-filter-row data-kind="feature" data-state="deferred"><td class="id">F07</td><td>機能</td><td><span class="pill deferred">保留</span></td><td>Test を独立した主導線に戻す<small class="source">出典: UI/UX 改善計画 §4</small></td><td class="note">Smart Review との違いが伝わりにくいため学習ページの主導線から外した。実力測定としての既存機能は残す。</td><td class="note">試験前の実力測定需要と、復習とは違う目的の説明を確認する</td></tr>
           <tr data-filter-row data-kind="feature" data-state="deferred"><td class="id">F13</td><td>機能</td><td><span class="pill deferred">保留</span></td><td>会話シリーズ<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">ChatGPT との会話のほうが優秀なので、アプリにはしない方針。</td><td class="note">方針が変わったら再検討</td></tr>
           <tr data-filter-empty hidden><td colspan="6" class="note">条件に一致する要望・検討事項はありません。</td></tr>
         </tbody>
@@ -243,7 +245,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>未決事項</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">4件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">5件を表示</span>
       <details class="filter-menu">
         <summary aria-label="未決事項を絞り込み"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16l-6.5 7.3V19l-3 1v-6.7L4 6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>絞り込み<span class="filter-badge" data-filter-badge hidden></span></summary>
         <div class="filter-popover">
@@ -262,8 +264,9 @@ footer{color:var(--muted);font-size:12px}
       <table>
         <thead><tr><th>ID</th><th>緊急度</th><th>問い</th><th>既定の行動</th></tr></thead>
         <tbody>
-          <tr data-filter-row data-urgency="mid"><td class="id">Q1</td><td><span class="pill mid">中</span></td><td>中1・中2 の短い意味が教材の画像・例文に合うか未確認</td><td class="note">各600カードの表示と元画像・例文を照合し、不一致がある語だけ修正する。短い意味の未登録は0件</td></tr>
-          <tr data-filter-row data-urgency="mid"><td class="id">Q4</td><td><span class="pill mid">中</span></td><td>メール未確認のユーザーが Data API に直接書き込める</td><td class="note">画面と Worker では止めている。RLS で止めるかは未決</td></tr>
+          <tr data-filter-row data-urgency="mid"><td class="id">Q7</td><td><span class="pill mid">中</span></td><td>定着にする範囲テストの出題の向き（英→日だけか、日→英も要るか）</td><td class="note">P5 の設計前にユーザーが決める。決まるまでは英→日を前提にする</td></tr>
+          <tr data-filter-row data-urgency="low"><td class="id">Q8</td><td><span class="pill low">低</span></td><td>進捗ブロックのマス数</td><td class="note">100マス（1マス1%）を前提に設計する</td></tr>
+          <tr data-filter-row data-urgency="low"><td class="id">Q9</td><td><span class="pill low">低</span></td><td>高校で増える語義の出典</td><td class="note">高校の制作前に、高校分類の元データ・辞書・Codex の候補を人が確認する方法のどれにするか決める</td></tr>
           <tr data-filter-row data-urgency="low"><td class="id">Q5</td><td><span class="pill low">低</span></td><td>T3 の確認で一度だけ 401 が返った</td><td class="note">再ログインで解消。原因は未確認</td></tr>
           <tr data-filter-row data-urgency="low"><td class="id">Q6</td><td><span class="pill low">低</span></td><td>片付け: 使っていないシークレット、古いテストユーザー</td><td class="note">承認を得てから削除する</td></tr>
           <tr data-filter-empty hidden><td colspan="4" class="note">条件に一致する未決事項はありません。</td></tr>
