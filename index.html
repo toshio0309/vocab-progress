@@ -94,15 +94,15 @@ footer{color:var(--muted);font-size:12px}
 <div class="wrap">
   <header>
     <h1>My Vocabulary Coach クラウド版 進捗</h1>
-    <span class="stamp">2026-09-28 更新 · Claude</span>
+    <span class="stamp">2026-09-28 更新 · Codex</span>
   </header>
 
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
-      <span class="value">18 <small>/ 30</small></span>
-      <span class="sub">done 18 · doing 0 · 確認待ち 1 · todo 11</span>
-      <div class="bar"><i style="width:60%"></i></div>
+      <span class="value">19 <small>/ 30</small></span>
+      <span class="sub">done 19 · doing 0 · 確認待ち 1 · todo 10</span>
+      <div class="bar"><i style="width:63.3%"></i></div>
     </div>
     <div class="stat">
       <span class="label">公開済みレッスン</span>
@@ -155,8 +155,8 @@ footer{color:var(--muted);font-size:12px}
         <span class="chip-label">状態</span>
         <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">1</span></button>
-        <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">11</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">18</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">10</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">19</span></button>
       </div>
       <div class="chip-group" role="group" aria-label="タスクの担当" data-filter-key="owner">
         <span class="chip-label">担当</span>
@@ -179,12 +179,12 @@ footer{color:var(--muted);font-size:12px}
           <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">L3</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>中1 の範囲を約600に絞る</td><td class="note">9/28 決定（Q10）: 中1 の範囲＝中1 Motion の 600 カード。分類タグの 1,010 語は参考として残し、範囲には使わない。本番で確認した数: Motion 600 カード・523 語（77 カードは同じ語の2回目以降）。進捗ブロックの 1 マス＝6 語義。同じ語の2回目が別の意味かどうかは P3 で確認する</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">L4</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>何回目の復習かを表示し、3回で定着にする</td><td class="note">9/28 migration 0021 を本番適用（監査 0 件）。検証用アカウントで復習10問に全問正解し、10語の回数が 1（数えた日 9/28）になることを確認。ルール: 日をあけて3回思い出せたら定着。その日の最初の答えだけ数え、正解+1・間違い-1（0〜3、定着後の間違いは2に戻る）。仕分け・Recall の「知ってる」は1回目。範囲テストの正解は飛び級（P5）。回数は review_logs 記録時に DB のトリガーで数える。残り（Codex）: 仕分け・Recall を question_type self_check で review_logs に記録（L2 と一緒に）、復習カードに「復習 2回目 ●●○」「あと1回で定着」、仕分け後にルールを一度説明、status mastered を回数3に置き換え。設計: docs/design-v2-range-progress.md §10</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P7</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>台帳の状態フィルターと誤答一覧（v2.3）</td><td class="note">P6 と同じ学習状態で絞り込む。「見た」と「復習中」も選べる。旧 F02・F01</td></tr>
-          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">M1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>教材制作時のDB語彙照合</td><td class="note">画像ずれは解消済み。新規レシピ作成時に共有DBと単語・品詞・日本語訳を照合し、不一致・未登録をパッケージ生成前に検出して停止する。既存教材で回帰確認する</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">M3</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>単語マスターの品詞と意味のずれを直す</td><td class="note">9/28 P3-2 の判定中に見つかった。品詞と短い意味が合わない共有単語がある（例: judge の verb 行が「裁判官」、rear の adjective 行が「育てる」、decrease の noun 行が「減る」、log の noun 行が「ログオンする」、focus・dispute・reserve・advocate・compound の noun 行が動詞の意味）。自動で候補を洗い出し、怪しいものだけ人が確認して直す。語義の分類（P3）と進捗の数え方に影響する</td></tr>
           <tr data-filter-row data-status="done" data-owner="user"><td class="id">U1</td><td><span class="pill done">done</span></td><td><span class="owner owner-user">ユーザー</span></td><td>アプリ内ブラウザで検証用アカウント（B）に一度ログイン</td><td class="note">9/27 アプリ内ブラウザで検証用アカウント B にログイン済み</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">P1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>検証用アカウントでログイン後の確認を統一（v2.1）<small class="blocked">未決事項: Q5</small></td><td class="note">手順書 docs/verification-checklist.md（アカウント B に統一、A は拒否の確認専用）。9/27 本番で B により #1〜5 を確認: ホーム、学習ページ、レッスン再生（中1-1）、仕分け 10 語（再読み込み後も学習中 10 語）、Smart Review 10 問（sync/push 200）</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">P2</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>メール未確認ユーザーの書き込みを RLS で止める（v2.1）</td><td class="note">9/27 verify:neon-rls 全件 PASS（34/34）。未確認 A の自分の単語・import_job・study_session 書き込みと、自分の profile 更新を拒否。共有単語は読み取り可能、B の書き込みは成功。テスト生成行は削除済み</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">P6</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>100マスの進捗ブロック: 表示とモーション（v2.3）</td><td class="note">9/27 ユーザー確認済み。v2/src/client/components/progress（集計は src/shared/progress/blocks.ts、単体テスト7件）。組み立て・点灯・範囲切り替えの波紋・次のマス・節目の光。小さめのマス（約20px）、パレットボタンから5色を選べる（端末ごとに保存）。動きを減らす設定では最終状態のみ。開発用プレビュー /dev/progress-grid。実データ接続は P8。旧 F08</td></tr>
+          <tr data-filter-row data-status="done" data-owner="codex"><td class="id">M1</td><td><span class="pill done">done</span></td><td><span class="owner owner-codex">Codex</span></td><td>教材制作時のDB語彙照合</td><td class="note">新規レシピに meaningJa を必須化し、共有DBの単語・品詞・短い意味を読み取り専用で照合。不一致・未登録はパッケージ生成前に停止。既存180レシピ・1,800語の回帰照合と単体6件が合格</td></tr>
           <tr data-filter-row data-status="done" data-owner="codex"><td class="id">M2</td><td><span class="pill done">done</span></td><td><span class="owner owner-codex">Codex</span></td><td>中3 Motion の制作・公開</td><td class="note">正規レシピ60件・600カードを本番公開。版・各10語・30秒を確認し、画像・音声360件のWorker HEADは全件200</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">T9</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>現行フォルダと教材制作元を整理</td><td class="note">正規の中1・中2・中3レシピ180件を照合し、ローカル制作元を複製。制作CLIと手順を現行コードへ移し、資料索引とデプロイ手順を整理。Neon seed を集約し、PGliteで冪等投入・監査を確認。旧 checkout の原本は保持</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">T8</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>旧 Next.js アプリを撤去</td><td class="note">旧画面・中1 Motion 生成物・旧テスト・Next.js 依存を撤去。Neon seed と V2 の検証・運用スクリプトは保持。PGlite 102件、V2 単体38件、型チェック・ビルド合格。cloud-v2 に統合済み。旧サイト停止と Supabase 削除は別作業</td></tr>
