@@ -101,7 +101,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="stat">
       <span class="label">タスク</span>
       <span class="value">23 <small>/ 31</small></span>
-      <span class="sub">done 23 · doing 0 · 確認待ち 1 · todo 7</span>
+      <span class="sub">done 23 · doing 0 · 確認待ち 3 · todo 5</span>
       <div class="bar"><i style="width:74.2%"></i></div>
     </div>
     <div class="stat">
@@ -154,25 +154,25 @@ footer{color:var(--muted);font-size:12px}
       <div class="chip-group" role="group" aria-label="タスクの状態" data-filter-key="status">
         <span class="chip-label">状態</span>
         <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">0</span></button>
-        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">1</span></button>
-        <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">7</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">3</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">5</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">23</span></button>
       </div>
       <div class="chip-group" role="group" aria-label="タスクの担当" data-filter-key="owner">
         <span class="chip-label">担当</span>
         <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">1</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">11</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">2</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">9</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">4</span></button>
       </div>
     </div>
     <div class="table-box">
       <table>
         <thead><tr><th>ID</th><th>状態</th><th>担当</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
+          <tr data-filter-row data-status="review" data-owner="user"><td class="id">D1</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>本番を cloud-v2 の版でデプロイし直す</td><td class="note">9/28 11:07、メインのチェックアウト（9/24 の版＋未コミットの P4-2）からデプロイされ、10:54 に cloud-v2 から出した L1・L2・L4 が本番から消えた。P4-2 の画面側だけを専用ブランチ codex/d1-p4-2（cloud-v2 の da9d88d ベース）へ移植し、型チェック・ビルド合格。cloud-v2 への統合と本番デプロイは未実施。統合後、ユーザー承認を得て cloud-v2 作業ツリー v2/ の npm run deploy で反映する（npx wrangler deploy は使わない）</td></tr>
+          <tr data-filter-row data-status="review" data-owner="user"><td class="id">P4</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>範囲と語カードの切り出し（v2.2）</td><td class="note">P4-1（DB、Claude）完了: 9/28 migration 0022 を本番適用、監査 0 件。範囲一覧 ranges、range_senses、sense_cards、range_progress を本番で確認。中1 523・中2 598・中3 600、高1 697・高2 700・高3 681、英検5級 1,217・4級 804・3級 796・準2級 624・2級 550。P4-2: 退避ブランチから指定された画面変更だけを codex/d1-p4-2（cloud-v2 の da9d88d ベース）へ移植。既定範囲設定と画面切替、範囲レッスン、文字カードと制作待ち一覧、単語一覧の高校・英検フィルター、ホーム進捗との範囲設定共有を実装。型チェック・ビルド合格。cloud-v2 統合と本番反映は未実施（D1、ユーザー承認待ち）。設計 docs/design-v2-range-progress.md §3–4</td></tr>
           <tr data-filter-row data-status="review" data-owner="codex"><td class="id">P8</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-codex">Codex</span></td><td>進捗ブロックに実データを接続し、画面に置く（v2.3）</td><td class="note">9/28 実装済み（cloud-v2 に統合、本番未デプロイ）: ホームの先頭に「範囲の進み具合」を置き、range_progress（0022）の実データを 100 マスに表示。範囲は 11 個（中1〜高3・英検5級〜2級、語義のない範囲は出さない）のタブで切り替え、選んだ範囲は端末に保存（P4-2 の範囲設定ができたらそちらを読む）。タブが多いのでタブの列だけ横にスクロールし、選んだタブを常に見える位置に寄せる。定着は 0021 の回数（3回で定着）。型チェック・48 テスト・ビルド合格、375px でページの横スクロールなしを確認。残り: デプロイ（ユーザー承認後）と、本番でログインした状態での表示確認</td></tr>
-          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">D1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>本番を cloud-v2 の版でデプロイし直す</td><td class="note">9/28 11:07、メインのチェックアウト（9/24 の版＋未コミットの P4-2）からデプロイされ、10:54 に cloud-v2 から出した L1・L2・L4 が本番から消えた（本番の assets/index-*.js がメインのチェックアウトのビルドと一致）。手順: ①P4-2 を wip/main-checkout-2026-09-28 から cloud-v2 に取り込む ②cloud-v2 の作業ツリーで npm run deploy（ユーザー承認後）。npm run deploy は cloud-v2 以外・未コミットの変更があると止まるようにした（v2/scripts/deploy.mjs）。メインのチェックアウトは cloud-v2（201c6e9）に移した</td></tr>
           <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>旧サイトのホスティングを停止</td><td class="note">T8 で旧アプリのコードは撤去済み。Supabase は無料プランの自動一時停止のまま残し、削除しない（9/27 ユーザー判断）</td></tr>
-          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P4</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>範囲と語カードの切り出し（v2.2）</td><td class="note">P4-1（DB、Claude）完了: 9/28 migration 0022 を本番適用、監査 0 件。範囲の一覧 ranges、範囲ごとの語義 range_senses、語義ごとの代表カード sense_cards、進捗 range_progress（ビューは呼んだ人の権限で読む）。本番の件数: 中1 523・中2 598・中3 600（カードすべてあり）、高1 697・高2 700・高3 681（カードあり 119・108・76）、英検5級 1,217・4級 804・3級 796・準2級 624・2級 550（英検は一番下の級で数える）。残り P4-2（Codex）: 設定と画面で範囲を選ぶ（既定は中1）、範囲レッスン（sense_cards の画像を rect で切り抜き、音声を区間で再生、カードがない語義は文字カード＋制作待ち一覧）、単語一覧の「教材・コース」に高1〜3 と英検を出す。設計 docs/design-v2-range-progress.md §3–4。P4-2（Codex）: 実装はメインのチェックアウトの未コミットの変更にしかなく、9/28 11:07 にそこからデプロイされた（本番には入っているが cloud-v2 には無い）。Claude がブランチ wip/main-checkout-2026-09-28（312b8ed）に退避済み。cloud-v2 に取り込むまで P4-2 は未完了扱い</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P5</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>範囲テストと定着判定（v2.3）</td><td class="note">範囲テストで正解した語はその場で定着（飛び級）。間違えたら復習中（2回）に戻す。定着の基本ルールは L4（日をあけて3回思い出せたら定着）。範囲まとめ・実力推定・抜き打ち再確認。Test の役割を範囲の測定に決め、旧 F07・F12 を統合。設計: docs/design-v2-range-progress.md §1, §5。出題は英→日と日→英の両方（Q7、9/27 ユーザー回答）</td></tr>
           <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">L3</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>中1 の範囲を約600に絞る</td><td class="note">9/28 決定（Q10）: 中1 の範囲＝中1 Motion の 600 カード。分類タグの 1,010 語は参考として残し、範囲には使わない。本番で確認した数: Motion 600 カード・523 語（77 カードは同じ語の2回目以降）。進捗ブロックの 1 マス＝6 語義。同じ語の2回目が別の意味かどうかは P3 で確認する</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P7</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>台帳の状態フィルターと誤答一覧（v2.3）</td><td class="note">P6 と同じ学習状態で絞り込む。「見た」と「復習中」も選べる。旧 F02・F01</td></tr>
