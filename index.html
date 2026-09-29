@@ -94,15 +94,15 @@ footer{color:var(--muted);font-size:12px}
 <div class="wrap">
   <header>
     <h1>My Vocabulary Coach クラウド版 進捗</h1>
-    <span class="stamp">2026-09-29 更新 · Codex</span>
+    <span class="stamp">2026-09-30 更新 · Claude</span>
   </header>
 
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
-      <span class="value">27 <small>/ 32</small></span>
-      <span class="sub">done 27 · doing 0 · 確認待ち 1 · todo 4</span>
-      <div class="bar"><i style="width:84.4%"></i></div>
+      <span class="value">29 <small>/ 34</small></span>
+      <span class="sub">done 29 · doing 0 · 確認待ち 1 · todo 4</span>
+      <div class="bar"><i style="width:85.3%"></i></div>
     </div>
     <div class="stat">
       <span class="label">公開済みレッスン</span>
@@ -146,7 +146,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>タスク</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">32件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">34件を表示</span>
       <button type="button" class="filter-reset" data-filter-reset hidden>解除</button>
     </div>
     </div>
@@ -156,13 +156,13 @@ footer{color:var(--muted);font-size:12px}
         <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">1</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">4</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">27</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">29</span></button>
       </div>
       <div class="chip-group" role="group" aria-label="タスクの担当" data-filter-key="owner">
         <span class="chip-label">担当</span>
-        <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">1</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">7</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">3</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">4</span></button>
       </div>
     </div>
     <div class="table-box">
@@ -170,12 +170,13 @@ footer{color:var(--muted);font-size:12px}
         <thead><tr><th>ID</th><th>状態</th><th>担当</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
           <tr data-filter-row data-status="review" data-owner="user"><td class="id">P5</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>範囲テストと定着判定（v2.3）</td><td class="note">9/29 本番反映・Claude が DB を確認済み（残りはユーザーの使い心地の確認）。migration 0023 を本番適用（監査 0 件、既存の学習記録 169 件を語義別進捗へ移行: 見た 39・復習中 130）。デプロイ直後、範囲テストが「出題する語義を読み込めませんでした」、範囲レッスンが「この範囲を読み込めませんでした」で失敗（範囲レッスンは P4-2 の公開時から）。原因は 1 回の問い合わせに ID を 400 個並べた約 15.7KB の URL を Data API が HTTP/2 で 431 で拒否（CORS エラーに見える）。100 個ずつに直して再デプロイ（Worker c98cf9e9）。検証用アカウント B で範囲レッスン表示、範囲テスト開始・10 問回答・結果保存（10 問・10 回答・10 語義が復習中 2 回）を確認。Claude FB（9/29）: 範囲テスト結果の「復習する語義」で、出題方向に関係なく「英単語 | 短い意味」を表示する修正を実装。9/29 cloud-v2 8d1e66d に統合して本番反映（Worker version f7efa371）。型チェック・68テスト・ビルド・dry-run 合格。残りはユーザーの使い心地の確認。0023 の常設テスト 13 件を追加（二重に数えない、範囲テスト正解で即定着、他人の進捗・テストに触れない、アカウント削除可）。内容: 語義別進捗、範囲まとめ・実力推定・抜き打ち再確認、英→日選択・日→英入力、採点はサーバー側、正解は定着・誤答は復習中（2 回）。設計 docs/design-v2-range-progress.md §1, §5, §10</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U3</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>アプリ内ブラウザで検証用アカウント B に再ログイン</td><td class="note">9/30 時点で B のセッションが切れていて、ログイン後の画面を Claude が確認できない。アプリ内ブラウザで B にログインし直す</td></tr>
           <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>旧サイトのホスティングを停止</td><td class="note">T8 で旧アプリのコードは撤去済み。Supabase は無料プランの自動一時停止のまま残し、削除しない（9/27 ユーザー判断）</td></tr>
-          <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">L3</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>中1 の範囲を約600に絞る</td><td class="note">9/28 決定（Q10）: 中1 の範囲＝中1 Motion の 600 カード。分類タグの 1,010 語は参考として残し、範囲には使わない。本番で確認した数: Motion 600 カード・523 語（77 カードは同じ語の2回目以降）。進捗ブロックの 1 マス＝6 語義。同じ語の2回目が別の意味かどうかは P3 で確認する</td></tr>
-          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P7</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>台帳の状態フィルターと誤答一覧（v2.3）</td><td class="note">P6 と同じ学習状態で絞り込む。「見た」と「復習中」も選べる。旧 F02・F01</td></tr>
-          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">M3</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>単語マスターの品詞と意味のずれを直す</td><td class="note">9/28 P3-2 の判定中に見つかった。品詞と短い意味が合わない共有単語がある（例: judge の verb 行が「裁判官」、rear の adjective 行が「育てる」、decrease の noun 行が「減る」、log の noun 行が「ログオンする」、focus・dispute・reserve・advocate・compound の noun 行が動詞の意味）。自動で候補を洗い出し、怪しいものだけ人が確認して直す。語義の分類（P3）と進捗の数え方に影響する</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">P7</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>台帳の状態フィルターと誤答一覧（v2.3）</td><td class="note">Codex へ（先に）: 古い cloud-v2 の作業ツリー（.codex/worktrees/cloud-v2-integration、いまは detached 8d1e66d）に未コミットの変更が残っている（AGENTS.md の「レッスン音声の区間再生」ルールと設計書 4 つ）。必要なら今の cloud-v2 に移してコミットし、不要なら捨てる。cloud-v2 ブランチはいま .codex/worktrees/p5-release にある。 Codex へ（次に着手）: 単語一覧（台帳）を 100 マスと同じ状態（未着手・見た・復習中・定着）で絞り込めるようにし、範囲テスト・復習で間違えた語義の一覧を作る。状態は語義単位の user_sense_progress（0023）を使い、範囲は range_senses（0022）で絞る。100 マスのマスや凡例を押すと、その範囲・状態で絞った台帳が開くようにする（P8 の RangeProgressPanel から遷移）。DB の変更が要るなら migration を作って owner を claude に回す。できたら統合して npm run release。旧 F02・F01</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">M3</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>単語マスターの品詞と意味のずれを直す</td><td class="note">9/28 P3-2 の判定中に見つかった。品詞と短い意味が合わない共有単語がある（例: judge の verb 行が「裁判官」、rear の adjective 行が「育てる」、decrease の noun 行が「減る」、log の noun 行が「ログオンする」、focus・dispute・reserve・advocate・compound の noun 行が動詞の意味）。自動で候補を洗い出し、怪しいものだけ人が確認して直す。語義の分類（P3）と進捗の数え方に影響する。Codex へ: P7 のあとに着手。まず候補の一覧（CSV）を作り、直す内容は本番データの書き込みになるので、一覧と dry run をユーザーに見せて承認を取る（run の短い意味が「を経営する」になっている件も含める）</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">D1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>本番を cloud-v2 の版でデプロイし直す</td><td class="note">9/28 P4-2 を cloud-v2 に統合（commit 27ebcf6）後、Worker version 06df9d51-3326-452e-9fb9-9337f88c91b4 を配信。公開トップ HTTP 200、今回の bundle index-Ck2o93zZ.js も HTTP 200 で HTML から参照されている。DB・R2 は変更なし。npm run deploy -- --check のつもりの実行で引数が反映されず、ユーザー承認前に通常デプロイが実行された。対策（9/28 Claude）: 確認だけの npm run deploy:check を追加（フラグを package.json に書くので PowerShell でも落ちない）。npm run deploy -- --check は使わないと AGENTS.md・deploy-v2.md に明記</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">A1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>じっくりモード・範囲レッスンで次の単語の頭が聞こえる</td><td class="note">9/29 修正・本番反映、iPhone でユーザー確認済み。1 枚 3 秒の区切りが隙間なく並び、次の単語は区切りの約 0.075 秒後に始まるが、&lt;audio&gt; の一時停止がスマホで 0.1 秒以上遅れて効いていた（範囲レッスンは約 0.25 秒おきの確認でさらに遅れる）。Web Audio で区切りを指定して再生する方式に変更（v2/src/client/lib/segment-audio.ts、実測 3.008 秒で停止）。iPhone のマナーモードでも音が出るよう設定。テスト 7 件</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">H1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>受け渡しとリリースを人の中継なしにする</td><td class="note">9/30 本番反映（ユーザー決定 9/29）。統合した人が cloud-v2 の作業ツリーの v2/ で npm run release（承認不要）: cloud-v2・未コミットなし → 型チェック・テスト・DB テスト → 本番 DB に未適用 migration なし → デプロイ → 本番の配信確認、だめなら直前の版へ自動で戻す。承認が要るのは DB 変更・データの一括書き込み/削除・外部操作だけ。受け渡しは status.json の owner と note（AGENTS.md「Claude と Codex の受け渡し」「本番リリース」）。初回リリース 0b7f765（Worker 214fbd6e）成功。途中で直したこと: cloud-v2 の作業ツリーに開発用パッケージが入っていなかった（npm ci）、作業ツリーの .env.local に DB の接続先がない（メインのチェックアウトの .env.local を読む）、Windows で node をシェル経由で起動していた</td></tr>
           <tr data-filter-row data-status="done" data-owner="user"><td class="id">U1</td><td><span class="pill done">done</span></td><td><span class="owner owner-user">ユーザー</span></td><td>アプリ内ブラウザで検証用アカウント（B）に一度ログイン</td><td class="note">9/27 アプリ内ブラウザで検証用アカウント B にログイン済み</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">P1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>検証用アカウントでログイン後の確認を統一（v2.1）<small class="blocked">未決事項: Q5</small></td><td class="note">手順書 docs/verification-checklist.md（アカウント B に統一、A は拒否の確認専用）。9/27 本番で B により #1〜5 を確認: ホーム、学習ページ、レッスン再生（中1-1）、仕分け 10 語（再読み込み後も学習中 10 語）、Smart Review 10 問（sync/push 200）</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">P2</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>メール未確認ユーザーの書き込みを RLS で止める（v2.1）</td><td class="note">9/27 verify:neon-rls 全件 PASS（34/34）。未確認 A の自分の単語・import_job・study_session 書き込みと、自分の profile 更新を拒否。共有単語は読み取り可能、B の書き込みは成功。テスト生成行は削除済み</td></tr>
@@ -185,6 +186,7 @@ footer{color:var(--muted);font-size:12px}
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">P8</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>進捗ブロックに実データを接続し、画面に置く（v2.3）</td><td class="note">9/28 完了・本番反映（Worker version 21929851、cloud-v2 6ad558e、npm run deploy の確認で本番の配信を確認）。ホームの「範囲の進み具合」カード: 100 マスは左の小さな台、右に 範囲の選択（チップ型）→ 定着の %（主役）と 定着数/範囲 → 割合の横棒 → 定着・学習済・未着手の数 → 「次の 10% まで あと 53 語義」。検証用アカウント B で確認: スマホ幅で高さ 193px（元は約 580px）、下の「学習の見通し」（今日の復習 10/15）が最初の画面に入る。PC 幅は高さ 224px、横スクロールなし、コンソールエラーなし。ダークモードは目視未確認（画面キャプチャが色を正しく写さない）</td></tr>
           <tr data-filter-row data-status="done" data-owner="codex"><td class="id">L1</td><td><span class="pill done">done</span></td><td><span class="owner owner-codex">Codex</span></td><td>記憶のルートを整理し、復習の数が減るようにする</td><td class="note">§10 実装済み・cloud-v2 統合済み・9/28 再デプロイ済み（Worker version 06df9d51-3326-452e-9fb9-9337f88c91b4）。FSRS の短期ステップを無効化、exposed を復習件数・出題から除外、誤答語を最後に再出題（再回答は記録しない）。ホーム・学習ページに日本時間の「今日の復習 x/y」を表示。型チェック・ビルド・55テスト合格、公開トップと bundle HTTP 200。B でのログイン後・学習記録の本番確認は未確認</td></tr>
           <tr data-filter-row data-status="done" data-owner="codex"><td class="id">L2</td><td><span class="pill done">done</span></td><td><span class="owner owner-codex">Codex</span></td><td>仕分けと動画の Recall を復習の入口にする</td><td class="note">§10 実装済み・cloud-v2 統合済み・9/28 再デプロイ済み（Worker version 06df9d51-3326-452e-9fb9-9337f88c91b4）。仕分けは日本語を隠してめくってから3択。仕分け・動画 Recall は self_check で記録し、知ってる=Good・あやふや=Again・はじめて=今日。Recall 済み語は仕分けから除外し、翌日まで未仕分けの exposed はあやふやとして自動処理。型チェック・ビルド・55テスト合格、公開トップと bundle HTTP 200。B での仕分け・Recall の保存確認は未確認</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">L3</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>中1 の範囲を約600に絞る</td><td class="note">9/28 完了（migration 0022）。中1 の範囲＝中1 Motion が教える語義（Q10）。600 カードのうち 77 枚は同じ語・同じ意味の2回目だったので、範囲は 523 語義。分類タグの 1,010 語は参考として残し、範囲には使わない</td></tr>
           <tr data-filter-row data-status="done" data-owner="codex"><td class="id">L4</td><td><span class="pill done">done</span></td><td><span class="owner owner-codex">Codex</span></td><td>何回目の復習かを表示し、3回で定着にする</td><td class="note">migration 0021 は本番適用済み。回数は DB トリガーに任せ、アプリから recall_count / mastered_at は書かない。カードに復習回数と●○、回答後に「あと1回で定着」「1回戻りました」、仕分け後にルールを一度表示。定着表示は recall_count=3。型チェック・ビルド・55テスト合格。9/28 cloud-v2 統合・再デプロイ済み（Worker version 06df9d51-3326-452e-9fb9-9337f88c91b4）、公開トップと bundle HTTP 200。B での回数・定着の本番記録確認は未確認</td></tr>
           <tr data-filter-row data-status="done" data-owner="codex"><td class="id">M1</td><td><span class="pill done">done</span></td><td><span class="owner owner-codex">Codex</span></td><td>教材制作時のDB語彙照合</td><td class="note">新規レシピに meaningJa を必須化し、共有DBの単語・品詞・短い意味を読み取り専用で照合。不一致・未登録はパッケージ生成前に停止。既存180レシピ・1,800語の回帰照合と単体6件が合格</td></tr>
           <tr data-filter-row data-status="done" data-owner="codex"><td class="id">M2</td><td><span class="pill done">done</span></td><td><span class="owner owner-codex">Codex</span></td><td>中3 Motion の制作・公開</td><td class="note">正規レシピ60件・600カードを本番公開。版・各10語・30秒を確認し、画像・音声360件のWorker HEADは全件200</td></tr>
