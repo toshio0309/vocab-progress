@@ -94,26 +94,26 @@ footer{color:var(--muted);font-size:12px}
 <div class="wrap">
   <header>
     <h1>My Vocabulary Coach クラウド版 進捗</h1>
-    <span class="stamp">2026-09-30 更新 · Claude</span>
+    <span class="stamp">2026-10-01 更新 · Codex</span>
   </header>
 
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
-      <span class="value">29 <small>/ 34</small></span>
-      <span class="sub">done 29 · doing 0 · 確認待ち 1 · todo 4</span>
-      <div class="bar"><i style="width:85.3%"></i></div>
+      <span class="value">30 <small>/ 35</small></span>
+      <span class="sub">done 30 · doing 0 · 確認待ち 1 · todo 4</span>
+      <div class="bar"><i style="width:85.7%"></i></div>
     </div>
     <div class="stat">
       <span class="label">公開済みレッスン</span>
-      <span class="value">180</span>
-      <span class="sub">中1 60 · 中2 60 · 中3 60（本番Neon/R2確認）</span>
+      <span class="value">240</span>
+      <span class="sub">中1 60 · 中2 60 · 中3 60 · 高1 60（本番Neon/R2確認）</span>
     </div>
     <div class="stat">
       <span class="label">短い意味の登録率</span>
-      <span class="value">97.9%</span>
-      <span class="sub">5,117 / 5,227 語（本番DBで確認）</span>
-      <div class="bar"><i style="width:97.9%"></i></div>
+      <span class="value">98.0%</span>
+      <span class="sub">5,148 / 5,254 語（本番DBで確認）</span>
+      <div class="bar"><i style="width:98%"></i></div>
     </div>
     <div class="stat">
       <span class="label">DB migration</span>
@@ -146,7 +146,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>タスク</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">34件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">35件を表示</span>
       <button type="button" class="filter-reset" data-filter-reset hidden>解除</button>
     </div>
     </div>
@@ -156,12 +156,12 @@ footer{color:var(--muted);font-size:12px}
         <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">1</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">4</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">29</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">30</span></button>
       </div>
       <div class="chip-group" role="group" aria-label="タスクの担当" data-filter-key="owner">
         <span class="chip-label">担当</span>
         <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">0</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">7</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">8</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">4</span></button>
       </div>
     </div>
@@ -203,6 +203,7 @@ footer{color:var(--muted);font-size:12px}
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">T6</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>オフライン同期と PWA（migration 0016）</td><td class="note">スマホでオフライン 22 問 → 再接続で 1 回ずつ保存を確認</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">C7-7</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>動画レッスンの「じっくり」と Recall（migration 0017）</td><td class="note">9/25 のフィードバック反映済み</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">T7</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>高校学年コース分類を本番DBに反映</td><td class="note">高1 252 · 高2 291 · 高3 333 語。HEVのみの候補は別の暫定分類として324件。追加シートの品詞表記と異なる77語は主表のword_idで反映し、低信頼の根拠を保持</td></tr>
+          <tr data-filter-row data-status="done" data-owner="codex"><td class="id">M4</td><td><span class="pill done">done</span></td><td><span class="owner owner-codex">Codex</span></td><td>高1 Motion の制作・公開</td><td class="note">10/1 正規パッケージ60件・600カードを本番公開。high1-025はdepositの動詞用例に直してv2で公開。画像・音声120点をR2に登録し、レッスン60件・600語義のNeon登録を確認。制作前検査・取り込みdry-run 60/60合格。</td></tr>
           <tr data-filter-empty hidden><td colspan="5" class="note">条件に一致するタスクはありません。</td></tr>
         </tbody>
       </table>
