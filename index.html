@@ -137,8 +137,8 @@ footer{color:var(--muted);font-size:12px}
     </div>
     <div class="stat">
       <span class="label">未決事項</span>
-      <span class="value">5</span>
-      <span class="sub">高 0 · 中 1 · 低 4</span>
+      <span class="value">4</span>
+      <span class="sub">高 0 · 中 0 · 低 4</span>
     </div>
   </section>
 
@@ -175,7 +175,7 @@ footer{color:var(--muted);font-size:12px}
           <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>旧サイトのホスティングを停止</td><td class="note">T8 で旧アプリのコードは撤去済み。Supabase は無料プランの自動一時停止のまま残し、削除しない（9/27 ユーザー判断）</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">LF2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>範囲から10語: 未接触の語義から始め、終わりに仕分けを付ける</td><td class="note">Codex へ: 記録方法は Claude が 10/1 に確定した（設計 docs/design-v2-learning-flow.md §8.1、migration なし）。(1) /api/range-test/ に classify を足す（{ rangeId, entries: [{ senseId, classification }] }、最大 20。range_senses にあり、自分の user_sense_progress が unseen 以外の語義だけ受ける。study_sessions を mode lesson で 1 つ作る）。(2) 語義1: recordSelfCheck に senseId を渡せるようにし、ログに sense_id を入れ、重複確認も sense_id で絞る（同じ語の語義1・語義2 が同じ回に並ぶと記録が抜けるため）。user_word_classifications にも入れる。(3) 語義2 以降: recordSelfCheck を呼ばない（user_words を作るとトリガーで語義1 が「見た」になる）。review_logs に self_check を sense_id 付きで入れ（fsrs_rating null）、あやふや・はじめては user_sense_progress を unseen/exposed のときだけ review にする。(4) 次の 10 語義: offset をやめ、範囲の並び順で exposed（見たが仕分けていない）→ unseen の順に 10 個。全部 review 以上なら 範囲テスト・範囲一覧へ。「前の10語」はなくす。(5) 終了画面の主ボタンを「思い出す（仕分け）」にし、その回で見た語義を ClassifyCard（日本語を隠す）で仕分ける。意味は meaning_short。(6) 文字カードに word_senses の例文・訳を出し、例文のある語義の数を範囲ごとに数えてこの note に書く。語義2 以降の復習の予定（語義単位の FSRS）は扱わない（本番 78 語義、範囲テストでのみ定着に進む）。できたら統合して npm run release。</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">LF3</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>復習の 4 択の選択肢を同じ品詞からにし、少ないときは時間選択を省く</td><td class="note">10/1 確認: 誤答の選択肢は review-common.ts の distractorMeanings が words を順序指定なしで 100 件取った中から選ぶため、品詞も形もばらばらで当て推量で当たる（例: book に「選んだ（chooseの過去形）」）。Codex へ: 正解と同じ品詞の語義から選び、同じ意味・同じ語の別語義を除く。できれば同じ範囲から。復習対象が少ないとき（仮に 20 語以下）は時間選択を出さずに始める。設計 docs/design-v2-learning-flow.md §5。10/1 追記: 10/1 ユーザー決定: アプリを開いたらすぐ学習できる形は、学習画面の「続ける」ボタン 1 つで 復習 → 新しい 10 語 → 思い出す（仕分け）が続く作り（LF4）にする。ホームの開始ボタンを上に移すだけの案は採らない。時間選択を省く部分も進めてよい（復習対象が少ないときは出さない。「続ける」から入ったときに出さないのは LF4 で行う）</td></tr>
-          <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">LF4</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>学習画面を「範囲の 100 マス＋続ける」にし、ホームと苦手のタブをなくす<small class="blocked">未決事項: Q9</small></td><td class="note">10/1 ユーザー決定: アプリを開いたらすぐ学習できる形は、学習画面の「続ける」ボタン 1 つで 復習 → 新しい 10 語 → 思い出す（仕分け）が続く作り（LF4）にする。ホームの開始ボタンを上に移すだけの案は採らない。「続ける」1 つで この範囲の復習 → 次の 10 語（動画か文字カード）→ 仕分け を 1 本で流す。下のタブは 学習・単語・マイページ の 3 つ。LF2 のあと。着手前に Claude が「次の 10 語をレッスン単位で見せるか、未接触の語カード単位で並べ直すか」の案を出してユーザーが決める（設計 §10）。決まったら owner を codex に。設計 docs/design-v2-learning-flow.md §2・§3</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">LF4</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>学習画面を「範囲の 100 マス＋続ける」にし、ホームと苦手のタブをなくす</td><td class="note">10/1 ユーザー決定: アプリを開いたらすぐ学習できる形は、学習画面の「続ける」ボタン 1 つで 復習 → 新しい 10 語 → 思い出す（仕分け）が続く作り（LF4）にする。ホームの開始ボタンを上に移すだけの案は採らない。10/1 ユーザー決定（2）: 「続ける」の新しい 10 語は、範囲の中でまだ見ていない語を 1 語ずつ見せる（今の「範囲から10語」と同じ見せ方: 動画のある語はレッスンの絵のその語の部分に寄せ、その語の区間の音声。ない語は文字カード）。動画レッスンを 1 本丸ごと流す案は、学習済みの語も出るので採らない（レッスン一覧からは今までどおり見られる）。「続ける」1 つで この範囲の復習 → 次の 10 語（動画か文字カード）→ 仕分け を 1 本で流す。下のタブは 学習・単語・マイページ の 3 つ。LF2 のあと。Claude が LF2 の作りの上で「続ける」の流れを設計してから owner を codex に。設計 docs/design-v2-learning-flow.md §2・§3</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">LF5</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>答え合わせで語カードの絵と音声を出す（思い出す間は隠す）</td><td class="note">10/1 方針を修正: 思い出す間は絵を出さず、答えたあとの答え合わせで語カードの切り抜き画像と音声を出す。根拠: 中等教育の生徒で、想起中に答えの手がかりになる画像を見せると 1〜4 日後の想起が弱くなった（van den Broek ほか 2021、公開レビュー docs/product-review/release-readiness-2026-10-01.md）。最初の案（想起中に絵を出す）はこの条件に当たるので取り下げた。Codex へ: 仕分け・復習で回答したあとに、語カードがある語義は lesson_words の rect で切り抜いた画像と start_ms〜end_ms の音声を出す。回答前は今どおり文字だけ。設計 docs/design-v2-learning-flow.md §4</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">LF6</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>設定を範囲に一本化し、単語タブを範囲の台帳に、見出しを日本語に</td><td class="note">マイページの レベル・目的・学習する範囲、単語ページの 対象のレベル・教材・コース の 4 つを「範囲」1 つにまとめる（DB の列は消さない）。単語タブの既定は選んだ範囲、絞り込みは 苦手・学習中・定着・未着手（P7 と同じ画面なので一緒に作る）。英語の見出し（LEARN AT YOUR PACE など）を日本語にする。範囲の既定の保存先（端末か DB か）はこの中で決める。設計 docs/design-v2-learning-flow.md §2・§7。10/1 追記: 教材制作側の言葉（「制作前の語義」「制作待ちの一覧」、範囲テストの保存処理の説明など）も学習者向けに直す。文言案は公開レビュー docs/product-review/next-release-brief.md の表</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">LF7</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>動画のカメラの遅れを調べて直す</td><td class="note">10/1 確認: 390px 幅で画像の位置を 1.5 秒おきに測ると、表示が「7/10」（左の列）の間も画像は右の列を映していた（数値のみ、原因は未調査）。Codex へ: lesson-player.tsx のカメラ移動と音声時刻・カード番号の対応を調べて直す。構想メモの「モーションの画像のずれ」と同じ問題かも確認する。設計 docs/design-v2-learning-flow.md §1 #12</td></tr>
@@ -269,7 +269,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>未決事項</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">5件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">4件を表示</span>
       <button type="button" class="filter-reset" data-filter-reset hidden>解除</button>
     </div>
     </div>
@@ -277,21 +277,20 @@ footer{color:var(--muted);font-size:12px}
       <div class="chip-group" role="group" aria-label="未決事項の緊急度" data-filter-key="urgency">
         <span class="chip-label">緊急度</span>
         <button type="button" class="chip" aria-pressed="false" data-value="high">高<span class="chip-count">0</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="mid">中<span class="chip-count">1</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="mid">中<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="low">低<span class="chip-count">4</span></button>
       </div>
       <div class="chip-group" role="group" aria-label="未決事項の決める人" data-filter-key="owner">
         <span class="chip-label">決める人</span>
         <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">1</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">1</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">3</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">2</span></button>
       </div>
     </div>
     <div class="table-box">
       <table>
         <thead><tr><th>ID</th><th>緊急度</th><th>決める人</th><th>問い</th><th>影響するタスク</th><th>既定の行動</th></tr></thead>
         <tbody>
-          <tr data-filter-row data-urgency="mid" data-owner="user"><td class="id">Q9</td><td><span class="pill mid">中</span></td><td><span class="owner owner-user">ユーザー</span></td><td>学習画面の「続ける」ボタン（10/1 に作ると決定、LF4）で「新しい 10 語を見る」とき、何を見せるか。A（動画レッスンを 1 本流す）: 今のレッスン一覧と同じ「1 枚の絵に 10 語が描かれた動画」をそのまま再生する。絵と話の流れは崩れないが、その 10 語の中に、別のレッスンや英検の範囲ですでに学んだ語が混ざることがある（範囲は教材の並びと一致しないため）。B（まだ見ていない語だけを 10 個集める）: 範囲の中でまだ見ていない語を 10 個選び、1 語ずつ見せる。動画がある語は、その動画の絵から 1 語分を切り抜いた画像と、その語の部分の音声を出す。動画がない語は文字のカードと読み上げ音声。学習済みの語は出ないが、1 枚の絵を順にたどる流れはなくなる</td><td class="id">LF4</td><td class="note">B は「範囲から10語」の今の画面と同じ見せ方で、LF2 でまだ見ていない語から選ぶように直す。A を選ぶと、レッスンを選ぶ処理を別に作る。どちらでも、動画レッスンをそのまま見る入口（レッスン一覧）は残す。決まるまで LF4 に着手しない</td></tr>
           <tr data-filter-row data-urgency="low" data-owner="claude"><td class="id">Q5</td><td><span class="pill low">低</span></td><td><span class="owner owner-claude">Claude</span></td><td>T3 の確認で一度だけ 401 が返った</td><td class="id">P1</td><td class="note">10/1 Claude 調査: 当時の記録がなく原因は特定できない。分かったこと: ログイン直後の取り違えではない（JWT はセッション取得の応答ヘッダーで毎回発行、15 分、端末時計のずれ 1 秒）。Worker は検証の失敗を理由を問わず 401 にしていたので、Neon Auth の鍵の取得失敗（同じ edge で 520・タイムアウトが既知、C3-1）でも「ログインし直して」になっていた。対応: 鍵の取得失敗は 1 回再試行し、だめなら 503（再試行できるエラー）にする。失敗の理由（jose のコードだけ）を Workers Logs に残す。10/1 本番反映（cloud-v2 023af0c、Worker version d0060cfe-e756-48be-9fba-42f411184a33。npm run release: 72 テスト合格）。本番で正しい JWT は 200、壊れた JWT・なしは 401 を確認。再発したら Workers Logs の [auth] の行で原因を判断し、この行を消す</td></tr>
           <tr data-filter-row data-urgency="low" data-owner="user"><td class="id">Q6</td><td><span class="pill low">低</span></td><td><span class="owner owner-user">ユーザー</span></td><td>片付け: 使っていないシークレット、古いテストユーザー</td><td class="id"><span class="muted">—</span></td><td class="note">承認を得てから削除する</td></tr>
           <tr data-filter-row data-urgency="low" data-owner="codex"><td class="id">Q8</td><td><span class="pill low">低</span></td><td><span class="owner owner-codex">Codex</span></td><td>レッスン一覧の高1が 55 レッスン表示（10/1 本番、B で確認）。統計の「高1 60」と合わない</td><td class="id"><span class="muted">—</span></td><td class="note">公開状態を確認し、統計か一覧のどちらが正しいかを note に書く</td></tr>
