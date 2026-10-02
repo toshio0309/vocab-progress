@@ -94,14 +94,14 @@ footer{color:var(--muted);font-size:12px}
 <div class="wrap">
   <header>
     <h1>My Vocabulary Coach クラウド版 進捗</h1>
-    <span class="stamp">2026-10-02 更新 · Claude</span>
+    <span class="stamp">2026-10-03 更新 · Codex</span>
   </header>
 
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
       <span class="value">34 <small>/ 43</small></span>
-      <span class="sub">done 34 · doing 0 · 確認待ち 2 · todo 7</span>
+      <span class="sub">done 34 · doing 0 · 確認待ち 3 · todo 6</span>
       <div class="bar"><i style="width:79.1%"></i></div>
     </div>
     <div class="stat">
@@ -154,15 +154,15 @@ footer{color:var(--muted);font-size:12px}
       <div class="chip-group" role="group" aria-label="タスクの状態" data-filter-key="status">
         <span class="chip-label">状態</span>
         <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">0</span></button>
-        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">2</span></button>
-        <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">7</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">3</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">6</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">34</span></button>
       </div>
       <div class="chip-group" role="group" aria-label="タスクの担当" data-filter-key="owner">
         <span class="chip-label">担当</span>
         <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">0</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">12</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">4</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">11</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">5</span></button>
       </div>
     </div>
     <div class="table-box">
@@ -171,8 +171,8 @@ footer{color:var(--muted);font-size:12px}
         <tbody>
           <tr data-filter-row data-status="review" data-owner="user"><td class="id">P5</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>範囲テストと定着判定（v2.3）</td><td class="note">9/29 本番反映・Claude が DB を確認済み（残りはユーザーの使い心地の確認）。migration 0023 を本番適用（監査 0 件、既存の学習記録 169 件を語義別進捗へ移行: 見た 39・復習中 130）。デプロイ直後、範囲テストが「出題する語義を読み込めませんでした」、範囲レッスンが「この範囲を読み込めませんでした」で失敗（範囲レッスンは P4-2 の公開時から）。原因は 1 回の問い合わせに ID を 400 個並べた約 15.7KB の URL を Data API が HTTP/2 で 431 で拒否（CORS エラーに見える）。100 個ずつに直して再デプロイ（Worker c98cf9e9）。検証用アカウント B で範囲レッスン表示、範囲テスト開始・10 問回答・結果保存（10 問・10 回答・10 語義が復習中 2 回）を確認。Claude FB（9/29）: 範囲テスト結果の「復習する語義」で、出題方向に関係なく「英単語 | 短い意味」を表示する修正を実装。9/29 cloud-v2 8d1e66d に統合して本番反映（Worker version f7efa371）。型チェック・68テスト・ビルド・dry-run 合格。残りはユーザーの使い心地の確認。0023 の常設テスト 13 件を追加（二重に数えない、範囲テスト正解で即定着、他人の進捗・テストに触れない、アカウント削除可）。内容: 語義別進捗、範囲まとめ・実力推定・抜き打ち再確認、英→日選択・日→英入力、採点はサーバー側、正解は定着・誤答は復習中（2 回）。設計 docs/design-v2-range-progress.md §1, §5, §10</td></tr>
           <tr data-filter-row data-status="review" data-owner="user"><td class="id">P7</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>台帳の状態フィルターと誤答一覧（v2.3）</td><td class="note">10/1 本番反映（cloud-v2 a3511e2、Worker version f4c346c9-3bd6-43ea-82cd-6d6c47bf7874）。範囲・語義状態別の台帳、100マスからの状態遷移、直近30日の範囲テスト・復習の誤答語義一覧。npm run release: 型チェック・68テスト・DB検証171件合格、未適用migrationなし、本番配信確認済み。残りは使い勝手の確認。</td></tr>
+          <tr data-filter-row data-status="review" data-owner="user"><td class="id">LF3</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>復習の 4 択の選択肢を同じ品詞からにし、少ないときは時間選択を省く</td><td class="note">10/1 確認: 誤答の選択肢は review-common.ts の distractorMeanings が words を順序指定なしで 100 件取った中から選ぶため、品詞も形もばらばらで当て推量で当たる（例: book に「選んだ（chooseの過去形）」）。Codex へ: 正解と同じ品詞の語義から選び、同じ意味・同じ語の別語義を除く。できれば同じ範囲から。復習対象が少ないとき（仮に 20 語以下）は時間選択を出さずに始める。設計 docs/design-v2-learning-flow.md §5。10/1 追記: 10/1 ユーザー決定: アプリを開いたらすぐ学習できる形は、学習画面の「続ける」ボタン 1 つで 復習 → 新しい 10 語 → 思い出す（仕分け）が続く作り（LF4）にする。ホームの開始ボタンを上に移すだけの案は採らない。時間選択を省く部分も進めてよい（復習対象が少ないときは出さない。「続ける」から入ったときに出さないのは LF4 で行う）。10/3 Codex 実装・検証済み、本番反映の承認待ち。同じ品詞の語義から選択肢を作り、同じ語・同じ意味・不適切な活用形の説明を除外。同じ範囲を優先。実際の出題候補が20語以下なら時間選択なしで開始、途中の再開と失敗時の再試行を確認。型チェック・114テスト・ビルド・dry-run成功。仮データのスマホ幅で0/20/21語、20問の完了、途中再開、オフラインを確認。詳細 docs/lf3-verification-2026-10-03.md。未公開</td></tr>
           <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>旧サイトのホスティングを停止</td><td class="note">T8 で旧アプリのコードは撤去済み。Supabase は無料プランの自動一時停止のまま残し、削除しない（9/27 ユーザー判断）</td></tr>
-          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">LF3</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>復習の 4 択の選択肢を同じ品詞からにし、少ないときは時間選択を省く</td><td class="note">10/1 確認: 誤答の選択肢は review-common.ts の distractorMeanings が words を順序指定なしで 100 件取った中から選ぶため、品詞も形もばらばらで当て推量で当たる（例: book に「選んだ（chooseの過去形）」）。Codex へ: 正解と同じ品詞の語義から選び、同じ意味・同じ語の別語義を除く。できれば同じ範囲から。復習対象が少ないとき（仮に 20 語以下）は時間選択を出さずに始める。設計 docs/design-v2-learning-flow.md §5。10/1 追記: 10/1 ユーザー決定: アプリを開いたらすぐ学習できる形は、学習画面の「続ける」ボタン 1 つで 復習 → 新しい 10 語 → 思い出す（仕分け）が続く作り（LF4）にする。ホームの開始ボタンを上に移すだけの案は採らない。時間選択を省く部分も進めてよい（復習対象が少ないときは出さない。「続ける」から入ったときに出さないのは LF4 で行う）</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">LF4</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>学習画面を「範囲の 100 マス＋続ける」にし、ホームと苦手のタブをなくす</td><td class="note">Codex へ: 設計は Claude が 10/1 に確定（docs/design-v2-learning-flow.md §3.1、DB の変更なし）。LF2 の上に作る。(1) 学習画面 /learn を作り直す: 上から 範囲の 100 マスと切り替え → 「続ける」ボタン（下に今回の中身を 1 行ずつ） → 1 語も見ていない範囲だけ「確認テストで知っている語を飛ばす」 → 「ほかの学び方」（レッスン一覧、復習だけ、範囲テスト、間違えた語、綴り、深く理解、文の中、教材を追加）。Speed Learn のセット一覧は外す。(2) 新しい画面 /learn/continue?range=: ⓪ 見たまま仕分けていない動画レッスンの語 → ① 期限が来た語を範囲で絞らず最大 10（時間選択なし） → ② 新しい 10 語 → ③ 思い出す（②③は RangeLessonPage を部品に分けて使う） → 結果（100 マスの増分、復習の正解数、仕分けた語数、「もう 1 回続ける」「今日はここまで」）。期限が来た語が 50 以上（仮）なら②③を飛ばす。全部仕分け済みなら②③を飛ばして範囲テストへの入口。オフラインは①だけ。(3) /api/review/start に { mode: &quot;continue&quot; } を足す（期限が来た語だけ最大 10、target_duration_seconds null、期限が来た語の数も返す）。(4) 下のタブは 学習・単語・マイページ。/ ・/home・不明なページ・ログイン後は /learn、/home は転送で残し manifest の start_url も /learn。「ホームに戻る」は「学習に戻る」に。苦手タブを外しても /mistakes は残す。(5) 段を決める処理を純粋な関数にして単体テスト。できたら統合して npm run release、確認は設計 §3.1 の「確認方法」。元の決定: 10/1 ユーザー決定: アプリを開いたらすぐ学習できる形は、学習画面の「続ける」ボタン 1 つで 復習 → 新しい 10 語 → 思い出す（仕分け）が続く作り（LF4）にする。ホームの開始ボタンを上に移すだけの案は採らない。10/1 ユーザー決定（2）: 「続ける」の新しい 10 語は、範囲の中でまだ見ていない語を 1 語ずつ見せる（今の「範囲から10語」と同じ見せ方: 動画のある語はレッスンの絵のその語の部分に寄せ、その語の区間の音声。ない語は文字カード）。動画レッスンを 1 本丸ごと流す案は、学習済みの語も出るので採らない（レッスン一覧からは今までどおり見られる）。「続ける」1 つで この範囲の復習 → 次の 10 語（動画か文字カード）→ 仕分け を 1 本で流す。下のタブは 学習・単語・マイページ の 3 つ。LF2 のあと。Claude が LF2 の作りの上で「続ける」の流れを設計してから owner を codex に。設計 docs/design-v2-learning-flow.md §2・§3</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">LF5</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>答え合わせで語カードの絵と音声を出す（思い出す間は隠す）</td><td class="note">10/1 方針を修正: 思い出す間は絵を出さず、答えたあとの答え合わせで語カードの切り抜き画像と音声を出す。根拠: 中等教育の生徒で、想起中に答えの手がかりになる画像を見せると 1〜4 日後の想起が弱くなった（van den Broek ほか 2021、公開レビュー docs/product-review/release-readiness-2026-10-01.md）。最初の案（想起中に絵を出す）はこの条件に当たるので取り下げた。Codex へ: 仕分け・復習で回答したあとに、語カードがある語義は lesson_words の rect で切り抜いた画像と start_ms〜end_ms の音声を出す。回答前は今どおり文字だけ。設計 docs/design-v2-learning-flow.md §4</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">LF6</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>設定を範囲に一本化し、単語タブを範囲の台帳に、見出しを日本語に</td><td class="note">マイページの レベル・目的・学習する範囲、単語ページの 対象のレベル・教材・コース の 4 つを「範囲」1 つにまとめる（DB の列は消さない）。単語タブの既定は選んだ範囲、絞り込みは 苦手・学習中・定着・未着手（P7 と同じ画面なので一緒に作る）。英語の見出し（LEARN AT YOUR PACE など）を日本語にする。範囲の既定の保存先（端末か DB か）はこの中で決める。設計 docs/design-v2-learning-flow.md §2・§7。10/1 追記: 教材制作側の言葉（「制作前の語義」「制作待ちの一覧」、範囲テストの保存処理の説明など）も学習者向けに直す。文言案は公開レビュー docs/product-review/next-release-brief.md の表</td></tr>
