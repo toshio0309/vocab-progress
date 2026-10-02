@@ -137,8 +137,8 @@ footer{color:var(--muted);font-size:12px}
     </div>
     <div class="stat">
       <span class="label">未決事項</span>
-      <span class="value">3</span>
-      <span class="sub">高 0 · 中 0 · 低 3</span>
+      <span class="value">2</span>
+      <span class="sub">高 0 · 中 0 · 低 2</span>
     </div>
   </section>
 
@@ -211,7 +211,7 @@ footer{color:var(--muted);font-size:12px}
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">T6</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>オフライン同期と PWA（migration 0016）</td><td class="note">スマホでオフライン 22 問 → 再接続で 1 回ずつ保存を確認</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">C7-7</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>動画レッスンの「じっくり」と Recall（migration 0017）</td><td class="note">9/25 のフィードバック反映済み</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">T7</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>高校学年コース分類を本番DBに反映</td><td class="note">高1 252 · 高2 291 · 高3 333 語。HEVのみの候補は別の暫定分類として324件。追加シートの品詞表記と異なる77語は主表のword_idで反映し、低信頼の根拠を保持</td></tr>
-          <tr data-filter-row data-status="done" data-owner="codex"><td class="id">M4</td><td><span class="pill done">done</span></td><td><span class="owner owner-codex">Codex</span></td><td>高1 Motion の制作・公開</td><td class="note">10/1 正規パッケージ60件・600カードを本番公開。high1-025はdepositの動詞用例に直してv2で公開。画像・音声120点をR2に登録し、レッスン60件・600語義のNeon登録を確認。制作前検査・取り込みdry-run 60/60合格。</td></tr>
+          <tr data-filter-row data-status="done" data-owner="codex"><td class="id">M4</td><td><span class="pill done">done</span></td><td><span class="owner owner-codex">Codex</span></td><td>高1 Motion の制作・公開</td><td class="note">10/1 正規パッケージ60件・600カードを本番公開。high1-025はdepositの動詞用例に直してv2で公開。画像・音声120点をR2に登録し、レッスン60件・600語義のNeon登録を確認。制作前検査・取り込みdry-run 60/60合格。 10/3 Q8解消: 本番DBとauthenticated権限で1〜60番の60本公開を確認。Bの本番一覧も60レッスンで、56〜60番を含むリンク60件と表示を確認。ブラウザ警告・エラーなし、学習記録の追加なし。統計60本と一致。10/1の55本表示の原因は特定していない。docs/vocabulary-audit/2026-10-03/README.md。</td></tr>
           <tr data-filter-empty hidden><td colspan="5" class="note">条件に一致するタスクはありません。</td></tr>
         </tbody>
       </table>
@@ -269,7 +269,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>未決事項</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">3件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">2件を表示</span>
       <button type="button" class="filter-reset" data-filter-reset hidden>解除</button>
     </div>
     </div>
@@ -278,12 +278,12 @@ footer{color:var(--muted);font-size:12px}
         <span class="chip-label">緊急度</span>
         <button type="button" class="chip" aria-pressed="false" data-value="high">高<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="mid">中<span class="chip-count">0</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="low">低<span class="chip-count">3</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="low">低<span class="chip-count">2</span></button>
       </div>
       <div class="chip-group" role="group" aria-label="未決事項の決める人" data-filter-key="owner">
         <span class="chip-label">決める人</span>
         <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">1</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">1</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">1</span></button>
       </div>
     </div>
@@ -293,7 +293,6 @@ footer{color:var(--muted);font-size:12px}
         <tbody>
           <tr data-filter-row data-urgency="low" data-owner="claude"><td class="id">Q5</td><td><span class="pill low">低</span></td><td><span class="owner owner-claude">Claude</span></td><td>T3 の確認で一度だけ 401 が返った</td><td class="id">P1</td><td class="note">10/1 Claude 調査: 当時の記録がなく原因は特定できない。分かったこと: ログイン直後の取り違えではない（JWT はセッション取得の応答ヘッダーで毎回発行、15 分、端末時計のずれ 1 秒）。Worker は検証の失敗を理由を問わず 401 にしていたので、Neon Auth の鍵の取得失敗（同じ edge で 520・タイムアウトが既知、C3-1）でも「ログインし直して」になっていた。対応: 鍵の取得失敗は 1 回再試行し、だめなら 503（再試行できるエラー）にする。失敗の理由（jose のコードだけ）を Workers Logs に残す。10/1 本番反映（cloud-v2 023af0c、Worker version d0060cfe-e756-48be-9fba-42f411184a33。npm run release: 72 テスト合格）。本番で正しい JWT は 200、壊れた JWT・なしは 401 を確認。再発したら Workers Logs の [auth] の行で原因を判断し、この行を消す</td></tr>
           <tr data-filter-row data-urgency="low" data-owner="user"><td class="id">Q6</td><td><span class="pill low">低</span></td><td><span class="owner owner-user">ユーザー</span></td><td>片付け: 使っていないシークレット、古いテストユーザー</td><td class="id"><span class="muted">—</span></td><td class="note">承認を得てから削除する</td></tr>
-          <tr data-filter-row data-urgency="low" data-owner="codex"><td class="id">Q8</td><td><span class="pill low">低</span></td><td><span class="owner owner-codex">Codex</span></td><td>レッスン一覧の高1が 55 レッスン表示（10/1 本番、B で確認）。統計の「高1 60」と合わない</td><td class="id"><span class="muted">—</span></td><td class="note">10/3 本番DBとauthenticated権限で高1-001〜060の60件公開を確認。統計60本は正しい。一覧コードに55件制限はない。現在の本番画面と取得失敗・保存済み一覧の状態をBで確認する。旧55件の原因は未特定。docs/vocabulary-audit/2026-10-03/README.md</td></tr>
           <tr data-filter-empty hidden><td colspan="6" class="note">条件に一致する未決事項はありません。</td></tr>
         </tbody>
       </table>
