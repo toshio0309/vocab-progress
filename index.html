@@ -100,9 +100,9 @@ footer{color:var(--muted);font-size:12px}
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
-      <span class="value">43 <small>/ 52</small></span>
-      <span class="sub">done 43 · doing 2 · 確認待ち 3 · todo 4</span>
-      <div class="bar"><i style="width:82.7%"></i></div>
+      <span class="value">43 <small>/ 51</small></span>
+      <span class="sub">done 43 · doing 1 · 確認待ち 3 · todo 4</span>
+      <div class="bar"><i style="width:84.3%"></i></div>
     </div>
     <div class="stat">
       <span class="label">公開済みレッスン</span>
@@ -146,14 +146,14 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>タスク</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">52件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">51件を表示</span>
       <button type="button" class="filter-reset" data-filter-reset hidden>解除</button>
     </div>
     </div>
     <div class="chips">
       <div class="chip-group" role="group" aria-label="タスクの状態" data-filter-key="status">
         <span class="chip-label">状態</span>
-        <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">2</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">1</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">3</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">4</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">43</span></button>
@@ -161,7 +161,7 @@ footer{color:var(--muted);font-size:12px}
       <div class="chip-group" role="group" aria-label="タスクの担当" data-filter-key="owner">
         <span class="chip-label">担当</span>
         <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">4</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">8</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">7</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">4</span></button>
       </div>
     </div>
@@ -170,7 +170,6 @@ footer{color:var(--muted);font-size:12px}
         <thead><tr><th>ID</th><th>状態</th><th>担当</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
           <tr data-filter-row data-status="doing" data-owner="claude"><td class="id">C3</td><td><span class="pill doing">doing</span></td><td><span class="owner owner-claude">Claude</span></td><td>高1 レッスンの絵を直す（74 件、42 本）</td><td class="note">10/3 Claude が高1 の絵 60 枚を1枚ずつ確認。修正リスト docs/content-review/high1-lesson-fixes-2026-10-03.csv（同名 .xlsx も）。A 誤り 20 件（誤字、発音記号、意味の誤り）、B 札と中身が合わない 50 件（品詞の札と違う意味・例文、意味と例文が別の意味）、C 表記 4 件。音声の作り直しが要るのは 11 件（英語の見出しか例文が変わるもの）。Codex へ: リストの直し方で絵（と該当の音声）を作り直し、制作前検査を通して公開候補を作る。本番への公開はユーザー承認後。lesson_words の語・語義の紐づけを変える場合は C4 と合わせて Claude が確認する。 10/4 Codex 着手: 本番の対象42本の画像・音声と600カードの共有情報を読み取り専用で保全。画像修正候補を制作・目視検査中。 10/4 Codex: 42枚の修正画像候補・74件の修正方針・8カード/7本の音声変更台本を docs/content-review/c3-high1-corrections/ に保存。全画像の寸法・原版の縦横比と修正対象を確認。変更する意味57件の本番読み取り専用照合で49件が完全一致せず（句読点・助詞の差も含む）。Claudeへ: C4/M3と合わせ、画像の選択案、短い意味、claimの見出し変更、既存の語義・切り抜き位置を保つ更新方法をレビュー。方針確定後にCodexへ戻す。音声・フルレシピ・公開用パッケージ・取り込みdry-runは未完了。本番教材は変更なし。</td></tr>
-          <tr data-filter-row data-status="doing" data-owner="codex"><td class="id">M5</td><td><span class="pill doing">doing</span></td><td><span class="owner owner-codex">Codex</span></td><td>高2 Motion の制作</td><td class="note">（Codex 10/4、high2-motion ブランチ）指定フォルダの画像60枚と制作マスター600語を照合し、レシピ60件の下書きを作成。共有DB照合は575/600合格、25カード停止（単語なし1・POS不足23・短い意味なし1）。DBの意味と文字列が重ならない97件は確認候補。音声・パッケージ・DB変更・取り込み・公開なし。 10/4 Claude が絵60枚を1枚ずつ確認（ユーザー指示「高2で画像生成して、合わない部分を確認して指示を作って」）。修正リスト docs/content-review/high2-lesson-fixes-2026-10-04.csv（.xlsx も）190 件・57 本: A 誤り 103（発音記号の誤り 70 件余り、誤字、意味の誤り）、B 札と中身が合わない 82（2つの品詞を1枚に並べる、意味と例文が別の意味）、C 表記 5。ページ対応表の 11 と 26 が逆。51〜60 は画像サイズが 1086×1448 で 1〜50（1024×1536）と違い、語カードの枠がずれる。97 件は大半が同義語で、絵の誤りは修正リストに入れた。10/4 Claude 決定: 高2 も高1 と同じく絵の600語を基準にし、DB を絵に合わせる。誤りのある57本を作り直し、誤りのない 011・024・029 は今の絵を使う。Codex へ: 指示書 docs/content-review/high2-image-instructions-2026-10-04.md に従い、制作マスターを直して57本を 1024×1536・1〜50 と同じ配置で作り直し、文字を照合して docs/content-review/high2-corrections/ に置き、owner を claude に戻す。音声・パッケージ・DB 変更・公開は Claude の確認後。</td></tr>
           <tr data-filter-row data-status="review" data-owner="user"><td class="id">LF9</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>10/3 の指摘の反映（音声・コース表示・終了・開始の速さ・パーフェクト演出）</td><td class="note">10/3 Claude 実装。答える前（チェック・復習）にも大きなスピーカーで発音を聞ける、めくった・答えた後は自動で1回再生（レッスン音声は英語の単語と例文だけで日本語の意味は入っていないので、答えの手がかりにならない）。カードに小さく「中1・英検5級」などコース名、ホームにコースの選択、「今日の学習」の上にコース名と「終了」（何が保存されるかを説明）、前に見た語の前につなぎの画面、開始を速く（範囲の読み込みをホームと共有し、確認と並行）、パーフェクトの演出を強化。 10/3 本番反映（cloud-v2 9c610a9、Worker efc978dd-f43b-4794-be01-4cee9fc0d936、152テスト合格）。ユーザー指摘「既定を中1にしても高2が出る」: 原因は「今日の学習」の復習が、コースに関係なく期限の古い順に10語を取っていたこと（指摘したアカウントの期限切れ143語のうち中1は37語、ほかは以前に学んだ高1・高2・英検の語）。復習と件数（ホーム・今日の学習）を選んだコースの語だけにした。ほかのコースの期限切れは「時間を決めて復習」に残る。端末に保存する復習もコース別。画面での確認は未実施。 10/3 ユーザー指摘「段の順番が分からず唐突」「新しい10語がいきなりサクサク、切り抜きが下手」を反映（cloud-v2 78b4a13、本番配信を確認）。上に番号付きの段（1 復習 10問 → 2 新しい単語 → 3 思い出す → 4 前に見た単語）を常に出し、終わっていない段は押せば好きな順に切り替えられる（3 は 2 のあと）。切り替えても段の途中の位置は残る。段が終わると「おわり！つぎは〇」の画面と残りの段を出し、終了を押すと残っている段を示す。新しい単語は動画の再生部品をやめ、カード1枚だけを切り抜いて大きく出し、音声を1回流し、「次へ」で自分で進む。絵は先に読み込む。本番（アカウント B、390px）で段の表示・2 への切り替え・カードの切り抜き・1 に戻ると途中の位置が残ることを確認。切り抜きの余白を少し内側にした修正は、画面ではまだ確認していない。 10/4 ユーザー指摘「おつかれさま +0マスが大きく出るのはよくない」: +Nマスは範囲の「見た」の増分で、前に見た語を思い出した回は 20 語学んでも +0 になっていた。大きな数字を今回学んだ語数（復習の問題数＋思い出した語数）にし、範囲の増分は増えたときだけ「中1が +N語 進んだ」と小さく出す（cloud-v2 a63f714、本番配信を確認。画面は未確認）。 10/4 Codex本番確認: 検証用B・390×844で中1の復習10問がすべて中1から出題されること、段を切り替えても位置が残ること、accordion・antのカードの切り抜き、各段の案内を確認。復習10問正解＋思い出す10語＋前に見た9語の保存に成功。終了は「29語 学習」「中1が +8語 進んだ」「PERFECT 全問正解10/10」。ホーム再読み込み後も中1学習済40/523・定着10を確認。今回の保存エラー・ブラウザ警告/エラーなし。Bに検証記録を追加。音の聞き取り・iPhone実機・増分0の本番画面・途中終了は未確認。詳細 docs/lf9-verification-2026-10-04.md。ユーザーの使い心地確認待ちを維持。</td></tr>
           <tr data-filter-row data-status="review" data-owner="user"><td class="id">E5</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>英検5級をコースから外す</td><td class="note">10/3 ユーザー判断「英検5級は不要」。DB の範囲データ（ranges・range_senses）は消さず、アプリのコース一覧・100マス・単語帳・カードのコース名から外した（shared/ranges/preference.ts の HIDDEN_RANGE_IDS）。英検5級を選んでいた人は中1 に戻る。戻すときは HIDDEN_RANGE_IDS から外す。</td></tr>
           <tr data-filter-row data-status="review" data-owner="claude"><td class="id">M3</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-claude">Claude</span></td><td>単語マスターの品詞と意味のずれを直す</td><td class="note">9/28 P3-2 の判定中に見つかった。品詞と短い意味が合わない共有単語がある（例: judge の verb 行が「裁判官」、rear の adjective 行が「育てる」、decrease の noun 行が「減る」、log の noun 行が「ログオンする」、focus・dispute・reserve・advocate・compound の noun 行が動詞の意味）。自動で候補を洗い出し、怪しいものだけ人が確認して直す。語義の分類（P3）と進捗の数え方に影響する。Codex へ: P7 のあとに着手。まず候補の一覧（CSV）を作り、直す内容は本番データの書き込みになるので、一覧と dry run をユーザーに見せて承認を取る（run の短い意味が「を経営する」になっている件も含める）。10/3 本番共有5254語・5345語義をREAD ONLYで確認し、72語義の候補CSVと読み取りの影響確認を作成（docs/vocabulary-audit/2026-10-03/README.md）。judge・rearは修正済み。71件は名詞行に動詞らしい訳、runは走る・経営するの切り分け。5語には既存の語義2があり、10語に教材参照がある。候補を誤りと断定せず、変更案・適用0件。本番書き込みなし。7テストとCSV全件照合合格。Claudeへ: 元教材と既存語義・範囲・進捗を維持する修正方法を設計し、Codexへ戻す。具体案のdry-runとユーザー承認はその後。</td></tr>
