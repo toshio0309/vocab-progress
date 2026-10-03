@@ -100,9 +100,9 @@ footer{color:var(--muted);font-size:12px}
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
-      <span class="value">40 <small>/ 48</small></span>
-      <span class="sub">done 40 · doing 0 · 確認待ち 5 · todo 3</span>
-      <div class="bar"><i style="width:83.3%"></i></div>
+      <span class="value">40 <small>/ 49</small></span>
+      <span class="sub">done 40 · doing 0 · 確認待ち 6 · todo 3</span>
+      <div class="bar"><i style="width:81.6%"></i></div>
     </div>
     <div class="stat">
       <span class="label">公開済みレッスン</span>
@@ -146,7 +146,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>タスク</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">48件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">49件を表示</span>
       <button type="button" class="filter-reset" data-filter-reset hidden>解除</button>
     </div>
     </div>
@@ -154,7 +154,7 @@ footer{color:var(--muted);font-size:12px}
       <div class="chip-group" role="group" aria-label="タスクの状態" data-filter-key="status">
         <span class="chip-label">状態</span>
         <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">0</span></button>
-        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">5</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">6</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">3</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">40</span></button>
       </div>
@@ -162,7 +162,7 @@ footer{color:var(--muted);font-size:12px}
         <span class="chip-label">担当</span>
         <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">2</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">7</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">6</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">7</span></button>
       </div>
     </div>
     <div class="table-box">
@@ -173,10 +173,11 @@ footer{color:var(--muted);font-size:12px}
           <tr data-filter-row data-status="review" data-owner="user"><td class="id">LF7</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>動画のカメラの遅れを調べて直す</td><td class="note">10/3 本番反映済み。画像だけにあった380msの移動を外し、音声時刻に応じた番号・切り抜き枠・画像位置を同時に切り替える。本番の配信CSSでもtransition:noneを確認。ローカル390pxで10枚・再生中7/10と8/10・前後移動・再開は確認済み。10/1の右列が映り続ける現象は再現できず、本番の実教材・スマホ実機の確認は残る。実教材ページは開くだけでも視聴記録を追加するため、学習記録の変更承認後に確認。詳細 docs/lf7-verification-2026-10-03.md、docs/lf3-lf7-production-verification-2026-10-03.md。</td></tr>
           <tr data-filter-row data-status="review" data-owner="user"><td class="id">LF8</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>ホーム画面の作り直しと「続ける」を楽しくする</td><td class="note">10/3 本番反映（cloud-v2 119dbe6、Worker dcf1c81f-c1e5-4914-a2ea-74819ef191d6。npm run release: 150テスト・DB検証171件合格）。ユーザーの画面案をもとにホームを作り直し: 絵は機能と切り離して上のあいさつ（日付・名前・連続日数・今週の記録）に、今日の学習（復習・新しい単語・チェックの3段と一言、約N分、「今日の学習をはじめる」）、範囲の要約（押すと100マス）、今日のおすすめ（間違えた単語がある時など1件だけ）、ほかの学び方はアイコン・一言付きタイル4枚＋すべて見る。下のタブは ホーム・単語帳・学習記録・設定（教材を追加は設定へ）。「続ける」は 復習→新しい単語→チェック→前に見た語 の順、復習の○×・効果音・連続正解、結果画面の演出。本番 390 幅で表示を確認。おすすめの件数は単語帳の苦手と同じ10語、約1秒で表示。「続ける」を最後まで進める確認は学習記録が変わるため未実施。設計 docs/design-v2-learning-flow.md §3.2</td></tr>
           <tr data-filter-row data-status="review" data-owner="user"><td class="id">LF9</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>10/3 の指摘の反映（音声・コース表示・終了・開始の速さ・パーフェクト演出）</td><td class="note">10/3 Claude 実装。答える前（チェック・復習）にも大きなスピーカーで発音を聞ける、めくった・答えた後は自動で1回再生（レッスン音声は英語の単語と例文だけで日本語の意味は入っていないので、答えの手がかりにならない）。カードに小さく「中1・英検5級」などコース名、ホームにコースの選択、「今日の学習」の上にコース名と「終了」（何が保存されるかを説明）、前に見た語の前につなぎの画面、開始を速く（範囲の読み込みをホームと共有し、確認と並行）、パーフェクトの演出を強化。</td></tr>
+          <tr data-filter-row data-status="review" data-owner="user"><td class="id">E5</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>英検5級をコースから外す</td><td class="note">10/3 ユーザー判断「英検5級は不要」。DB の範囲データ（ranges・range_senses）は消さず、アプリのコース一覧・100マス・単語帳・カードのコース名から外した（shared/ranges/preference.ts の HIDDEN_RANGE_IDS）。英検5級を選んでいた人は中1 に戻る。戻すときは HIDDEN_RANGE_IDS から外す。</td></tr>
           <tr data-filter-row data-status="review" data-owner="claude"><td class="id">M3</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-claude">Claude</span></td><td>単語マスターの品詞と意味のずれを直す</td><td class="note">9/28 P3-2 の判定中に見つかった。品詞と短い意味が合わない共有単語がある（例: judge の verb 行が「裁判官」、rear の adjective 行が「育てる」、decrease の noun 行が「減る」、log の noun 行が「ログオンする」、focus・dispute・reserve・advocate・compound の noun 行が動詞の意味）。自動で候補を洗い出し、怪しいものだけ人が確認して直す。語義の分類（P3）と進捗の数え方に影響する。Codex へ: P7 のあとに着手。まず候補の一覧（CSV）を作り、直す内容は本番データの書き込みになるので、一覧と dry run をユーザーに見せて承認を取る（run の短い意味が「を経営する」になっている件も含める）。10/3 本番共有5254語・5345語義をREAD ONLYで確認し、72語義の候補CSVと読み取りの影響確認を作成（docs/vocabulary-audit/2026-10-03/README.md）。judge・rearは修正済み。71件は名詞行に動詞らしい訳、runは走る・経営するの切り分け。5語には既存の語義2があり、10語に教材参照がある。候補を誤りと断定せず、変更案・適用0件。本番書き込みなし。7テストとCSV全件照合合格。Claudeへ: 元教材と既存語義・範囲・進捗を維持する修正方法を設計し、Codexへ戻す。具体案のdry-runとユーザー承認はその後。</td></tr>
           <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>旧サイトのホスティングを停止</td><td class="note">T8 で旧アプリのコードは撤去済み。Supabase は無料プランの自動一時停止のまま残し、削除しない（9/27 ユーザー判断）</td></tr>
           <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">W1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>単語帳の検索を全単語で、速くする</td><td class="note">10/3 ユーザー指摘: 範囲で絞ってから検索する作りに意味がない、全単語の検索が要る、検索が遅い。検索語があるときは範囲に関係なく全単語から探し、範囲は絞り込みの1つにする。遅い原因を測ってから直す。</td></tr>
-          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">C2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>絵のない語の絵と音声を作る（英検・高2・高3）</td><td class="note">10/3 Claude 調べ（本番）: 語カードのある語義 中1 523/523・中2 598/598・中3 600/600、高1 564/697（C1 適用後）、高2 108/700、高3 76/681、英検5級 578/1217・4級 598/804・3級 411/796・準2級 0/624・2級 0/550。絵のない語は文字カードとブラウザの機械音声。英検5級 64・3級 17・高1 9 語は、同じ綴りの別の単語行に絵がある（単語マスターの重複、M3 と関係）。Codex へ: 制作ラインで、絵のない語を 10 語ずつのレッスンにするか、少なくとも単語と例文の録音（Chirp 3 HD）を作る計画を出す。</td></tr>
+          <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">C2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>絵のない語の絵と音声を作る（英検4級〜2級・高1の残り・高2・高3）</td><td class="note">10/3 Claude 調べ（本番）: 語カードのある語義 中1 523/523・中2 598/598・中3 600/600、高1 564/697（C1 適用後）、高2 108/700、高3 76/681、4級 598/804・3級 411/796・準2級 0/624・2級 0/550。絵のない語は文字カードとブラウザの機械音声。英検3級 17・高1 9 語は、同じ綴りの別の単語行に絵がある（単語マスターの重複、M3 と関係）。Codex へ: 制作ラインで、絵のない語を 10 語ずつのレッスンにするか、少なくとも単語と例文の録音（Chirp 3 HD）を作る計画を出す。 10/3 ユーザー判断: 英検5級は不要（アプリのコースから外した、DB の範囲データは残す）。高1 の残り 133 語義はレッスン 600 語の対象外（単語 76・熟語 40・語義2以降 17）。高1 レッスン 600 語のうち 48 語は高1 範囲と別の単語行に結び付いている（42 語はどの範囲にもない、例 must・however。単語マスターの重複で M3 と関係）。</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">G1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>中高生向けの公開レビューと次の開発候補</td><td class="note">対象はユーザー回答の「英単語の暗記が苦手な中高生」、公開先は未決定。最新 cloud-v2 と本番のホーム・学習・教材一覧・テスト入口・教材の再生前を確認し、競合の公式情報と学習研究を比較。P4・P8 は実装済み、P5 は本番反映後の確認待ちとして評価。既存のじっくりモードは想起中に画像を隠す、未設定時の標準はぱっと。調査と仕様の反復を docs/product-review/release-readiness-2026-10-01.md、次の仕様案を next-release-brief.md、対象者での未実施の検証手順を student-validation.md に記録。大量の獲得・対象者のペイン・学習効果は未証明。Claude へ: 登録前試用と個人データの境界、10語専用の既存手順から最初の3語を試用する切り方、既存ルートとの整合をレビュー。F15・F16・N04・N05 は検討段階で、実装には着手していない。 10/1 Claude レビュー（途中）: 既存の学習ルートとの整合と画像の扱いを確認し、docs/design-v2-learning-flow.md §12 に記録。画像の根拠を受けて LF5 を修正、制作側の言葉を LF6 に追加、F16 と LF4 の食い違いを未決事項にした（10/1 ユーザーが LF4 に決定）。登録前試用の認証・個人データの境界と、10 語の手順から最初の 3 語を切り出す方法は未レビュー。10/1 ユーザー判断: 公開先・獲得目標・価格は決めない（Q13 は不要）。この 2 点は F15 に着手するときに Claude が行う</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">D1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>本番を cloud-v2 の版でデプロイし直す</td><td class="note">9/28 P4-2 を cloud-v2 に統合（commit 27ebcf6）後、Worker version 06df9d51-3326-452e-9fb9-9337f88c91b4 を配信。公開トップ HTTP 200、今回の bundle index-Ck2o93zZ.js も HTTP 200 で HTML から参照されている。DB・R2 は変更なし。npm run deploy -- --check のつもりの実行で引数が反映されず、ユーザー承認前に通常デプロイが実行された。対策（9/28 Claude）: 確認だけの npm run deploy:check を追加（フラグを package.json に書くので PowerShell でも落ちない）。npm run deploy -- --check は使わないと AGENTS.md・deploy-v2.md に明記</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">A1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>じっくりモード・範囲レッスンで次の単語の頭が聞こえる</td><td class="note">9/29 修正・本番反映、iPhone でユーザー確認済み。1 枚 3 秒の区切りが隙間なく並び、次の単語は区切りの約 0.075 秒後に始まるが、&lt;audio&gt; の一時停止がスマホで 0.1 秒以上遅れて効いていた（範囲レッスンは約 0.25 秒おきの確認でさらに遅れる）。Web Audio で区切りを指定して再生する方式に変更（v2/src/client/lib/segment-audio.ts、実測 3.008 秒で停止）。iPhone のマナーモードでも音が出るよう設定。テスト 7 件</td></tr>
