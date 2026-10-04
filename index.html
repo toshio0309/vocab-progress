@@ -94,15 +94,15 @@ footer{color:var(--muted);font-size:12px}
 <div class="wrap">
   <header>
     <h1>My Vocabulary Coach クラウド版 進捗</h1>
-    <span class="stamp">2026-10-04 更新 · Claude</span>
+    <span class="stamp">2026-10-04 更新 · Codex</span>
   </header>
 
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
-      <span class="value">55 <small>/ 57</small></span>
-      <span class="sub">done 55 · doing 0 · 確認待ち 0 · todo 2</span>
-      <div class="bar"><i style="width:96.5%"></i></div>
+      <span class="value">56 <small>/ 57</small></span>
+      <span class="sub">done 56 · doing 0 · 確認待ち 0 · todo 1</span>
+      <div class="bar"><i style="width:98.2%"></i></div>
     </div>
     <div class="stat">
       <span class="label">公開済みレッスン</span>
@@ -155,21 +155,20 @@ footer{color:var(--muted);font-size:12px}
         <span class="chip-label">状態</span>
         <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">0</span></button>
-        <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">2</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">55</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">1</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">56</span></button>
       </div>
       <div class="chip-group" role="group" aria-label="タスクの担当" data-filter-key="owner">
         <span class="chip-label">担当</span>
         <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">1</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">6</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">2</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">1</span></button>
       </div>
     </div>
     <div class="table-box">
       <table>
         <thead><tr><th>ID</th><th>状態</th><th>担当</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
-          <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>旧サイトのホスティングを停止</td><td class="note">T8 で旧アプリのコードは撤去済み。Supabase は無料プランの自動一時停止のまま残し、削除しない（9/27 ユーザー判断）</td></tr>
           <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">W1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>単語帳の検索を全単語で、速くする</td><td class="note">10/3 ユーザー指摘: 範囲で絞ってから検索する作りに意味がない、全単語の検索が要る、検索が遅い。検索語があるときは範囲に関係なく全単語から探し、範囲は絞り込みの1つにする。遅い原因を測ってから直す。</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">LU1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>見るだけ学習の画面を改良（進め方を上に、学年を折りたたみ、設定の順に並べる）</td><td class="note">10/4 ユーザー要望を反映。(1) 「進め方（サクサク／じっくり）」を一番上に移し、「範囲から10語」にも使う。範囲から10語のじっくりは、今日の学習と同じ1枚ずつ自分のペースで見る形（レッスンのじっくりの3語ずつ思い出す形とは違う）。どちらも最後に仕分けで思い出す。(2) レッスン一覧は学年ごとに折りたたむ。続きのレッスンがある学年と、検索中は開く。(3) 設定の範囲で選んだ学年だけを学年順に並べる（例 中1〜中3）。範囲から10語は範囲の語の順に「見た（未仕分け）」→「まだ見ていない」から10語を取る（ランダムではない）。型チェック・171テスト合格。ログイン後の実画面は未確認。10/4 本番反映（cloud-v2 172ceb5、Worker a6f355dc-d14d-418b-b417-d50a06f273c7）。 10/4 ユーザー指摘「サクサクで画像が1単語にならない」: 範囲から10語のサクサクは絵全体にカメラを寄せるだけで、隣のカードが見えていた。レッスンのサクサクと同じく、今のカードの外側を切り落とすようにした（cloud-v2 40906b7、Worker c5f8da0d-4da9-431a-a0ab-8a15cc24ae04）。 10/4 ユーザー確認 OK、完了。</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">C3P</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>高1の修正画像・音声の公開準備</td><td class="note">10/4 ユーザー承認後、本番反映・公開後検証まで完了。画像42枚、音声7本8カード（35本は再利用）、短義46更新・語義1追加・カード5件の語義変更。既存420カードをUPDATEし、レッスンとカードの削除・再作成なし。高1範囲600を維持。旧語義の学習履歴は保持し、切替5カードは切替先語義の進捗で集計。共有短義は中2・中3の公開6カードにも反映。公開後の学習者権限で60本600カード、修正420カードが案と一致。画像・音声84参照ファイルはHTTP200・形式・ハッシュ一致、監査違反0。対象外の高1教材18本・共有訳・他の学年等の範囲は適用前と一致。共有語義5,377→5,378。取り込み42件警告0、ローカル適用・戻し・履歴保持15検査、画像形式5検査合格。音声の耳での試聴は未実施。estimateの欠落判定は拡大で誤りと確認し訂正。docs/content-review/c3-high1-publication/production-result.json。素材・公開候補・検査・適用前バックアップは runtime/high1-publication-2026-10-04 に保全。戻しは --revert（新規語義は履歴保持のため残す）。再開予約は停止済み。</td></tr>
@@ -184,6 +183,7 @@ footer{color:var(--muted);font-size:12px}
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">H1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>受け渡しとリリースを人の中継なしにする</td><td class="note">9/30 本番反映（ユーザー決定 9/29）。統合した人が cloud-v2 の作業ツリーの v2/ で npm run release（承認不要）: cloud-v2・未コミットなし → 型チェック・テスト・DB テスト → 本番 DB に未適用 migration なし → デプロイ → 本番の配信確認、だめなら直前の版へ自動で戻す。承認が要るのは DB 変更・データの一括書き込み/削除・外部操作だけ。受け渡しは status.json の owner と note（AGENTS.md「Claude と Codex の受け渡し」「本番リリース」）。初回リリース 0b7f765（Worker 214fbd6e）成功。途中で直したこと: cloud-v2 の作業ツリーに開発用パッケージが入っていなかった（npm ci）、作業ツリーの .env.local に DB の接続先がない（メインのチェックアウトの .env.local を読む）、Windows で node をシェル経由で起動していた</td></tr>
           <tr data-filter-row data-status="done" data-owner="user"><td class="id">U1</td><td><span class="pill done">done</span></td><td><span class="owner owner-user">ユーザー</span></td><td>アプリ内ブラウザで検証用アカウント（B）に一度ログイン</td><td class="note">9/27 アプリ内ブラウザで検証用アカウント B にログイン済み</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">U3</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>アプリ内ブラウザで検証用アカウント B に再ログイン</td><td class="note">10/1 ユーザーが再ログイン。Claude がスマホ幅でログイン後の全画面（ホーム・学習・動画レッスン・仕分け・復習・Speed Learn・レッスン一覧・範囲から10語・単語・苦手・マイページ）を確認し、結果を docs/design-v2-learning-flow.md §1 に記録。確認のため中1 英単語 2 を最後まで再生したので B に視聴記録が付いた。仕分け・復習には回答していない</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">U2</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>旧サイトのホスティングを停止</td><td class="note">10/4 仕様と過去ログを確認。V1 の推奨構成には Vercel とあるが、実装時は Next.js と AI Runtime をローカル PC で動かす方針へ変更され、旧アプリを外部に公開した記録は見つからなかった。ユーザー判断で停止対象なしとして終了。T8 で旧アプリのコードは撤去済み。ホスティングの停止・削除操作は行っていない。Supabase は無料プランの自動一時停止のまま残し、削除しない（9/27 ユーザー判断）</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">P1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>検証用アカウントでログイン後の確認を統一（v2.1）<small class="blocked">未決事項: Q5</small></td><td class="note">手順書 docs/verification-checklist.md（アカウント B に統一、A は拒否の確認専用）。9/27 本番で B により #1〜5 を確認: ホーム、学習ページ、レッスン再生（中1-1）、仕分け 10 語（再読み込み後も学習中 10 語）、Smart Review 10 問（sync/push 200）</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">P2</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>メール未確認ユーザーの書き込みを RLS で止める（v2.1）</td><td class="note">9/27 verify:neon-rls 全件 PASS（34/34）。未確認 A の自分の単語・import_job・study_session 書き込みと、自分の profile 更新を拒否。共有単語は読み取り可能、B の書き込みは成功。テスト生成行は削除済み</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">P3</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>語義モデル: 語と意味を分ける（v2.2）</td><td class="note">9/28 完了。migration 0020（語義モデル）と高1〜高3 の取り込みを本番に反映。共有単語 5,227 語（+758）すべてに語義1、語義2 以降 78 件。範囲の分類は 高1 697・高2 700・高3 681（単語と語義の合計）。監査 0 件、単語一覧 5,227 語の表示を確認。文字列で決まらない 397 件は Claude が意味を読んで判定、ユーザー確認 3 件（judge・rear の既存行を修正、live on に語義2）。スクリプト neon/senses/import-hs.mjs、判定 neon/senses/hs-decisions.json、設計 docs/design-v2-range-progress.md §2。単語一覧の「教材・コース」に高1〜高3 はまだ出ない（P4 で範囲として扱う）</td></tr>
