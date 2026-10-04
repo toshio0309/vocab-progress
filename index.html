@@ -94,26 +94,26 @@ footer{color:var(--muted);font-size:12px}
 <div class="wrap">
   <header>
     <h1>My Vocabulary Coach クラウド版 進捗</h1>
-    <span class="stamp">2026-10-04 更新 · Claude</span>
+    <span class="stamp">2026-10-04 更新 · Codex</span>
   </header>
 
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
-      <span class="value">47 <small>/ 50</small></span>
-      <span class="sub">done 47 · doing 0 · 確認待ち 0 · todo 3</span>
-      <div class="bar"><i style="width:94%"></i></div>
+      <span class="value">48 <small>/ 51</small></span>
+      <span class="sub">done 48 · doing 0 · 確認待ち 0 · todo 3</span>
+      <div class="bar"><i style="width:94.1%"></i></div>
     </div>
     <div class="stat">
       <span class="label">公開済みレッスン</span>
-      <span class="value">240</span>
-      <span class="sub">中1 60 · 中2 60 · 中3 60 · 高1 60（本番Neon/R2確認）</span>
+      <span class="value">300</span>
+      <span class="sub">中1 60 · 中2 60 · 中3 60 · 高1 60 · 高2 60（10/4 本番DB/R2確認）</span>
     </div>
     <div class="stat">
       <span class="label">短い意味の登録率</span>
-      <span class="value">98.0%</span>
-      <span class="sub">5,149 / 5,254 語（10/4 本番DBの共有単語で確認）</span>
-      <div class="bar"><i style="width:98%"></i></div>
+      <span class="value">98.1%</span>
+      <span class="sub">5,170 / 5,272 語（10/4 本番DBの共有単語で確認）</span>
+      <div class="bar"><i style="width:98.1%"></i></div>
     </div>
     <div class="stat">
       <span class="label">DB migration</span>
@@ -127,8 +127,8 @@ footer{color:var(--muted);font-size:12px}
     </div>
     <div class="stat">
       <span class="label">高校学年コース</span>
-      <span class="value">2,078</span>
-      <span class="sub">高1 697 · 高2 700 · 高3 681（単語と語義、本番DBで確認）</span>
+      <span class="value">2,115</span>
+      <span class="sub">高1 697 · 高2 737 · 高3 681（単語と語義、10/4 本番DBで確認）</span>
     </div>
     <div class="stat">
       <span class="label">要望・検討</span>
@@ -146,7 +146,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>タスク</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">50件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">51件を表示</span>
       <button type="button" class="filter-reset" data-filter-reset hidden>解除</button>
     </div>
     </div>
@@ -156,7 +156,7 @@ footer{color:var(--muted);font-size:12px}
         <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">3</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">47</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">48</span></button>
       </div>
       <div class="chip-group" role="group" aria-label="タスクの担当" data-filter-key="owner">
         <span class="chip-label">担当</span>
@@ -172,6 +172,7 @@ footer{color:var(--muted);font-size:12px}
           <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>旧サイトのホスティングを停止</td><td class="note">T8 で旧アプリのコードは撤去済み。Supabase は無料プランの自動一時停止のまま残し、削除しない（9/27 ユーザー判断）</td></tr>
           <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">W1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>単語帳の検索を全単語で、速くする</td><td class="note">10/3 ユーザー指摘: 範囲で絞ってから検索する作りに意味がない、全単語の検索が要る、検索が遅い。検索語があるときは範囲に関係なく全単語から探し、範囲は絞り込みの1つにする。遅い原因を測ってから直す。</td></tr>
           <tr data-filter-row data-status="todo" data-owner="codex"><td class="id">C4</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-codex">Codex</span></td><td>高1 コースをレッスン 600 語に合わせる（DB の範囲の定義）</td><td class="note">10/3 ユーザー判断: 高1 は絵（レッスン 600 語）を基準にする。現状（本番、docs の突き合わせ表 高1単語_突き合わせ_2026-10-03.xlsx）: 高1 範囲 697 のうちレッスンで教えている 552、同じ綴りを教えているのに別の単語行に紐づいて数えられない 44 語（例 estimate はレッスンが動詞、範囲が名詞）、レッスンにない 96（熟語 38・単語 51・語義2以降 7）。レッスンにしかない熟語 4（be made of など）。範囲の定義を高1 レッスンにし、紐づけ違いの単語行を直す設計と dry-run を作り、ユーザー承認後に本番へ反映する。単語マスター側の品詞の誤り（nervous が動詞など）は M3 と合わせる。 10/4 C3から受け渡し: docs/content-review/c3-high1-corrections/README.md と vocabulary-check.txt に57件の意味提案・49件の不一致。claim（動詞）は既存共有行あり、旧lesson_wordsはclaim to doに紐づく。senior・withdraw・majorも画像を基準に語義を確認。既存lesson_wordsのword_id・sense_id・rectと学習記録を保つ更新方法をC3と合わせて設計する。 10/4 ユーザー判断: 担当を Codex に変更（C3 と同じく Codex が設計から実行する）。本番への反映はユーザー承認後。</td></tr>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">M5</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>高2 Motion の制作・公開</td><td class="note">10/4 ユーザー承認後、cloud-v2 d2251d5 のアプリを本番反映し、高2の60レッスン・600カード（版2）を公開。画像27枚36箇所を修正、600カードの品詞・語義・短い意味・個別rectを照合。M3適用後の6語を再照合し、既存修正を維持して短義291更新・単語/POS18追加・別語義13追加。高2範囲は37語義追加で700→737（当初39件のうち2件はM3の既存語義を再利用）。実DBで600カード一致、60件の取り込みdry-run合格・警告0、公開後の認証済みロールから60本600カードを参照可。画像・音声120ファイルのHTTP・形式・ハッシュ一致、監査違反0。型チェック・157テスト・171 migration検査合格。学習履歴は変更・削除していない。55本30秒、5本30.1〜30.6秒。docs/content-review/high2-production-result-2026-10-04.json。公開パッケージ・元画像・検査・DBバックアップは runtime/high2-publication-2026-10-04 に保全。</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">G1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>中高生向けの公開レビューと次の開発候補</td><td class="note">対象はユーザー回答の「英単語の暗記が苦手な中高生」、公開先は未決定。最新 cloud-v2 と本番のホーム・学習・教材一覧・テスト入口・教材の再生前を確認し、競合の公式情報と学習研究を比較。P4・P8 は実装済み、P5 は本番反映後の確認待ちとして評価。既存のじっくりモードは想起中に画像を隠す、未設定時の標準はぱっと。調査と仕様の反復を docs/product-review/release-readiness-2026-10-01.md、次の仕様案を next-release-brief.md、対象者での未実施の検証手順を student-validation.md に記録。大量の獲得・対象者のペイン・学習効果は未証明。Claude へ: 登録前試用と個人データの境界、10語専用の既存手順から最初の3語を試用する切り方、既存ルートとの整合をレビュー。F15・F16・N04・N05 は検討段階で、実装には着手していない。 10/1 Claude レビュー（途中）: 既存の学習ルートとの整合と画像の扱いを確認し、docs/design-v2-learning-flow.md §12 に記録。画像の根拠を受けて LF5 を修正、制作側の言葉を LF6 に追加、F16 と LF4 の食い違いを未決事項にした（10/1 ユーザーが LF4 に決定）。登録前試用の認証・個人データの境界と、10 語の手順から最初の 3 語を切り出す方法は未レビュー。10/1 ユーザー判断: 公開先・獲得目標・価格は決めない（Q13 は不要）。この 2 点は F15 に着手するときに Claude が行う</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">D1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>本番を cloud-v2 の版でデプロイし直す</td><td class="note">9/28 P4-2 を cloud-v2 に統合（commit 27ebcf6）後、Worker version 06df9d51-3326-452e-9fb9-9337f88c91b4 を配信。公開トップ HTTP 200、今回の bundle index-Ck2o93zZ.js も HTTP 200 で HTML から参照されている。DB・R2 は変更なし。npm run deploy -- --check のつもりの実行で引数が反映されず、ユーザー承認前に通常デプロイが実行された。対策（9/28 Claude）: 確認だけの npm run deploy:check を追加（フラグを package.json に書くので PowerShell でも落ちない）。npm run deploy -- --check は使わないと AGENTS.md・deploy-v2.md に明記</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">A1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>じっくりモード・範囲レッスンで次の単語の頭が聞こえる</td><td class="note">9/29 修正・本番反映、iPhone でユーザー確認済み。1 枚 3 秒の区切りが隙間なく並び、次の単語は区切りの約 0.075 秒後に始まるが、&lt;audio&gt; の一時停止がスマホで 0.1 秒以上遅れて効いていた（範囲レッスンは約 0.25 秒おきの確認でさらに遅れる）。Web Audio で区切りを指定して再生する方式に変更（v2/src/client/lib/segment-audio.ts、実測 3.008 秒で停止）。iPhone のマナーモードでも音が出るよう設定。テスト 7 件</td></tr>
@@ -257,7 +258,7 @@ footer{color:var(--muted);font-size:12px}
           <tr data-filter-row data-kind="nonfunctional" data-state="considering"><td class="id">N03</td><td>非機能</td><td><span class="pill considering">検討中</span></td><td>動画から復習までの利用状況を測る<small class="source">出典: UI/UX 改善計画 §6、公開レビュー docs/product-review/next-release-brief.md</small></td><td class="note">視聴・仕分け・未仕分け回収・復習への移行を、個人情報を出さない集計で確認する案。公開レビューで、訪問・試用開始・完了・登録・正式な初回学習・後日の学習も分けて観測する案を追加。ダウンロードと登録を同じ数にせず、現状値はまだ取得していない。</td><td class="note">現状値・取得方法・分母を決める。登録前試用に着手するときに必要な観測を一緒に設計する</td></tr>
           <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F15</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>登録前に実教材と短い想起を試す<small class="source">出典: 公開レビュー docs/product-review/next-release-brief.md</small></td><td class="note">公開レビューでの第一候補。検査済みの少量の教材を、登録前に絵・音声で学ぶところから、絵も答えも隠す想起まで試せるようにする案。既存10語教材の最初の3語のまとまりを初期案とし、じっくりの過程を活用。試用結果と正式な個人進捗は区別する。登録率の改善と必要性は未検証、実装未着手。</td><td class="note">着手するときに、Claude が公開教材・認証・個人進捗（RLS・アカウント分離）の境界と、10 語の「じっくり」から最初の 3 語を試用に切り出す方法をレビューする（G1 の残り）。入口で確かめる仮説と対象教材を決めたら実装の着手を判断</td></tr>
           <tr data-filter-row data-kind="nonfunctional" data-state="considering"><td class="id">N04</td><td>非機能</td><td><span class="pill considering">検討中</span></td><td>中高生で必要性・後日の想起・継続を検証する<small class="source">出典: 公開レビュー docs/product-review/student-validation.md</small></td><td class="note">対象者の直近の勉強方法と困った場面、説明なしでの操作、画像なしの翌日・翌週の想起を確かめる案。時間と想起回数をそろえて画像あり・なしを比較し、中学生と高校生を分けて記録する。未実施で、少人数の結果から市場全体や効果率を断定しない。</td><td class="note">対象者での実施が決まったら手順を確定。結果を得たらコピー・教材・次の開発候補を更新する</td></tr>
-          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F09</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>教材を 中3 → 高1〜高3 → 英検4級〜準2級 → 大学入試 へ広げる<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">学年ごとに Motion を作り、英検・大学入試は語義に掛ける範囲として扱う。範囲のうち動画がない語だけを制作する。10/4 時点: 中1〜中3 と高1 の各60本を公開済み（M2・M4）、前提の語義・範囲（P3・P4）も完了。絵のない語の制作計画（旧 C2）は 10/4 にユーザー判断で削除し、改めて指示を受ける。</td><td class="note">高2 以降・英検の制作の進め方をユーザーが改めて指示したとき</td></tr>
+          <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F09</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>教材を 中3 → 高1〜高3 → 英検4級〜準2級 → 大学入試 へ広げる<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">学年ごとに Motion を作り、英検・大学入試は語義に掛ける範囲として扱う。範囲のうち動画がない語だけを制作する。10/4 時点: 中1〜中3 と高1・高2 の各60本を公開済み（M2・M4・M5）、前提の語義・範囲（P3・P4）も完了。絵のない語の制作計画（旧 C2）は 10/4 にユーザー判断で削除し、改めて指示を受ける。</td><td class="note">高3 以降・英検の制作の進め方をユーザーが改めて指示したとき</td></tr>
           <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F10</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>熟語シリーズを追加<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">英検で比重が大きいため英検の範囲より先に進める。前提だった「単語マスターが熟語を見出しとして持てる」は P3 で満たした（品詞 idiom / phrasal_verb、高校の単語ファイルの熟語 約 270 件を取り込み済み）。高1 の範囲には、レッスンで教えていない熟語が 38 件ある（C4 の突き合わせ）。</td><td class="note">熟語の教材（Motion か文字カードか）と、どの範囲の熟語から作るかを決めたら着手を判断</td></tr>
           <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F11</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>文章シリーズ（少なくとも長文の聞き取り）<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">範囲の中で覚えた語を使った文章を作って音声化し、聞き取りを文脈の中での復習にもする案。</td><td class="note">教材の作り方と画面を決める（前提の範囲 P4 は完了）</td></tr>
           <tr data-filter-row data-kind="feature" data-state="considering"><td class="id">F14</td><td>機能</td><td><span class="pill considering">検討中</span></td><td>学習意欲を上げる仕掛けと、おすすめ YouTube などの情報ページ<small class="source">出典: ユーザー構想メモ 2026-09-27（docs/ideas-backlog.md）</small></td><td class="note">「なぜ英語を学ぶのか」を外部の人に語ってもらうと意欲が上がるのではないか。ほかの仕掛けも考えたい。</td><td class="note">載せる情報の集め方と、ページの置き場所を決める</td></tr>
