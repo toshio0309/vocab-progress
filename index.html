@@ -100,9 +100,9 @@ footer{color:var(--muted);font-size:12px}
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
-      <span class="value">49 <small>/ 52</small></span>
-      <span class="sub">done 49 · doing 0 · 確認待ち 1 · todo 2</span>
-      <div class="bar"><i style="width:94.2%"></i></div>
+      <span class="value">49 <small>/ 53</small></span>
+      <span class="sub">done 49 · doing 0 · 確認待ち 2 · todo 2</span>
+      <div class="bar"><i style="width:92.5%"></i></div>
     </div>
     <div class="stat">
       <span class="label">公開済みレッスン</span>
@@ -146,7 +146,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>タスク</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">52件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">53件を表示</span>
       <button type="button" class="filter-reset" data-filter-reset hidden>解除</button>
     </div>
     </div>
@@ -154,7 +154,7 @@ footer{color:var(--muted);font-size:12px}
       <div class="chip-group" role="group" aria-label="タスクの状態" data-filter-key="status">
         <span class="chip-label">状態</span>
         <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">0</span></button>
-        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">1</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">2</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">2</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">49</span></button>
       </div>
@@ -162,13 +162,14 @@ footer{color:var(--muted);font-size:12px}
         <span class="chip-label">担当</span>
         <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">1</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">6</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">3</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">4</span></button>
       </div>
     </div>
     <div class="table-box">
       <table>
         <thead><tr><th>ID</th><th>状態</th><th>担当</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
+          <tr data-filter-row data-status="review" data-owner="user"><td class="id">PL1</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>100マスのカラーパレットで、アプリ全体の色を変える</td><td class="note">10/4 ユーザー要望を反映。100マスのカードのパレット（ブルー・ミント・サクラ・サンセット・ラベンダー）で選んだ色が、アプリ全体の強調色（ボタン、リンク、選択中の表示、フォーカス枠、ブラウザのテーマ色）になる。ライト・ダークそれぞれに色を用意（ダークは明るい色）。サンセットは白い文字が読めるよう少し濃くした。保存は今までどおり端末ごと。起動時に最初の表示の前に適用する。ボタンの影などに直接書かれていた青も選んだ色に合わせた。v2/src/client/lib/app-palette.ts、globals.css の :root[data-palette]。型チェック・163テスト合格。開発用プレビューで、サクラに切り替えると100マスとボタンの色が変わり、ログイン画面に移っても色が残り、ダークでも読めることを確認。ログイン後の実画面は未確認。10/4 本番反映（cloud-v2 1f8b35d、Worker 062d7f39-d0e5-4fd5-94f7-521b69033774）。ユーザーの使い心地確認待ち。</td></tr>
           <tr data-filter-row data-status="review" data-owner="user"><td class="id">SP1</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>スペル入力の答え合わせで、書いた文字と正解の差を見せる</td><td class="note">10/4 ユーザー指摘「まるばつだけでなく、書いた文言と正解の差がわかるように」を反映。英語を入力する5画面（スペル、Speed Learn の思い出す、Deep Learn の文の中で使う、テストの想起・文脈、範囲テストの日→英）の答え合わせで、「あなた」と「正解」を2行に並べ、余分・打ち間違いの文字を赤い背景、抜けた・違っていた文字を太字の下線で示し、「N文字ちがい」を出す（取り消し線は c が e に見えるので使わない）。比較は大文字小文字と前後の空白を無視、重なり文字（necessary の ss）は後ろの文字に印。正誤の判定（サーバー）は変えていない。テストと範囲テストの結果に本人の答え（response）を含めた。v2/src/shared/words/spelling-diff.ts、v2/src/client/components/spelling/spelling-diff.tsx、単体テスト6件、開発用プレビュー /dev/spelling-diff（本番には含まれない）。型チェック・163テスト合格。開発用プレビューで 375px のライト・ダークの表示を確認。ログイン後の実画面は未確認（ローカルでは外部の認証を通せないため）。10/4 本番反映（cloud-v2 0f6c1f5、Worker 232edace-d45b-4849-bb00-45d5fb1799f3、npm run release で本番の配信を確認）。10/4 ユーザー指摘「解答のときに問題（日本語）も欲しい」を反映: 答え合わせの先頭に「問題」の行で日本語の意味を出す（スペル・Deep Learn・テストは語の意味、範囲テストは出題した短い意味。Speed Learn はカードの上に意味が出たまま）。テストの結果に意味（meaningJa）を含めた。本番反映（cloud-v2 c6efd7b、Worker cc658169-7fc8-4a94-a4c5-f6964925779e）。ユーザーの使い心地確認待ち。</td></tr>
           <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>旧サイトのホスティングを停止</td><td class="note">T8 で旧アプリのコードは撤去済み。Supabase は無料プランの自動一時停止のまま残し、削除しない（9/27 ユーザー判断）</td></tr>
           <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">W1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>単語帳の検索を全単語で、速くする</td><td class="note">10/3 ユーザー指摘: 範囲で絞ってから検索する作りに意味がない、全単語の検索が要る、検索が遅い。検索語があるときは範囲に関係なく全単語から探し、範囲は絞り込みの1つにする。遅い原因を測ってから直す。</td></tr>
