@@ -94,14 +94,14 @@ footer{color:var(--muted);font-size:12px}
 <div class="wrap">
   <header>
     <h1>My Vocabulary Coach クラウド版 進捗</h1>
-    <span class="stamp">2026-10-04 更新 · Claude</span>
+    <span class="stamp">2026-10-04 更新 · Codex</span>
   </header>
 
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
       <span class="value">52 <small>/ 57</small></span>
-      <span class="sub">done 52 · doing 1 · 確認待ち 2 · todo 2</span>
+      <span class="sub">done 52 · doing 0 · 確認待ち 3 · todo 2</span>
       <div class="bar"><i style="width:91.2%"></i></div>
     </div>
     <div class="stat">
@@ -153,24 +153,24 @@ footer{color:var(--muted);font-size:12px}
     <div class="chips">
       <div class="chip-group" role="group" aria-label="タスクの状態" data-filter-key="status">
         <span class="chip-label">状態</span>
-        <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">1</span></button>
-        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">2</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">0</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">3</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">2</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">52</span></button>
       </div>
       <div class="chip-group" role="group" aria-label="タスクの担当" data-filter-key="owner">
         <span class="chip-label">担当</span>
         <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">1</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">7</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">4</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">6</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">5</span></button>
       </div>
     </div>
     <div class="table-box">
       <table>
         <thead><tr><th>ID</th><th>状態</th><th>担当</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
-          <tr data-filter-row data-status="doing" data-owner="codex"><td class="id">C3P</td><td><span class="pill doing">doing</span></td><td><span class="owner owner-codex">Codex</span></td><td>高1の修正画像・音声の公開準備</td><td class="note">10/4 修正画像42枚・420カードを目視確認。41パッケージは準備済み、high1-009 estimate のIPAだけ画像生成の上限解除待ち（ユーザー判断で画像生成を待ち、21時に再開予約）。音声7本8カードを修正、35本は再利用。短義46件更新・語義1件追加・カード5件の語義変更案を準備。取り込み42件は警告0、本番READ ONLY一致、ローカル適用・戻し・履歴保持の18検査合格。高1範囲600語義を維持、他学年等の範囲は保持。中2・中3の公開6カードも共有短義の表示が変わる。docs/content-review/c3-high1-publication/README.md。元素材と公開候補は runtime/high1-publication-2026-10-04 に保存。本番DB・R2への一括反映は全画像の再検査後に変更案の承認を得る。</td></tr>
           <tr data-filter-row data-status="review" data-owner="user"><td class="id">LU1</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>見るだけ学習の画面を改良（進め方を上に、学年を折りたたみ、設定の順に並べる）</td><td class="note">10/4 ユーザー要望を反映。(1) 「進め方（サクサク／じっくり）」を一番上に移し、「範囲から10語」にも使う。範囲から10語のじっくりは、今日の学習と同じ1枚ずつ自分のペースで見る形（レッスンのじっくりの3語ずつ思い出す形とは違う）。どちらも最後に仕分けで思い出す。(2) レッスン一覧は学年ごとに折りたたむ。続きのレッスンがある学年と、検索中は開く。(3) 設定の範囲で選んだ学年だけを学年順に並べる（例 中1〜中3）。範囲から10語は範囲の語の順に「見た（未仕分け）」→「まだ見ていない」から10語を取る（ランダムではない）。型チェック・171テスト合格。ログイン後の実画面は未確認。10/4 本番反映（cloud-v2 172ceb5、Worker a6f355dc-d14d-418b-b417-d50a06f273c7）。</td></tr>
+          <tr data-filter-row data-status="review" data-owner="user"><td class="id">C3P</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>高1の修正画像・音声の公開準備</td><td class="note">10/4 21時再開で全42パッケージ完成。estimateは拡大で元画像にもeɪtがあると確認し、前の欠落判定を訂正。v3を保存、全10カードと枠を再確認。画像42枚・音声7本8カード、短義46更新・語義1追加・カード5件の語義変更案。取り込み42件警告0、本番READ ONLY一致、ローカル適用・戻し・履歴保持の15検査と画像形式5検査合格。高1範囲600を維持。他学年等の範囲は保持。切替5カードの進捗は切替先語義で集計、旧履歴は保持。共有短義が変わる中2・中3の公開6カードを明記。音声の耳での試聴は未実施。docs/content-review/c3-high1-publication/README.md。素材・公開候補・検査は runtime/high1-publication-2026-10-04 に保全。戻しは --revert（新規語義は履歴保持のため残す）。本番DB/R2は未変更、完成案の本番反映承認待ち。</td></tr>
           <tr data-filter-row data-status="review" data-owner="user"><td class="id">SP1</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>スペル入力の答え合わせで、書いた文字と正解の差を見せる</td><td class="note">10/4 ユーザー指摘「まるばつだけでなく、書いた文言と正解の差がわかるように」を反映。英語を入力する5画面（スペル、Speed Learn の思い出す、Deep Learn の文の中で使う、テストの想起・文脈、範囲テストの日→英）の答え合わせで、「あなた」と「正解」を2行に並べ、余分・打ち間違いの文字を赤い背景、抜けた・違っていた文字を太字の下線で示し、「N文字ちがい」を出す（取り消し線は c が e に見えるので使わない）。比較は大文字小文字と前後の空白を無視、重なり文字（necessary の ss）は後ろの文字に印。正誤の判定（サーバー）は変えていない。テストと範囲テストの結果に本人の答え（response）を含めた。v2/src/shared/words/spelling-diff.ts、v2/src/client/components/spelling/spelling-diff.tsx、単体テスト6件、開発用プレビュー /dev/spelling-diff（本番には含まれない）。型チェック・163テスト合格。開発用プレビューで 375px のライト・ダークの表示を確認。ログイン後の実画面は未確認（ローカルでは外部の認証を通せないため）。10/4 本番反映（cloud-v2 0f6c1f5、Worker 232edace-d45b-4849-bb00-45d5fb1799f3、npm run release で本番の配信を確認）。10/4 ユーザー指摘「解答のときに問題（日本語）も欲しい」を反映: 答え合わせの先頭に「問題」の行で日本語の意味を出す（スペル・Deep Learn・テストは語の意味、範囲テストは出題した短い意味。Speed Learn はカードの上に意味が出たまま）。テストの結果に意味（meaningJa）を含めた。本番反映（cloud-v2 c6efd7b、Worker cc658169-7fc8-4a94-a4c5-f6964925779e）。ユーザーの使い心地確認待ち。</td></tr>
           <tr data-filter-row data-status="todo" data-owner="user"><td class="id">U2</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-user">ユーザー</span></td><td>旧サイトのホスティングを停止</td><td class="note">T8 で旧アプリのコードは撤去済み。Supabase は無料プランの自動一時停止のまま残し、削除しない（9/27 ユーザー判断）</td></tr>
           <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">W1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>単語帳の検索を全単語で、速くする</td><td class="note">10/3 ユーザー指摘: 範囲で絞ってから検索する作りに意味がない、全単語の検索が要る、検索が遅い。検索語があるときは範囲に関係なく全単語から探し、範囲は絞り込みの1つにする。遅い原因を測ってから直す。</td></tr>
