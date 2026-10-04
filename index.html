@@ -94,14 +94,14 @@ footer{color:var(--muted);font-size:12px}
 <div class="wrap">
   <header>
     <h1>My Vocabulary Coach クラウド版 進捗</h1>
-    <span class="stamp">2026-10-04 更新 · Codex</span>
+    <span class="stamp">2026-10-04 更新 · Claude</span>
   </header>
 
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
       <span class="value">56 <small>/ 57</small></span>
-      <span class="sub">done 56 · doing 0 · 確認待ち 0 · todo 1</span>
+      <span class="sub">done 56 · doing 0 · 確認待ち 1 · todo 0</span>
       <div class="bar"><i style="width:98.2%"></i></div>
     </div>
     <div class="stat">
@@ -154,22 +154,22 @@ footer{color:var(--muted);font-size:12px}
       <div class="chip-group" role="group" aria-label="タスクの状態" data-filter-key="status">
         <span class="chip-label">状態</span>
         <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">0</span></button>
-        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">0</span></button>
-        <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">1</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">1</span></button>
+        <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">56</span></button>
       </div>
       <div class="chip-group" role="group" aria-label="タスクの担当" data-filter-key="owner">
         <span class="chip-label">担当</span>
-        <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">1</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="claude">Claude<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="false" data-value="codex">Codex<span class="chip-count">6</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">1</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="user">ユーザー<span class="chip-count">2</span></button>
       </div>
     </div>
     <div class="table-box">
       <table>
         <thead><tr><th>ID</th><th>状態</th><th>担当</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
-          <tr data-filter-row data-status="todo" data-owner="claude"><td class="id">W1</td><td><span class="pill todo">todo</span></td><td><span class="owner owner-claude">Claude</span></td><td>単語帳の検索を全単語で、速くする</td><td class="note">10/3 ユーザー指摘: 範囲で絞ってから検索する作りに意味がない、全単語の検索が要る、検索が遅い。検索語があるときは範囲に関係なく全単語から探し、範囲は絞り込みの1つにする。遅い原因を測ってから直す。</td></tr>
+          <tr data-filter-row data-status="review" data-owner="user"><td class="id">W1</td><td><span class="pill review">確認待ち</span></td><td><span class="owner owner-user">ユーザー</span></td><td>単語帳を作り直す（出会った語・意味の帯・1語のページ・全語検索）</td><td class="note">10/3 ユーザー指摘: 範囲で絞ってから検索する作りに意味がない、全単語の検索が要る、検索が遅い。検索語があるときは範囲に関係なく全単語から探し、範囲は絞り込みの1つにする。遅い原因を測ってから直す。 10/4 ユーザーと設計: 単語帳は辞書ではなく「自分と語の関係」のページにする。一覧は出会った語（切り替えで範囲の全語）を 苦手→学習中（しばらく見ていない順）→定着 の順に並べ、今週の増加を出す。意味は灰色の帯で隠し、PC はカーソル、スマホはタップで表示（表示しても思い出せた記録にはしない）。絵は出さない（ユーザー判断）。検索は範囲に関係なく全単語から（完全一致→前方一致→部分一致）。1語のページ /words/:wordId: 出会ったレッスンと動画へのリンク、発音、次にやることのボタン1つ、意味ごとの記録（思い出せた回数・初めて/最後に見た日）、最近の間違い（綴りは文字の差）。出会った語は自分の学習記録の行だけを読むので、全範囲を端末に読み込まない。DB の変更なし。10/4 Claude が実装し本番にリリース（c7b016d）。ログインが必要な画面の確認はユーザー待ち。</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">LU1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>見るだけ学習の画面を改良（進め方を上に、学年を折りたたみ、設定の順に並べる）</td><td class="note">10/4 ユーザー要望を反映。(1) 「進め方（サクサク／じっくり）」を一番上に移し、「範囲から10語」にも使う。範囲から10語のじっくりは、今日の学習と同じ1枚ずつ自分のペースで見る形（レッスンのじっくりの3語ずつ思い出す形とは違う）。どちらも最後に仕分けで思い出す。(2) レッスン一覧は学年ごとに折りたたむ。続きのレッスンがある学年と、検索中は開く。(3) 設定の範囲で選んだ学年だけを学年順に並べる（例 中1〜中3）。範囲から10語は範囲の語の順に「見た（未仕分け）」→「まだ見ていない」から10語を取る（ランダムではない）。型チェック・171テスト合格。ログイン後の実画面は未確認。10/4 本番反映（cloud-v2 172ceb5、Worker a6f355dc-d14d-418b-b417-d50a06f273c7）。 10/4 ユーザー指摘「サクサクで画像が1単語にならない」: 範囲から10語のサクサクは絵全体にカメラを寄せるだけで、隣のカードが見えていた。レッスンのサクサクと同じく、今のカードの外側を切り落とすようにした（cloud-v2 40906b7、Worker c5f8da0d-4da9-431a-a0ab-8a15cc24ae04）。 10/4 ユーザー確認 OK、完了。</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">C3P</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>高1の修正画像・音声の公開準備</td><td class="note">10/4 ユーザー承認後、本番反映・公開後検証まで完了。画像42枚、音声7本8カード（35本は再利用）、短義46更新・語義1追加・カード5件の語義変更。既存420カードをUPDATEし、レッスンとカードの削除・再作成なし。高1範囲600を維持。旧語義の学習履歴は保持し、切替5カードは切替先語義の進捗で集計。共有短義は中2・中3の公開6カードにも反映。公開後の学習者権限で60本600カード、修正420カードが案と一致。画像・音声84参照ファイルはHTTP200・形式・ハッシュ一致、監査違反0。対象外の高1教材18本・共有訳・他の学年等の範囲は適用前と一致。共有語義5,377→5,378。取り込み42件警告0、ローカル適用・戻し・履歴保持15検査、画像形式5検査合格。音声の耳での試聴は未実施。estimateの欠落判定は拡大で誤りと確認し訂正。docs/content-review/c3-high1-publication/production-result.json。素材・公開候補・検査・適用前バックアップは runtime/high1-publication-2026-10-04 に保全。戻しは --revert（新規語義は履歴保持のため残す）。再開予約は停止済み。</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">ST1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>設定の改良（範囲の幅・英検・単語帳、アプリの色、ホームの画像）</td><td class="note">10/4 ユーザー要望を反映。(1) ホームの画像を複数に: 設定の「ホームの画像」でランダム・車・学校を選び、開くたびにその中から1枚。車3枚を追加、学校は元の女の子の画像。被写体が左の画像はあいさつを右に置く。空旅は画像ファイルが届いたら v2/public/hero/ に置き lib/hero-images.ts に1行足す（画像のないジャンルは選択肢に出さない）。(2) 範囲: 学年の幅（例 中1〜高1）、英検（なし／〇級まで）、単語帳（なし／ターゲット1200・1400・1900、BK1 の適用後に選べる）。10/4 ユーザー判断で、今日の学習と100マスは今までどおり1つの範囲を選び、選べる範囲を幅・英検・単語帳で絞る。既定は全学年・英検2級まで・単語帳なし（今までと同じ）。端末ごとに保存。(3) アプリの色を設定でも変えられる（100マスのパレットと同じ設定）。型チェック・170テスト合格。開発用プレビュー /dev/appearance で画像4枚の表示と、色・画像の選択と保存を確認。ログイン後の実画面は未確認。10/4 本番反映（cloud-v2 e1d4a92、Worker f993e09c-12d3-496f-9bc1-cd6840c46a43）。 10/4 ユーザー確認 OK、完了。</td></tr>
