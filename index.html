@@ -94,25 +94,25 @@ footer{color:var(--muted);font-size:12px}
 <div class="wrap">
   <header>
     <h1>My Vocabulary Coach クラウド版 進捗</h1>
-    <span class="stamp">2026-10-05 更新 · Claude</span>
+    <span class="stamp">2026-10-05 更新 · Codex</span>
   </header>
 
   <section class="stats" aria-label="概要">
     <div class="stat">
       <span class="label">タスク</span>
-      <span class="value">60 <small>/ 60</small></span>
-      <span class="sub">done 60 · doing 0 · 確認待ち 0 · todo 0</span>
+      <span class="value">61 <small>/ 61</small></span>
+      <span class="sub">done 61 · doing 0 · 確認待ち 0 · todo 0</span>
       <div class="bar"><i style="width:100%"></i></div>
     </div>
     <div class="stat">
       <span class="label">公開済みレッスン</span>
-      <span class="value">300</span>
-      <span class="sub">中1 60 · 中2 60 · 中3 60 · 高1 60 · 高2 60（10/4 本番DB/R2確認）</span>
+      <span class="value">360</span>
+      <span class="sub">中1 60 · 中2 60 · 中3 60 · 高1 60 · 高2 60 · 高3 60（10/5 本番DB/R2確認）</span>
     </div>
     <div class="stat">
       <span class="label">短い意味の登録率</span>
       <span class="value">98.1%</span>
-      <span class="sub">5,170 / 5,272 語（10/4 本番DBの共有単語で確認）</span>
+      <span class="sub">5,196 / 5,298 語（10/5 本番DBの共有単語で確認）</span>
       <div class="bar"><i style="width:98.1%"></i></div>
     </div>
     <div class="stat">
@@ -127,8 +127,8 @@ footer{color:var(--muted);font-size:12px}
     </div>
     <div class="stat">
       <span class="label">高校学年コース</span>
-      <span class="value">2,018</span>
-      <span class="sub">高1 600 · 高2 737 · 高3 681（単語と語義、10/4 本番DBで確認）</span>
+      <span class="value">2,054</span>
+      <span class="sub">高1 600 · 高2 737 · 高3 717（単語と語義、10/5 本番DBで確認）</span>
     </div>
     <div class="stat">
       <span class="label">要望・検討</span>
@@ -146,7 +146,7 @@ footer{color:var(--muted);font-size:12px}
     <div class="section-head">
       <h2>タスク</h2>
       <div class="section-actions">
-      <span class="result-count" data-filter-count aria-live="polite">60件を表示</span>
+      <span class="result-count" data-filter-count aria-live="polite">61件を表示</span>
       <button type="button" class="filter-reset" data-filter-reset hidden>解除</button>
     </div>
     </div>
@@ -156,7 +156,7 @@ footer{color:var(--muted);font-size:12px}
         <button type="button" class="chip" aria-pressed="true" data-value="doing">doing<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="review">確認待ち<span class="chip-count">0</span></button>
         <button type="button" class="chip" aria-pressed="true" data-value="todo">todo<span class="chip-count">0</span></button>
-        <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">60</span></button>
+        <button type="button" class="chip" aria-pressed="false" data-value="done">done<span class="chip-count">61</span></button>
       </div>
       <div class="chip-group" role="group" aria-label="タスクの担当" data-filter-key="owner">
         <span class="chip-label">担当</span>
@@ -169,6 +169,7 @@ footer{color:var(--muted);font-size:12px}
       <table>
         <thead><tr><th>ID</th><th>状態</th><th>担当</th><th>題</th><th>残り・blocker</th></tr></thead>
         <tbody>
+          <tr data-filter-row data-status="done" data-owner="none"><td class="id">M6P</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>高3の60レッスンを公開</td><td class="note">10/5 ユーザーの「公開して」を受け、本番に60レッスン・600カードを新規公開。Excel600語を核に全画像本文600カードを目視照合。明らかな誤り等16画像を画像生成で修正し、元画像は保持。impulseの例文・attributeの発音指定・earningsの見出しに対応して音声43/56/60を別保存で再生成し、他57本を再利用。DBは短い意味354件（既存カード56件にも反映）、異なる品詞の単語26件・別語義6件を追加し、旧語義を保持。高3範囲へ36語義追加、681→717。全60教材の公開前後dry-runはエラー・警告0。画像/音声120ファイルの配信ハッシュ一致、認証ユーザーから60/600/717の参照可、監査違反0。適用・差し戻しのローカル検査で既存カード・公開後の履歴も保持。本番は単一トランザクションで反映。耐久バックアップ runtime/high3-publication-2026-10-05。戻すときは意味と範囲を復元し高3を非公開、カード・新語義・履歴は保持。音声全60本の耳での試聴は未実施。docs/content-review/high3-publication-2026-10-05/README.md。</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">MP1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>間違いのページを速くし、単語帳と役割を分ける</td><td class="note">10/5 ユーザー指摘: 読み込みが長い、単語帳との差がない。原因（コードから。計測はしていない）: 全範囲の語義の対応表を毎回読む、苦手の判定で直近30日の正解の記録を全部読む（W1 の変更で増えた）、画面を出す前にミスの型を数え直す。直したこと: 間違えた答えを先に読み、正解はその語の分だけ読む。語義は関係する分だけ引く。保存済みのミスの型を先に出し、数え直しは裏で行う。ユーザー判断で「最近30日の誤答語義」の一覧を外し（苦手の語は単語帳）、このページは「3分で直す」とミスの型（綴り・似た語との取り違え・意味）のまとまりにした。今週直した件数と「苦手 N語を単語帳で見る」を表示。綴りのクセのまとめ（同じ間違い方をまとめる）は次に回す（ユーザー判断）。10/5 本番にリリース（3a7a1d7）。 10/5 ユーザー指摘: ホームは「苦手を見直す 11件」なのに、このページは 0件。ホームは苦手の語（最後の答えが間違い）、このページはミスの型（同じ間違いを2回以上）を数えていた。「3分で直す」もミスの型からしか出題していなかった。直したこと: このページの件数をホームと同じ苦手の語数にし、「3分で直す」は苦手の語を先に（最大22語）、残りをミスの型から出題する（サーバーの開始入力に苦手の語の ID を追加。ミスの型がない問題は patternId なし）。正解すると苦手から外れる。注意: 問題は語の第1の意味で出すので、意味2だけが苦手の語は練習しても苦手から外れない。10/5 本番にリリース（3cde5c5）。10/5 ユーザー確認、完了。</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">CX1</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>文の中で選ぶの結果画面のボタンを直す</td><td class="note">10/5 ユーザー指摘: 終わったあとの2つのボタンがどちらも「学習に戻る」だった。上を「もう一度」（新しい問題で始める）、下を「学習に戻る」にした。10/5 本番にリリース（3a7a1d7）。10/5 ユーザー確認、完了。</td></tr>
           <tr data-filter-row data-status="done" data-owner="none"><td class="id">M6A</td><td><span class="pill done">done</span></td><td><span class="muted">—</span></td><td>高3の1〜60の英語音声を制作</td><td class="note">10/5 Excelの選定600シート A2:L601 を基準に、1〜60の600語と例文の英語音声60本を制作。先に作った1〜50の50本はハッシュ一致で保持し、画像51〜60の追加後に残り100語の10本を制作した。Chirp 3 HD / Kore、24 kHz・モノラル・128 kbps MP3。1本30.0〜30.8秒。600カードの台本・順序・時間・非無音、60本の形式・全サンプルのデコード・ハッシュ一致を確認。長い例文等の43カードは全文を保持して区間を延長。読み方が分かれるpresent・elaborate・compound・bow・importの5語は用法に合わせてIPA指定。60画像の見出し番号を確認し、Excelと元画像のハッシュ不変を確認。素材・台本・時間・音声・全60本ZIPは runtime/high3-audio-2026-10-05 に保全。以前の50本ZIPと検証・台本・制作ツールは保持。全音声の耳での試聴と全画像本文の照合は未実施。今回の依頼は音声制作までで、DB照合・教材取り込み・本番公開は別工程。docs/content-review/high3-audio-2026-10-05/verification.json。</td></tr>
